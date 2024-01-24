@@ -33,7 +33,7 @@ const Slider = () => {
       auto();
     }
 
-    return () => clearInterval(slideInterval);
+    return () => clearInterval(slideInterval); // ! to avoid the memory from leaking
   }, [currentSlide, intervalTime, autoScroll]);
 
   return (
