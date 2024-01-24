@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import { Link, NavLink } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 
 // ! created this so we can use the LOGO on any page we like.
 export const logo = (
@@ -13,9 +14,19 @@ export const logo = (
   </div>
 );
 
+// ! to display the color if the link is active or not
 const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
 
 const Header = () => {
+  const cart = (
+    <span className={styles.cart}>
+      <Link to={"/cart"}>
+        Cart
+        <FaShoppingCart size={20} />
+        <p>0</p>
+      </Link>
+    </span>
+  );
   return (
     <header>
       <div className={styles.header}>
@@ -41,6 +52,8 @@ const Header = () => {
                 My Order
               </NavLink>
             </span>
+
+            {cart}
           </div>
         </nav>
       </div>
