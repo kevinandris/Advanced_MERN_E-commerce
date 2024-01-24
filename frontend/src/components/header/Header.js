@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { FaTimes } from "react-icons/fa";
 
 // ! created this so we can use the LOGO on any page we like.
 export const logo = (
@@ -14,10 +16,20 @@ export const logo = (
   </div>
 );
 
-// ! to display the color if the link is active or not
+// ! to display the color if the link is active or not.
 const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const hideMenu = () => {
+    setShowMenu(false);
+  };
+
   const cart = (
     <span className={styles.cart}>
       <Link to={"/cart"}>
@@ -27,12 +39,31 @@ const Header = () => {
       </Link>
     </span>
   );
+
   return (
     <header>
       <div className={styles.header}>
         {logo}
-        <nav>
+
+        <nav
+          className={
+            showMenu ? `${styles["show-nav"]}` : `${styles["hide-nav"]}`
+          }
+        >
+          <div
+            className={
+              showMenu
+                ? `${styles["nav-wrapper"]} ${styles["show-nav-wrapper"]}`
+                : `${styles["nav-wrapper"]}`
+            }
+            onClick={hideMenu}
+          ></div>
+
           <ul>
+            <li className={styles["logo-mobile"]}>
+              {logo}
+              <FaTimes size={22} color="#fff" onClick={hideMenu} />
+            </li>
             <li>
               <NavLink to="/shop" className={activeLink}>
                 Shop
@@ -56,6 +87,11 @@ const Header = () => {
             {cart}
           </div>
         </nav>
+
+        <div className={styles["menu-icon"]}>
+          {cart}
+          <HiOutlineMenuAlt3 size={28} onClick={toggleMenu} />
+        </div>
       </div>
     </header>
   );
