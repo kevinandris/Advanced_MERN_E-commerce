@@ -1,15 +1,40 @@
-import React, { useState } from "react";
-import styles from "./Slider.module.scss";
+import React, { useEffect, useState } from "react";
+import "./Slider.scss";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { sliderData } from "./Slider-data";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const slideLength = sliderData.length;
+  const autoScroll = true;
+  let slideInterval;
+  const intervalTime = 5000;
 
-  const prevSlide = () => {};
-  const nextSlide = () => {};
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
+  };
+
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, []);
+
+  useEffect(() => {
+    if (autoScroll) {
+      const auto = () => {
+        slideInterval = setInterval(nextSlide, intervalTime);
+      };
+      auto();
+    }
+
+    return () => clearInterval(slideInterval);
+  }, [currentSlide, intervalTime, autoScroll]);
 
   return (
     <div className="slider">
@@ -18,7 +43,7 @@ const Slider = () => {
 
       {/* // ! Map through Slider Data */}
       {sliderData.map((slide, index) => {
-        const { image, heading, description } = slide;
+        const { image, heading, desc } = slide;
 
         return (
           <div
@@ -34,11 +59,11 @@ const Slider = () => {
                   <span className="span3"></span>
                   <span className="span4"></span>
                   <h2>{heading}</h2>
-                  <p>{description}</p>
+                  <p>{desc}</p>
                   <hr />
                   <button
                     className="--btn --btn-primary"
-                    onClick={() => Navigate("/shop")}
+                    onClick={() => navigate("/shop")}
                   >
                     Shop Now
                   </button>
