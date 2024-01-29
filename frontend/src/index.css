@@ -7,6 +7,7 @@
 
   --color-white: #fff;
   --color-dark: #333;
+  --black-color: #000000;
 
   --color-grey: #eee;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -17,6 +18,8 @@
   --color-primary: #007bff;
   --color-success: #28a745;
   --color-danger: orangered;
+  --color-red: rgba(189, 9, 9, 0.847);
+  --color-bright-red: rgb(255, 0, 0);
 }
 
 * {
@@ -43,6 +46,10 @@ section {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
+
+  h3 {
+    color: #000000;
+  }
 }
 
 /* UTILITY CLASSES */
@@ -278,11 +285,11 @@ p {
   margin: 0 5px 0 0;
   border: 1px solid transparent;
   border-radius: 3px;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .--btn:hover {

@@ -33,7 +33,7 @@ const Slider = () => {
       auto();
     }
 
-    return () => clearInterval(slideInterval); // ! to avoid the memory from leaking
+    return () => clearInterval(slideInterval); // ! to avoid the memory from leaking (must be included)
   }, [currentSlide, intervalTime, autoScroll]);
 
   return (
@@ -62,7 +62,7 @@ const Slider = () => {
                   <p>{desc}</p>
                   <hr />
                   <button
-                    className="--btn --btn-primary"
+                    className="--btn --btn-red"
                     onClick={() => navigate("/shop")}
                   >
                     Shop Now

@@ -21,6 +21,16 @@ const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [scrollPage, setScrollPage] = useState(false);
+
+  const fixNavbar = () => {
+    if (window.scrollY > 50) {
+      setScrollPage(true);
+    } else {
+      setScrollPage(false);
+    }
+  };
+  window.addEventListener("scroll", fixNavbar);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -41,7 +51,7 @@ const Header = () => {
   );
 
   return (
-    <header>
+    <header className={scrollPage ? `${styles.fixed}` : null}>
       <div className={styles.header}>
         {logo}
 
