@@ -11,7 +11,7 @@ const generateToken = (id) => {
   });
 };
 
-// ! Register User
+// ! (1) Register User
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -52,7 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400),
-      /* // ! in development mode, comment out those 2, error might occur if we try to login */
+      /* // * in development mode, comment out those 2, error might occur if we try to login */
       // secure: true,
       // sameSite: none,
     });
@@ -73,6 +73,56 @@ const registerUser = asyncHandler(async (req, res) => {
   res.send("Register User...");
 });
 
+// ! (2) Login User
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  // * Validate request
+  if (!email || !password) {
+    res.status(400);
+    throw new Error("Please add an email and a password");
+  }
+
+  // * Check if user exists
+  const user = await User.findOne({ email });
+
+  // * if a user is not exist
+  if (!user) {
+    res.status(400);
+    throw new Error("User does not exist.");
+  }
+
+  // * Check if user password is correct
+  const passwordIsCorrect = await bcrypt.compare(password, user.password);
+
+  // * Generate Token
+  const token = generateToken(user._id);
+
+  // * log the user in
+  if (user && passwordIsCorrect) {
+    const newUser = await User.findOne({ email }).select(
+      "-password"
+    ); /* // ? remove the password to the frontend */
+    res.cookie("token", token, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 86400),
+      /* // ! in development mode, comment out those 2, error might occur if we try to login */
+      // secure: true,
+      // sameSite: "none",
+    });
+
+    // Send user data
+    res.status(201).json(newUser);
+  } else {
+    res.status(400);
+    throw new Error("Invalid email or password");
+  }
+
+  res.send("Login user...");
+});
+
 module.exports = {
   registerUser,
+  loginUser,
 };
