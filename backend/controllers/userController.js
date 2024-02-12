@@ -11,7 +11,7 @@ const generateToken = (id) => {
   });
 };
 
-// ! (1) Register User
+// ! (1) Register User - POST method
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -73,7 +73,7 @@ const registerUser = asyncHandler(async (req, res) => {
   res.send("Register User...");
 });
 
-// ! (2) Login User
+// ! (2) Login User - POST method
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -122,7 +122,21 @@ const loginUser = asyncHandler(async (req, res) => {
   res.send("Login user...");
 });
 
+// ! (3) Logout user - get method
+const logout = asyncHandler(async (req, res) => {
+  res.cookie("token", "", {
+    path: "/",
+    httpOnly: true,
+    expires: new Date(0),
+    /* // ! in development mode, comment out those 2, error might occur if we try to login */
+    // secure: true,
+    // sameSite: "none",
+  });
+  return res.status(200).json({ message: "Successfully Logged Out" });
+});
+
 module.exports = {
   registerUser,
   loginUser,
+  logout,
 };
