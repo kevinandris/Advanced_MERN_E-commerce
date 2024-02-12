@@ -6,6 +6,7 @@ import logoImg from "../../assets/shopito_logo.png";
 const FooterLinks = () => {
   return (
     <>
+      {/*  // ! section 1 */}
       <section className="contact-section">
         <div className="container contact">
           <div className="contact-icon">
@@ -21,6 +22,7 @@ const FooterLinks = () => {
         </div>
       </section>
 
+      {/* // ! section 2 */}
       <section className="footer-section">
         <div className="container footer">
           <div className="footer-logo">

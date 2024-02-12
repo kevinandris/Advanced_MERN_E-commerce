@@ -1,7 +1,7 @@
 .contact-section {
   width: 100%;
-  background-color: #222831;
-  //   background-color: var(--color-grey);
+  // background-color: #222831;
+  background-color: #000000;
   padding: 9rem 0;
   position: relative;
   z-index: 0;
@@ -13,10 +13,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 150rem;
+  width: 161rem;
   height: 100%;
+
   background-image: url(../../assets/bg-boost-desktop.svg);
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
   overflow: hidden;
@@ -99,13 +100,18 @@
 // Footer section
 .footer-section {
   padding: 5rem 0;
-  background-color: #222831;
+  // background-color: #222831;
+  background-color: #000000;
 }
 
 .footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   row-gap: 2rem;
+
+  h3 {
+    color: #fff;
+  }
 }
 
 .footer-logo {
