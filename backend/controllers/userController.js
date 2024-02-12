@@ -122,7 +122,7 @@ const loginUser = asyncHandler(async (req, res) => {
   res.send("Login user...");
 });
 
-// ! (3) Logout user - get method
+// ! (3) Logout user - GET method
 const logout = asyncHandler(async (req, res) => {
   res.cookie("token", "", {
     path: "/",
@@ -135,8 +135,23 @@ const logout = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Successfully Logged Out" });
 });
 
+// ! (4) Get user - GET method
+const getUser = asyncHandler(async (req, res) => {
+  // res.send("Get user");
+
+  const user = await User.findById(req.user._id).select("-password");
+
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.status(400);
+    throw new Error("User not found");
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,
   logout,
+  getUser,
 };
