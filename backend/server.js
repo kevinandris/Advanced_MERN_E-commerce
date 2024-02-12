@@ -6,13 +6,25 @@ const cookieParser = require("cookie-parser"); // ! helps authenticate our users
 
 const app = express();
 
-// ! Routes
+// ! Middlewares (3)
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://ecommerceapp.vercel.app"],
+    credentials: true,
+  })
+);
+
+// ! Routes (1)
 app.get("/", (req, res) => {
   res.send("Home Page...");
 });
 
 const PORT = process.env.PORT || 5000;
 
+// ! Mongoose (2)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
