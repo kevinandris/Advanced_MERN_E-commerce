@@ -52,7 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400),
-      /* // * in development mode, comment out those 2, error might occur if we try to login */
+      /* // TODO in development mode, comment out the 2 properties below, error might occur if we try to login */
       // secure: true,
       // sameSite: none,
     });
@@ -138,7 +138,6 @@ const logout = asyncHandler(async (req, res) => {
 // ! (4) Get user - GET method
 const getUser = asyncHandler(async (req, res) => {
   // res.send("Get user");
-
   const user = await User.findById(req.user._id).select("-password");
 
   if (user) {
@@ -149,7 +148,7 @@ const getUser = asyncHandler(async (req, res) => {
   }
 });
 
-// ! (5) Get Login Status
+// ! (5) Get Login Status - GET method
 const getLoginStatus = asyncHandler(async (req, res) => {
   const token = req.cookies.token;
 
@@ -167,10 +166,43 @@ const getLoginStatus = asyncHandler(async (req, res) => {
   }
 });
 
+// ! (6) Update user - PATCH method
+const updateUser = asyncHandler(async (req, res) => {
+  // res.send("Correct");
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    const { name, phone, address } = user;
+
+    /* we use || (or) to give an optional request if they want to keep their old details the same*/
+    user.name = req.body.name || name;
+    user.phone = req.body.phone || phone;
+    user.address = req.body.address || address;
+
+    const updatedUser = await user.save();
+    res.status(200).json(updatedUser);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// ! (7) Update user photo - PATCH method
+const updatePhoto = asyncHandler(async (req, res) => {
+  // res.send("Worked");
+  const { photo } = req.body;
+  const user = await User.findById(req.user._id);
+  user.photo = photo;
+  const updatedUser = await user.save();
+  res.status(200).json(updatedUser);
+});
+
 module.exports = {
   registerUser,
   loginUser,
   logout,
   getUser,
   getLoginStatus,
+  updateUser,
+  updatePhoto,
 };
