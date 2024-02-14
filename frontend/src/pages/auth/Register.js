@@ -58,7 +58,7 @@ const Register = () => {
     await dispatch(register(userData));
   };
 
-  // ! Monitoring whether the registration is successful or a user is logged in
+  // ! Monitoring whether the registration is successful or a user is logged in and direct them to the homepage.
   useEffect(() => {
     if (isSuccess && isLoggedIn) {
       navigate("/");

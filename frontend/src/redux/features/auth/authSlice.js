@@ -12,12 +12,30 @@ const initialState = {
   message: "",
 };
 
-// * Register user in Auth Slice
+// * (1) REGISTER user in Auth Slice
 export const register = createAsyncThunk(
   "auth/register",
   async (userData, thunkAPI) => {
     try {
       return await authService.register(userData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// * (2) LOGIN user in Auth Slice
+export const login = createAsyncThunk(
+  "auth/login",
+  async (userData, thunkAPI) => {
+    try {
+      return await authService.login(userData);
     } catch (error) {
       const message =
         (error.response &&
@@ -47,11 +65,11 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      // * Register user -- when it is pending
+      // * REGISTER user -- when it is pending
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
-      // * Register user -- when it is achieved
+      // * REGISTER user -- when it is achieved
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -59,13 +77,41 @@ const authSlice = createSlice({
         state.user = action.payload;
         toast.success("Registration successful");
       })
-      // * Register user -- when it is failed
+      // * REGISTER user -- when it is failed
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
         state.user = null;
         toast.success("Registration was not successful");
+      })
+
+      /* ============================== */
+
+      // * LOGIN user -- when it is pending
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * LOGIN user -- when it is achieved
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = true;
+        state.user = action.payload;
+        toast.success("Login successful");
+
+        /* to check the stored data from the database */
+        // console.log(action.payload);
+      })
+
+      // * LOGIN user -- when it is failed
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user = null;
+        toast.success(action.payload);
       });
   },
 });
