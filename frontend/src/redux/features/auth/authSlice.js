@@ -48,6 +48,19 @@ export const login = createAsyncThunk(
   }
 );
 
+// * (3) LOGOUT user in Auth Slice
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    return await authService.logout();
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 // !
 const authSlice = createSlice({
   name: "auth",
@@ -111,6 +124,33 @@ const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.user = null;
+        toast.success(action.payload);
+      })
+
+      /* =============================== */
+
+      // * LOGOUT user -- when it is pending
+      .addCase(logout.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * LOGOUT user -- when it is achieved
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = false;
+        state.user = null;
+        toast.success(action.payload);
+
+        /* to check the stored data from the database */
+        // console.log(action.payload);
+      })
+
+      // * LOGOUT user -- when it is failed
+      .addCase(logout.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
         toast.success(action.payload);
       });
   },
