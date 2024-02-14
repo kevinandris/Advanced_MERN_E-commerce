@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // ! using axios to send the token or credentials to the backend every time; through http request.

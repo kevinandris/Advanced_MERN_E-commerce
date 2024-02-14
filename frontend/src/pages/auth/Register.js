@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./auth.module.scss";
 import loginImg from "../../assets/login.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { toast } from "react-toastify";
 import { validateEmail } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../redux/features/auth/authSlice";
+import { RESET_AUTH, register } from "../../redux/features/auth/authSlice";
 import Loader from "../../components/loader/Loader";
 
 const initialState = {
@@ -22,6 +22,7 @@ const Register = () => {
     (state) => state.auth
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,6 +57,16 @@ const Register = () => {
 
     await dispatch(register(userData));
   };
+
+  // ! Monitoring whether the registration is successful or a user is logged in
+  useEffect(() => {
+    if (isSuccess && isLoggedIn) {
+      navigate("/");
+    }
+
+    // * In case there is another redux function that fires from the homepage, it will have a fresh state.
+    dispatch(RESET_AUTH());
+  }, [isSuccess, isLoggedIn, dispatch, navigate]);
 
   return (
     <>

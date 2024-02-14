@@ -1,4 +1,4 @@
-// -- 1 --
+//  -- 1 -- to run the backend type "npm run backend"
 const env = require("dotenv").config(); // ! to access our environment variable
 const express = require("express"); // ! the framework
 const mongoose = require("mongoose"); // ! helps us to connect to mongoDB
