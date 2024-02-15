@@ -8,10 +8,21 @@ import Register from "./pages/auth/Register";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getLoginStatus } from "./redux/features/auth/authSlice";
 
 function App() {
-  // ! using axios to send the token or credentials to the backend every time; through http request.
+  // ! using axios every time we send the token or credentials to the backend through "http request".
   axios.defaults.withCredentials = true;
+
+  const dispatch = useDispatch();
+
+  // ! to check if the user is logged in - so the "My Order and Logout NavLinks" are static instead of
+  // ! showing "Login and Register NavLinks" after logging in when the "page is refreshed".
+  useEffect(() => {
+    dispatch(getLoginStatus());
+  }, [dispatch]);
 
   return (
     <>

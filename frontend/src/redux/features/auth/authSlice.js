@@ -61,13 +61,31 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   }
 });
 
+// * (4) GET LOGIN STATUS of a user in Auth Slice
+export const getLoginStatus = createAsyncThunk(
+  "auth/getLoginStatus",
+  async (_, thunkAPI) => {
+    try {
+      return await authService.getLoginStatus();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // !
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // * function to reset my auth to the default
     RESET_AUTH(state) {
+      // * function to reset my auth to the default
       state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
@@ -82,6 +100,7 @@ const authSlice = createSlice({
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
+
       // * REGISTER user -- when it is achieved
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -90,6 +109,7 @@ const authSlice = createSlice({
         state.user = action.payload;
         toast.success("Registration successful");
       })
+
       // * REGISTER user -- when it is failed
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
@@ -99,7 +119,7 @@ const authSlice = createSlice({
         toast.success("Registration was not successful");
       })
 
-      /* ============================== */
+      /* =========> END OF REGISTER ========= */
 
       // * LOGIN user -- when it is pending
       .addCase(login.pending, (state) => {
@@ -127,7 +147,7 @@ const authSlice = createSlice({
         toast.success(action.payload);
       })
 
-      /* =============================== */
+      /* ==========> END OF LOGIN <========== */
 
       // * LOGOUT user -- when it is pending
       .addCase(logout.pending, (state) => {
@@ -152,7 +172,37 @@ const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         toast.success(action.payload);
+      })
+
+      /* =========> END OF LOGOUT <========== */
+
+      // * GET LOGIN STATUS of a user -- when it is pending
+      .addCase(getLoginStatus.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * GET LOGIN STATUS of a user -- when it is achieved
+      .addCase(getLoginStatus.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = action.payload;
+
+        /* to check the stored data from the database */
+        // console.log(action.payload);
+
+        if (action.payload.message === "invalid signature") {
+          state.isLoggedIn = false;
+        }
+      })
+
+      // * GET LOGIN STATUS of a user  -- when it is failed
+      .addCase(getLoginStatus.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
+
+    /* =======> END OF GET LOGIN STATUS <======== */
   },
 });
 

@@ -6,6 +6,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { RESET_AUTH, logout } from "../../redux/features/auth/authSlice";
+import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
 
 // ! created this so we can use the LOGO on any page we like.
 export const logo = (
@@ -93,18 +94,23 @@ const Header = () => {
 
           <div className={styles["header-right"]}>
             <span className={styles.links}>
-              <NavLink to={"login"} className={activeLink}>
-                Login
-              </NavLink>
-              <NavLink to={"register"} className={activeLink}>
-                Register
-              </NavLink>
-              <NavLink to={"order-history"} className={activeLink}>
-                My Order
-              </NavLink>
-              <Link to={"/"} onClick={logoutUser}>
-                Logout
-              </Link>
+              <ShowOnLogout>
+                <NavLink to={"login"} className={activeLink}>
+                  Login
+                </NavLink>
+                <NavLink to={"register"} className={activeLink}>
+                  Register
+                </NavLink>
+              </ShowOnLogout>
+
+              <ShowOnLogin>
+                <NavLink to={"order-history"} className={activeLink}>
+                  My Order
+                </NavLink>
+                <Link to={"/"} onClick={logoutUser}>
+                  Logout
+                </Link>
+              </ShowOnLogin>
             </span>
 
             {cart}
