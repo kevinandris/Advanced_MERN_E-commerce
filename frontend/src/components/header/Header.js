@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { RESET_AUTH, logout } from "../../redux/features/auth/authSlice";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
+import { UserName } from "../../pages/profile/Profile";
 
 // ! created this so we can use the LOGO on any page we like.
 export const logo = (
   <div className={styles.logo}>
     <Link to="/">
       <h2>
-        Keipy<span>Shop</span>
+        Kei<span>py</span>
       </h2>
     </Link>
   </div>
@@ -104,6 +105,10 @@ const Header = () => {
               </ShowOnLogout>
 
               <ShowOnLogin>
+                <NavLink to={"login"} className={activeLink}>
+                  <FaUserCircle size={16} color="#fff" />
+                  <UserName />
+                </NavLink>
                 <NavLink to={"order-history"} className={activeLink}>
                   My Order
                 </NavLink>

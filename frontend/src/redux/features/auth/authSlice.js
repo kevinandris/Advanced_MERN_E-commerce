@@ -79,6 +79,55 @@ export const getLoginStatus = createAsyncThunk(
   }
 );
 
+// * (5) GET USER  in Auth Slice
+export const getUser = createAsyncThunk("auth/getUser", async (_, thunkAPI) => {
+  try {
+    return await authService.getUser();
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
+// * (6) UPDATE USER  in Auth Slice
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async (userData, thunkAPI) => {
+    try {
+      return await authService.updateUser(userData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// * (7) UPDATE PHOTO in Auth Slice
+export const updatePhoto = createAsyncThunk(
+  "auth/updatePhoto",
+  async (userData, thunkAPI) => {
+    try {
+      return await authService.updatePhoto(userData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // !
 const authSlice = createSlice({
   name: "auth",
@@ -200,9 +249,89 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+
+      /* =======> END OF GET LOGIN STATUS <======== */
+
+      // * GET USER -- when it is pending
+      .addCase(getUser.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * GET USER  -- when it is achieved
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = true;
+        state.user = action.payload; /* it will send the user data to payload */
+
+        /* to check the stored data from the database */
+        // console.log(action.payload);
+      })
+
+      // * GET USER   -- when it is failed
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      /* =======> END OF GET USER <======== */
+
+      // * UPDATE USER -- when it is pending
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * UPDATE USER  -- when it is achieved
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = true;
+        state.user = action.payload; /* it will send the user data to payload */
+        toast.success("User Updated");
+
+        /* == to check the stored data from the database. ==*/
+        // console.log(action.payload);
+      })
+
+      // * UPDATE USER   -- when it is failed
+      .addCase(updateUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      /* =======> END OF UPDATE USER <======== */
+
+      // * UPDATE PHOTO -- when it is pending
+      .addCase(updatePhoto.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * UPDATE PHOTO  -- when it is achieved
+      .addCase(updatePhoto.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = true;
+        state.user = action.payload; /* it will send the user data to payload */
+        toast.success("User Photo Updated");
+
+        /* == to check the stored data from the database. ==*/
+        // console.log(action.payload);
+      })
+
+      // * UPDATE PHOTO   -- when it is failed
+      .addCase(updatePhoto.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
       });
 
-    /* =======> END OF GET LOGIN STATUS <======== */
+    /* =======> END OF UPDATE PHOTO <======== */
   },
 });
 

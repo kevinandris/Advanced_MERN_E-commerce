@@ -44,7 +44,7 @@ const Register = () => {
       return toast.error("Please enter a valid email");
     }
 
-    if (password != cPassword) {
+    if (password !== cPassword) {
       return toast.error("Your passwords are not match");
     }
 

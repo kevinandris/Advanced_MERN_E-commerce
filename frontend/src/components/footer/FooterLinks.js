@@ -15,7 +15,7 @@ const FooterLinks = () => {
             <FaInstagram className="i" />
             <FaYoutube className="i" />
           </div>
-          <h2>Let's Talk?</h2>
+          <h2>Let's Connect?</h2>
           <a href="#home" className="btn -btn-dark">
             Make an enquiry!
           </a>
@@ -28,7 +28,7 @@ const FooterLinks = () => {
           <div className="footer-logo">
             {/* <img src={logoImg} alt="logo" /> */}
             <h3>
-              Keipy<span>Shop</span>
+              Kei<span>py</span>
             </h3>
           </div>
 
