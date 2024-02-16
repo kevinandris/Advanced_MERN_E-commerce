@@ -47,17 +47,23 @@ const userSchema = mongoose.Schema({
 });
 
 // ! Encrypt password before saving to MongoDB -- this is a callback function
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    return next();
-  }
+userSchema.pre(
+  "save",
+  async function (next) {
+    if (!this.isModified("password")) {
+      return next();
+    }
 
-  // * Hash password -- don't forget the "await" keyword because this is an async function otherwise the password wont be hashed
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(this.password, salt);
-  this.password = hashedPassword;
-  next();
-});
+    // * Hash password -- don't forget the "await" keyword because this is an async function otherwise the password wont be hashed
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    this.password = hashedPassword;
+    next();
+  },
+  {
+    timestamps: true,
+  } /* this will display the object's date that was created */
+);
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
