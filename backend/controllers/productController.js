@@ -23,7 +23,7 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new Error("Please fill in all fields");
   }
 
-  // ! Create the product body
+  // ! (1) Create the product body
   const product = await Product.create({
     name,
     sku,
@@ -40,14 +40,14 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(product); /* sending back to the user that created it */
 });
 
-// ! (1) get Products
+// ! (2) get Products
 const getProducts = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const products = await Product.find().sort("-createdAt");
   res.status(200).json(products); /* sending back to the user that created it */
 });
 
-// ! (2) get single product
+// ! (3) get single product
 const singleProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const product = await Product.findById(req.params.id);
@@ -62,7 +62,7 @@ const singleProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// ! (3) delete a product
+// ! (4) delete a product
 const deleteProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const product = await Product.findById(req.params.id);
@@ -76,7 +76,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "The product is deleted." });
 });
 
-// ! (4) update the product
+// ! (5) update the product
 const updateProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const {
@@ -117,10 +117,15 @@ const updateProduct = asyncHandler(async (req, res) => {
       runValidators: true,
     }
   );
-  res.status(200).json(updatedProduct);
+
+  res
+    .status(200) /* 200 means "OK" */
+    .json(
+      updatedProduct
+    ); /* we use json() to display the information to the frontend */
 });
 
-// ! (5) Review the product
+// ! (6) Review the product
 const reviewProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const { star, review, reviewDate } = req.body;
@@ -152,7 +157,7 @@ const reviewProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Product review is added." });
 });
 
-// ! (6) Delete the review
+// ! (7) Delete the review
 const deleteReview = asyncHandler(async (req, res) => {
   // * only the user that is created the review that can delete that review, OTHERS cannot delete it.
   const { userID } = req.body;
@@ -173,7 +178,7 @@ const deleteReview = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Product review is deleted." });
 });
 
-// ! (7) Update the review
+// ! (8) Update the review
 const updateReview = asyncHandler(async (req, res) => {
   const { star, review, reviewDate, userID } = req.body;
   const { id } = req.params;
@@ -193,7 +198,7 @@ const updateReview = asyncHandler(async (req, res) => {
 
   // * Another validation - Match the user to its user's review (the one who created the review).
   if (req.user._id.toString() !== userID) {
-    res.status(401);
+    res.status(401); /* 401 means "for AUTHORIZATION" */
     throw new Error("User is not authorized");
   }
 
