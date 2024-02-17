@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const { ObjectId } = mongoose.Schema;
 
 // ! The body of the user properties
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please add a name"],

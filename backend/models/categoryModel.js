@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // ! The body of the user properties
-const categorySchema = mongoose.Schema(
+const categorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
