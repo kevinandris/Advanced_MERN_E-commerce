@@ -23,7 +23,7 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new Error("Please fill in all fields");
   }
 
-  // ! (1) Create the product body
+  // ! Create the product body (1)
   const product = await Product.create({
     name,
     sku,
@@ -40,14 +40,14 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(product); /* sending back to the user that created it */
 });
 
-// ! (2) get Products
+// ! get Products (2)
 const getProducts = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const products = await Product.find().sort("-createdAt");
   res.status(200).json(products); /* sending back to the user that created it */
 });
 
-// ! (3) get single product
+// ! get single product (3)
 const singleProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const product = await Product.findById(req.params.id);
@@ -62,7 +62,7 @@ const singleProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// ! (4) delete a product
+// ! delete a product (4)
 const deleteProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const product = await Product.findById(req.params.id);
@@ -76,7 +76,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "The product is deleted." });
 });
 
-// ! (5) update the product
+// ! update the product (5)
 const updateProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const {
@@ -125,7 +125,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     ); /* we use json() to display the information to the frontend */
 });
 
-// ! (6) Review the product
+// ! Review the product (6)
 const reviewProduct = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const { star, review, reviewDate } = req.body;
@@ -157,7 +157,7 @@ const reviewProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Product review is added." });
 });
 
-// ! (7) Delete the review
+// ! Delete the review (7)
 const deleteReview = asyncHandler(async (req, res) => {
   // * only the user that is created the review that can delete that review, OTHERS cannot delete it.
   const { userID } = req.body;
@@ -178,7 +178,7 @@ const deleteReview = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Product review is deleted." });
 });
 
-// ! (8) Update the review
+// !  Update the review (8)
 const updateReview = asyncHandler(async (req, res) => {
   const { star, review, reviewDate, userID } = req.body;
   const { id } = req.params;

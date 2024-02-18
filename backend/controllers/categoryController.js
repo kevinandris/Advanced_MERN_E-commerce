@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Category = require("../models/categoryModel");
 const slugify = require("slugify");
 
-// ! (1) Create a category
+// ! Create a category (1)
 const createCategory = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const { name } = req.body;
@@ -30,7 +30,7 @@ const createCategory = asyncHandler(async (req, res) => {
   res.status(201).json(category);
 });
 
-// ! (2) get categories
+// !  get categories (2)
 const getCategories = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const categories = await Category.find().sort("-createdAt");
@@ -39,7 +39,7 @@ const getCategories = asyncHandler(async (req, res) => {
     .json(categories); /* sending back to the user that created it */
 });
 
-// ! (3) delete a category
+// ! delete a category (3)
 const deleteCategory = asyncHandler(async (req, res) => {
   const slug = req.params.slug.toLowerCase();
   const category = await Category.findOneAndDelete({ slug });

@@ -3,7 +3,7 @@ const Category = require("../models/categoryModel");
 const slugify = require("slugify");
 const Brand = require("../models/brandModel");
 
-// ! (1) Create a brand
+// !  Create a brand (1)
 const createBrand = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const { name, category } = req.body;
@@ -14,7 +14,7 @@ const createBrand = asyncHandler(async (req, res) => {
     throw new Error("Please fill in all fields");
   }
 
-  // * checking if a category exists in the database to avoid duplicate info
+  // * checking if a category exists in the database with the category
   const categoryExists = await Category.findOne({ name: category });
 
   if (!categoryExists) {
@@ -32,14 +32,14 @@ const createBrand = asyncHandler(async (req, res) => {
   res.status(201).json(brand);
 });
 
-// ! (2) Get brands
+// ! Get brands (2)
 const getBrands = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const brands = await Brand.find().sort("-createdAt");
   res.status(200).json(brands); /* sending back to the user that created it */
 });
 
-// ! (3) delete a brand
+// ! delete a brand (3)
 const deleteBrand = asyncHandler(async (req, res) => {
   const slug = req.params.slug.toLowerCase();
   const brand = await Brand.findOneAndDelete({ slug });

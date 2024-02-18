@@ -11,7 +11,7 @@ const generateToken = (id) => {
   });
 };
 
-// ! (1) Register User - POST method
+// ! Register User - POST method (1)
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -73,7 +73,7 @@ const registerUser = asyncHandler(async (req, res) => {
   res.send("Register User...");
 });
 
-// ! (2) Login User - POST method
+// ! Login User - POST method (2)
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -107,7 +107,7 @@ const loginUser = asyncHandler(async (req, res) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400),
-      /* // ! in development mode, comment out those 2, error might occur if we try to login */
+      /* // TODO - in development mode, comment out those 2, error might occur if we try to login */
       // secure: true,
       // sameSite: "none",
     });
@@ -122,7 +122,7 @@ const loginUser = asyncHandler(async (req, res) => {
   res.send("Login user...");
 });
 
-// ! (3) Logout user - GET method
+// ! Logout user - GET method (3)
 const logout = asyncHandler(async (req, res) => {
   res.cookie("token", "", {
     path: "/",
@@ -135,7 +135,7 @@ const logout = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Successfully Logged Out" });
 });
 
-// ! (4) Get user - GET method
+// ! Get user - GET method (4)
 const getUser = asyncHandler(async (req, res) => {
   // res.send("Get user");
   const user = await User.findById(req.user._id).select("-password");
@@ -148,7 +148,7 @@ const getUser = asyncHandler(async (req, res) => {
   }
 });
 
-// ! (5) Get Login Status - GET method
+// ! Get Login Status - GET method (5)
 const getLoginStatus = asyncHandler(async (req, res) => {
   const token = req.cookies.token;
 
@@ -166,7 +166,7 @@ const getLoginStatus = asyncHandler(async (req, res) => {
   }
 });
 
-// ! (6) Update user - PATCH method
+// ! Update user - PATCH method (6)
 const updateUser = asyncHandler(async (req, res) => {
   // res.send("Correct");
   const user = await User.findById(req.user._id);
@@ -187,7 +187,7 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-// ! (7) Update user photo - PATCH method
+// ! Update user photo - PATCH method (7)
 const updatePhoto = asyncHandler(async (req, res) => {
   // res.send("Worked");
   const { photo } = req.body;
