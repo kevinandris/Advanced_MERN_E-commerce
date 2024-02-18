@@ -90,6 +90,10 @@ const Header = () => {
               <NavLink to="/shop" className={activeLink}>
                 Shop
               </NavLink>
+              &nbsp; {/* create a blank space */}
+              <NavLink to="/admin/home" className={activeLink}>
+                | Admin
+              </NavLink>
             </li>
           </ul>
 
@@ -105,10 +109,10 @@ const Header = () => {
               </ShowOnLogout>
 
               <ShowOnLogin>
-                <NavLink to={"login"} className={activeLink}>
+                <Link to={"profile"}>
                   <FaUserCircle size={16} color="#fff" />
                   <UserName />
-                </NavLink>
+                </Link>
                 <NavLink to={"order-history"} className={activeLink}>
                   My Order
                 </NavLink>

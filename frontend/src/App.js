@@ -9,14 +9,15 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getLoginStatus } from "./redux/features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoginStatus, getUser } from "./redux/features/auth/authSlice";
 import Profile from "./pages/profile/Profile";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   // ! using axios every time we send the token or credentials to the backend through "http request".
   axios.defaults.withCredentials = true;
-
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   // ! to check if the user is logged in - so the "My Order and Logout NavLinks" are static instead of
@@ -24,6 +25,13 @@ function App() {
   useEffect(() => {
     dispatch(getLoginStatus());
   }, [dispatch]);
+
+  // ! (Admin) to keep the Admin name of the navbar and on the header every time the page refreshed.
+  useEffect(() => {
+    if (isLoggedIn && user === null) {
+      dispatch(getUser());
+    }
+  }, [dispatch, isLoggedIn, user]);
 
   return (
     <>
@@ -35,6 +43,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+
+          {/* for admin only */}
+          <Route path="/admin/*" element={<Admin />} />
         </Routes>
         <Footer />
       </BrowserRouter>
