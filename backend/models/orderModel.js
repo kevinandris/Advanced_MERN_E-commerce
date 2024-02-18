@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema(
   {
     user: {
-      type: new mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types
+        .ObjectId /* don't add "new" keyword before mongoose or "ObjectId()" -- will throw an error*/,
       required: true,
       ref: "User",
     },
@@ -34,11 +35,13 @@ const orderSchema = new mongoose.Schema(
       trim: true,
     },
     cartItems: {
-      type: [Object],
+      type: String,
+      // type: [Object],
       required: [true],
     },
     shippingAddress: {
-      type: Object,
+      type: String,
+      // type: Object,
       required: true,
     },
     coupon: {

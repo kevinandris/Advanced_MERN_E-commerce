@@ -1,7 +1,7 @@
 // -- 2 --
 const mongoose = require("mongoose");
 
-// ! The body of the user properties
+// ! The body of the product properties
 const productSchema = new mongoose.Schema(
   {
     name: {

@@ -10,6 +10,7 @@ const productRoute = require("./routes/productRoute");
 const categoryRoute = require("./routes/categoryRoute");
 const brandRoute = require("./routes/brandRoute");
 const couponRoute = require("./routes/couponRoute");
+const orderRoute = require("./routes/orderRoute");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use("/api/products", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/brand", brandRoute);
 app.use("/api/coupon", couponRoute);
+app.use("/api/order", orderRoute);
 
 // ! Mongoose (2)
 mongoose
