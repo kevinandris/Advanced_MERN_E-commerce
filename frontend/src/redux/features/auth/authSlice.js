@@ -145,6 +145,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
+      // ! 1
       // * REGISTER user -- when it is pending
       .addCase(register.pending, (state) => {
         state.isLoading = true;
@@ -170,6 +171,7 @@ const authSlice = createSlice({
 
       /* =========> END OF REGISTER ========= */
 
+      // ! 2
       // * LOGIN user -- when it is pending
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -187,6 +189,7 @@ const authSlice = createSlice({
         // console.log(action.payload);
       })
 
+      // ! 3
       // * LOGIN user -- when it is failed
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -198,6 +201,7 @@ const authSlice = createSlice({
 
       /* ==========> END OF LOGIN <========== */
 
+      // ! 4
       // * LOGOUT user -- when it is pending
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
@@ -225,6 +229,7 @@ const authSlice = createSlice({
 
       /* =========> END OF LOGOUT <========== */
 
+      // ! 5
       // * GET LOGIN STATUS of a user -- when it is pending
       .addCase(getLoginStatus.pending, (state) => {
         state.isLoading = true;
@@ -253,6 +258,7 @@ const authSlice = createSlice({
 
       /* =======> END OF GET LOGIN STATUS <======== */
 
+      // ! 6
       // * GET USER -- when it is pending
       .addCase(getUser.pending, (state) => {
         state.isLoading = true;
@@ -279,6 +285,7 @@ const authSlice = createSlice({
 
       /* =======> END OF GET USER <======== */
 
+      // ! 7
       // * UPDATE USER -- when it is pending
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
@@ -306,6 +313,7 @@ const authSlice = createSlice({
 
       /* =======> END OF UPDATE USER <======== */
 
+      // ! 8
       // * UPDATE PHOTO -- when it is pending
       .addCase(updatePhoto.pending, (state) => {
         state.isLoading = true;
