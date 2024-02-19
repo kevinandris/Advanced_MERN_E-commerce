@@ -8,7 +8,7 @@ import {
 } from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
 import Loader from "../../loader/Loader";
 
-const CreateCategory = ({ reloadCategory }) => {
+const CreateCategory = () => {
   const [name, setName] = useState("");
   const { isLoading } = useSelector((state) => state.category);
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const CreateCategory = ({ reloadCategory }) => {
     e.preventDefault();
 
     if (name.length < 3) {
-      return toast.error("Coupon must be up to 3 characters");
+      return toast.error("Brand must be up to 3 characters");
     }
 
     const formData = {
@@ -29,7 +29,6 @@ const CreateCategory = ({ reloadCategory }) => {
     /* Display the category on the screen without refreshing the page (await keyword is a must for both otherwise won't work.*/
     await dispatch(getCategories());
     setName("");
-    // reloadCategory();
   };
 
   return (

@@ -166,7 +166,7 @@ const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.user = null;
-        toast.success("Registration was not successful");
+        toast.error("Registration was not successful");
       })
 
       /* =========> END OF REGISTER ========= */
@@ -196,7 +196,7 @@ const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.user = null;
-        toast.success(action.payload);
+        toast.error(action.payload);
       })
 
       /* ==========> END OF LOGIN <========== */
