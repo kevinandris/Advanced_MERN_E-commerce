@@ -5,6 +5,9 @@ import Navbar from "../../components/admin/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Category from "../../components/admin/category/Category";
 import Brand from "../../components/admin/brand/Brand";
+import AddProducts from "../../components/admin/addProduct/AddProducts";
+import ViewProducts from "../../components/admin/viewProducts/ViewProducts";
+import EditProduct from "../../components/admin/editProduct/EditProduct";
 
 const Admin = () => {
   return (
@@ -14,9 +17,12 @@ const Admin = () => {
       </div>
       <div className={styles.content}>
         <Routes>
-          <Route path="home" element={<AdminHome />}></Route>
-          <Route path="category" element={<Category />}></Route>
+          <Route path="home" element={<AdminHome />} />
+          <Route path="category" element={<Category />} />
           <Route path="brand" element={<Brand />}></Route>
+          <Route path="add-product" element={<AddProducts />} />
+          <Route path="all-product" element={<ViewProducts />} />
+          <Route path="edit-product/:id" element={<EditProduct />} />
         </Routes>
       </div>
     </div>
