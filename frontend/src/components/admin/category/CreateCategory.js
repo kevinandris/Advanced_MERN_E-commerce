@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Card from "../../card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { createCategory } from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
+import {
+  createCategory,
+  getCategories,
+} from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
 import Loader from "../../loader/Loader";
 
-const CreateCategory = () => {
+const CreateCategory = ({ reloadCategory }) => {
   const [name, setName] = useState("");
   const { isLoading } = useSelector((state) => state.category);
   const dispatch = useDispatch();
@@ -21,8 +24,12 @@ const CreateCategory = () => {
       name,
     };
 
-    dispatch(createCategory(formData));
+    await dispatch(createCategory(formData));
+
+    /* Display the category on the screen without refreshing the page (await keyword is a must for both otherwise won't work.*/
+    await dispatch(getCategories());
     setName("");
+    // reloadCategory();
   };
 
   return (

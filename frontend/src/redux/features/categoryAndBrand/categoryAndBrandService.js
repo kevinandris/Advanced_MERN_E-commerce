@@ -18,9 +18,16 @@ const getCategories = async (formData) => {
   return response.data;
 };
 
+// ! Delete a category (3)
+const deleteCategory = async (slug) => {
+  const response = await axios.delete(API_URL + "category/" + slug);
+  return response.data.message;
+};
+
 const categoryAndBrandService = {
   createCategory,
   getCategories,
+  deleteCategory,
 };
 
 export default categoryAndBrandService;

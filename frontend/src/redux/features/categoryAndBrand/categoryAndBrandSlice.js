@@ -72,9 +72,34 @@ const categoryAndBrandSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         toast.success(action.payload);
+      })
+
+      // ================================= //
+
+      // ! 3
+      // * Delete a category -- when it is pending
+      .addCase(deleteCategory.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * Delete a category -- when it is achieved
+      .addCase(deleteCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        toast.success(action.payload);
+        console.log(action.payload);
+      })
+
+      // * Delete a category-- when it is failed
+      .addCase(deleteCategory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.success(action.payload);
       });
 
-    // ================================= //
+    // =================================== //
   },
 });
 
@@ -102,6 +127,24 @@ export const getCategories = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       return await categoryAndBrandService.getCategories();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// ! delete a category (3)
+export const deleteCategory = createAsyncThunk(
+  "category/deleteCategory",
+  async (slug, thunkAPI) => {
+    try {
+      return await categoryAndBrandService.deleteCategory(slug);
     } catch (error) {
       const message =
         (error.response &&

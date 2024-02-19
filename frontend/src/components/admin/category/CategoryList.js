@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
+import {
+  deleteCategory,
+  getCategories,
+} from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
 import { FaTrashAlt } from "react-icons/fa";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const CategoryList = () => {
   const { isLoading, categories } = useSelector((state) => state.category);
@@ -10,6 +15,28 @@ const CategoryList = () => {
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
+
+  const confirmDelete = (slug) => {
+    confirmAlert({
+      title: "Delete Category",
+      message: "Are you sure you want to delete this category?",
+      buttons: [
+        {
+          label: "Delete",
+          onClick: () => deleteCat(slug),
+        },
+        {
+          label: "Cancel",
+          // onClick: () => alert('Click No')
+        },
+      ],
+    });
+  };
+
+  const deleteCat = async (slug) => {
+    await dispatch(deleteCategory(slug));
+    await dispatch(getCategories());
+  };
 
   return (
     <div className="--mb2">
@@ -38,7 +65,7 @@ const CategoryList = () => {
                         <FaTrashAlt
                           size={20}
                           color={"red"}
-                          // onClick={() => confirmDelete(slug)}
+                          onClick={() => confirmDelete(slug)}
                         />
                       </span>
                     </td>
