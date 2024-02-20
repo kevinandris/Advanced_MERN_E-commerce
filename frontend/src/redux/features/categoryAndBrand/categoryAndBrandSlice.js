@@ -135,7 +135,7 @@ const categoryAndBrandSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         state.brands = action.payload;
-        console.log(action.payload);
+        // console.log(action.payload);
       })
 
       // * Get Brands -- when it is failed

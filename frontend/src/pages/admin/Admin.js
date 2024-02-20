@@ -5,9 +5,9 @@ import Navbar from "../../components/admin/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Category from "../../components/admin/category/Category";
 import Brand from "../../components/admin/brand/Brand";
-import ViewProducts from "../../components/admin/viewProducts/ViewProducts";
 import EditProduct from "../../components/admin/editProduct/EditProduct";
 import AddProduct from "../../components/admin/addProduct/AddProduct";
+import ViewProducts from "../../components/admin/viewProducts/ViewProducts";
 
 const Admin = () => {
   return (

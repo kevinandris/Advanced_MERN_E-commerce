@@ -1,9 +1,10 @@
-// ! CHILD class -- Exported to AddProduct.js
+// ! CHILD class -- Exported to `AddProduct.js`
 import React from "react";
 import "./ProductForm.scss";
 import Card from "../../card/Card";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import UploadWidget from "./UploadWidget";
 
 const ProductForm = ({
   saveProduct,
@@ -14,10 +15,12 @@ const ProductForm = ({
   filteredBrands,
   description,
   setDescription,
+  files,
+  setFiles,
 }) => {
   return (
     <div className="add-product">
-      <h3>Upload Widget Placeholder</h3>
+      <UploadWidget files={files} setFiles={setFiles} />
 
       <Card cardClass={"card"}>
         <br />
@@ -31,6 +34,7 @@ const ProductForm = ({
             name="name"
             value={product?.name}
             onChange={handleInputChange}
+            required
           />
 
           {/* // ! (2) Category */}
@@ -89,13 +93,23 @@ const ProductForm = ({
           <label>Regular Price</label>
           <input
             type="text"
-            placeholder="E.g. 20, 100, 150, 320 etc."
+            placeholder="E.g. 850, 1000, 1500, 3200 etc."
+            name="regularPrice"
+            value={product?.regularPrice}
+            onChange={handleInputChange}
+          />
+
+          {/* // ! (6) Current price */}
+          <label>Current Price</label>
+          <input
+            type="text"
+            placeholder="E.g. 750, 900, 1400, 3100 etc."
             name="price"
             value={product?.price}
             onChange={handleInputChange}
           />
 
-          {/* // ! (6) Quantity */}
+          {/* // ! (7) Quantity */}
           <label>Product Quantity</label>
           <input
             type="text"
@@ -105,7 +119,7 @@ const ProductForm = ({
             onChange={handleInputChange}
           />
 
-          {/* // ! (7) Description */}
+          {/* // ! (8) Description */}
           <label>Product Description</label>
           <ReactQuill
             theme="snow"
@@ -128,6 +142,7 @@ const ProductForm = ({
 
 /*
  * https://www.npmjs.com/package/react-quill
+ * This won't work if these information is placed at the top, MUST AT THE BOTTOM
  */
 ProductForm.modules = {
   toolbar: [

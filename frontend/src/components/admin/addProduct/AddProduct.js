@@ -7,6 +7,8 @@ import {
   getBrands,
   getCategories,
 } from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
+import { createProduct } from "../../../redux/features/product/productSlice";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -19,15 +21,17 @@ const initialState = {
 };
 const AddProduct = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(initialState);
   const [description, setDescription] = useState("");
+  const [files, setFiles] = useState([]);
   const [filteredBrands, setFilteredBrands] = useState([]);
   const { isLoading } = useSelector((state) => state.product);
   const { categories, brands } = useSelector((state) => state.category);
   const { name, category, brand, price, quantity, color, regularPrice } =
     product;
 
-  // ! fetching `categories and brand properties` when the page is refreshed by using "useEffect"
+  // ! Fetching `categories and brand properties` when the page is refreshed by using "useEffect"
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getBrands());
@@ -41,16 +45,40 @@ const AddProduct = () => {
     setFilteredBrands(newBrands);
   };
 
-  // ! to cast filterBrands function every time it runs
+  // ! To cast filterBrands function every time it runs
   useEffect(() => {
     filterBrands(category);
   }, [category]);
 
-  // ! This function is passed in as a prop at <ProductForm />
+  // ! This function is passed in to `saveProduct function` */
+  const generateSKU = (category) => {
+    const letter = category.slice(0, 3).toUpperCase();
+    const number = Date.now();
+    const sku = letter + "-" + number;
+    return sku;
+  };
+
+  // ! This function is passed in as a prop at <ProductForm /> | console.log(product); console.log(description);
   const saveProduct = async (e) => {
     e.preventDefault();
-    console.log(product);
-    console.log(description);
+
+    const formData = {
+      name,
+      sku: generateSKU(category),
+      category,
+      brand,
+      color,
+      quantity: Number(quantity),
+      regularPrice,
+      price,
+      description,
+      // images,
+    };
+
+    // console.log(formData);
+    await dispatch(createProduct(formData));
+
+    // navigate("/admin/all-products");
   };
 
   // ! This function is passed in as a prop at <ProductForm />
@@ -75,6 +103,8 @@ const AddProduct = () => {
           filteredBrands={filteredBrands}
           description={description}
           setDescription={setDescription}
+          files={files}
+          setFiles={setFiles}
         />
       </div>
     </section>
