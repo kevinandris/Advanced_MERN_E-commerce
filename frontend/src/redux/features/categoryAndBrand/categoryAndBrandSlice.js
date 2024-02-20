@@ -16,7 +16,7 @@ const categoryAndBrandSlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-    RESET_CAT(state) {
+    RESET_CATEGORY(state) {
       // * function to reset my auth to the default
       state.isError = false;
       state.isSuccess = false;
@@ -27,9 +27,9 @@ const categoryAndBrandSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      // ========= CATEGORY ========== //
+      // =========== CATEGORY ============ //
 
-      // ! 1
+      // ! Create a Category (1)
       // * create Category -- when it is pending
       .addCase(createCategory.pending, (state) => {
         state.isLoading = true;
@@ -52,9 +52,7 @@ const categoryAndBrandSlice = createSlice({
         toast.success(action.payload);
       })
 
-      // ================================ //
-
-      // ! 2
+      // ! Get categories (2)
       // * GET categories -- when it is pending
       .addCase(getCategories.pending, (state) => {
         state.isLoading = true;
@@ -77,9 +75,7 @@ const categoryAndBrandSlice = createSlice({
         toast.error(action.payload);
       })
 
-      // ================================= //
-
-      // ! 3
+      // ! Delete a category (3)
       // * Delete a category -- when it is pending
       .addCase(deleteCategory.pending, (state) => {
         state.isLoading = true;
@@ -102,9 +98,9 @@ const categoryAndBrandSlice = createSlice({
         toast.success(action.payload);
       })
 
-      // =========== BRAND =========== //
+      // ============= BRAND ============== //
 
-      // ! 4
+      // ! Create a brand (4)
       // * create brand -- when it is pending
       .addCase(createBrand.pending, (state) => {
         state.isLoading = true;
@@ -127,7 +123,7 @@ const categoryAndBrandSlice = createSlice({
         toast.error(action.payload);
       })
 
-      // ! 5
+      // ! Get brands (5)
       // * Get Brands -- when it is pending
       .addCase(getBrands.pending, (state) => {
         state.isLoading = true;
@@ -150,7 +146,7 @@ const categoryAndBrandSlice = createSlice({
         toast.error(action.payload);
       })
 
-      // ! 6
+      // ! Delete a brand (6)
       // * Delete a brand -- when it is pending
       .addCase(deleteBrand.pending, (state) => {
         state.isLoading = true;
@@ -172,11 +168,10 @@ const categoryAndBrandSlice = createSlice({
         state.message = action.payload;
         toast.error(action.payload);
       });
-
-    // =================================== //
   },
 });
 
+/* ============== CATEGORY ================ */
 // ! Create a CATEGORY (1)
 export const createCategory = createAsyncThunk(
   "category/createCategory",
@@ -231,6 +226,7 @@ export const deleteCategory = createAsyncThunk(
   }
 );
 
+/* ================= BRAND ================== */
 // ! Create a BRAND (4)
 export const createBrand = createAsyncThunk(
   "category/createBrand",
@@ -285,6 +281,6 @@ export const deleteBrand = createAsyncThunk(
   }
 );
 
-export const { RESET_CAT } = categoryAndBrandSlice.actions;
+export const { RESET_CATEGORY } = categoryAndBrandSlice.actions;
 
 export default categoryAndBrandSlice.reducer;

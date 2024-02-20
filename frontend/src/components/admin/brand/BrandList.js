@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   deleteBrand,
   getBrands,
@@ -7,9 +6,10 @@ import {
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { FaTrashAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 const BrandList = () => {
-  const { isLoading, brands } = useSelector((state) => state.category);
+  const { IsLoading, brands } = useSelector((state) => state.category);
   const dispatch = useDispatch();
 
   useEffect(() => {

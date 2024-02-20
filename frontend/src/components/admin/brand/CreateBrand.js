@@ -1,3 +1,4 @@
+//
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../loader/Loader";
@@ -57,7 +58,7 @@ const CreateBrand = () => {
             <label>Brand Name:</label>
             <input
               type="text"
-              placeholder="Brand name"
+              placeholder="Enter a name"
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
