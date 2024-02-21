@@ -55,10 +55,55 @@ export const getProducts = createAsyncThunk(
   }
 );
 
+// ! Delete a product (3)
+export const deleteProduct = createAsyncThunk(
+  "products/deleteProduct",
+  async (id, thunkAPI) => {
+    try {
+      return await productService.deleteProduct(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// ! Get a product (4)
+export const getProduct = createAsyncThunk(
+  "products/getProduct",
+  async (id, thunkAPI) => {
+    try {
+      return await productService.getProduct(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+/* ==============> PRODUCT SLICE <=============== */
 const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    RESET_PROD(state) {
+      // * function to reset my auth to the default
+      state.isError = false;
+      state.isSuccess = false;
+      state.isLoading = false;
+      state.message = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -73,9 +118,13 @@ const productSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.products = action.payload;
-        toast.success("Product created successfully");
         console.log(action.payload);
+        if (action.payload && action.payload.hasOwnProperty("message")) {
+          toast.error(action.payload.message);
+        } else {
+          state.message = "Product created successfully";
+          toast.success("Product created successfully.");
+        }
       })
 
       // * Create a Product -- when it is failed
@@ -92,7 +141,7 @@ const productSlice = createSlice({
         state.isLoading = true;
       })
 
-      // * Create a Product -- when it is achieved
+      // * Get Products -- when it is achieved
       .addCase(getProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -101,8 +150,52 @@ const productSlice = createSlice({
         console.log(action.payload);
       })
 
-      // * Create a Product -- when it is failed
+      // * Get Products -- when it is failed
       .addCase(getProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      // ! Delete a product (3)
+      // * Delete a product -- when it is pending
+      .addCase(deleteProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * Delete a product -- when it is achieved
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        toast.success("Product deleted successfully");
+      })
+
+      // * Delete a product -- when it is failed
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      // ! Get a product (4)
+      // * Delete a product -- when it is pending
+      .addCase(getProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * Delete a product -- when it is achieved
+      .addCase(getProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.products = action.payload;
+      })
+
+      // * Delete a product -- when it is failed
+      .addCase(getProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -111,6 +204,6 @@ const productSlice = createSlice({
   },
 });
 
-export const {} = productSlice.actions;
+export const { RESET_PROD } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -33,7 +33,7 @@ const ProductForm = ({
 
         <form onSubmit={saveProduct}>
           {/* // ! (9) Product images */}
-          <label>Product Images:</label>
+          <label>Images:</label>
           <div className="slide-container">
             <aside>
               {files.length > 0 &&
@@ -56,7 +56,7 @@ const ProductForm = ({
           </div>
 
           {/* // ! (1) Name: */}
-          <label>Product Name:</label>
+          <label> Name:</label>
           <input
             type="text"
             placeholder="E.g. iPhone 11, Samsung S10 + etc."
@@ -67,7 +67,7 @@ const ProductForm = ({
           />
 
           {/* // ! (2) Category */}
-          <label>Product Category</label>
+          <label>Category</label>
           {/* Used value={product?.category} to avoid an error if the page is blank */}
           <select
             name="category"
@@ -77,7 +77,7 @@ const ProductForm = ({
             {isEditing ? (
               <option value={product?.category}>{product.category}</option>
             ) : (
-              <option>Select Category</option>
+              <option>Select a category:</option>
             )}
             {categories.length > 0 &&
               categories.map((category) => (
@@ -88,7 +88,7 @@ const ProductForm = ({
           </select>
 
           {/* // ! (3) Brand */}
-          <label>Product Brand</label>
+          <label>Brand</label>
           {/* Used value={product?.category} not to throw an error if the page is blank */}
           <select
             name="brand"
@@ -98,7 +98,7 @@ const ProductForm = ({
             {isEditing ? (
               <option value={product?.brand}>{product.brand}</option>
             ) : (
-              <option>Select Brand</option>
+              <option disabled>Select a brand:</option>
             )}
             {filteredBrands.length > 0 &&
               filteredBrands.map((brand) => (
@@ -109,7 +109,7 @@ const ProductForm = ({
           </select>
 
           {/*  // ! (4) Colour */}
-          <label>Product Colour</label>
+          <label>Colour</label>
           <input
             type="text"
             placeholder="E.g. red, white, purple, black etc."
@@ -139,7 +139,7 @@ const ProductForm = ({
           />
 
           {/* // ! (7) Quantity */}
-          <label>Product Quantity</label>
+          <label>Quantity</label>
           <input
             type="text"
             placeholder="E.g. 2, 5, 10 (Maximum of 20)"

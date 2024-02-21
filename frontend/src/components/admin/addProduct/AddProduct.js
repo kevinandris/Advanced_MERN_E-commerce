@@ -7,7 +7,10 @@ import {
   getBrands,
   getCategories,
 } from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
-import { createProduct } from "../../../redux/features/product/productSlice";
+import {
+  RESET_PROD,
+  createProduct,
+} from "../../../redux/features/product/productSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -27,7 +30,7 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [files, setFiles] = useState([]);
   const [filteredBrands, setFilteredBrands] = useState([]);
-  const { isLoading } = useSelector((state) => state.product);
+  const { isLoading, message } = useSelector((state) => state.product);
   const { categories, brands } = useSelector((state) => state.category);
   const { name, category, brand, price, quantity, color, regularPrice } =
     product;
@@ -38,7 +41,7 @@ const AddProduct = () => {
     dispatch(getBrands());
   }, [dispatch]);
 
-  // ! Filter brands based on selected category
+  // ! (4) Filter brands based on selected category
   const filterBrands = (selectedCategory) => {
     const newBrands = brands.filter(
       (brand) => brand.category === selectedCategory
@@ -51,7 +54,7 @@ const AddProduct = () => {
     filterBrands(category);
   }, [category]);
 
-  // ! This function is passed in to `saveProduct function` */
+  // ! (3) This function is passed in to `saveProduct function` */
   const generateSKU = (category) => {
     const letter = category.slice(0, 3).toUpperCase();
     const number = Date.now();
@@ -59,7 +62,7 @@ const AddProduct = () => {
     return sku;
   };
 
-  // ! This function is passed in as a prop at <ProductForm /> | console.log(product); console.log(description);
+  // ! (2) This function is passed in as a prop at <ProductForm /> | console.log(product); console.log(description);
   const saveProduct = async (e) => {
     e.preventDefault();
 
@@ -84,10 +87,18 @@ const AddProduct = () => {
     // console.log(formData);
     await dispatch(createProduct(formData));
 
-    navigate("/admin/all-product");
+    // navigate("/admin/all-product");
   };
 
-  // ! This function is passed in as a prop at <ProductForm />
+  // ! To check if a product is created or not before navigating the admin
+  useEffect(() => {
+    if (message === "Product created successfully") {
+      navigate("/admin/all-product");
+    }
+    dispatch(RESET_PROD());
+  }, [message, navigate, dispatch]);
+
+  // ! (1) This function is passed in as a prop at <ProductForm />
   const handleInputChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;

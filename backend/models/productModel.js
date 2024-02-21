@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema(
     },
     color: {
       type: String,
-      required: [true, "Please add a color"],
+      // required: [true, "Please add a color"],
       default: "As seen",
       trim: true,
     },
@@ -65,8 +65,9 @@ const productSchema = new mongoose.Schema(
     },
   },
   {
+    /* this will display the object's date that was created */
     timestamps: true,
-  } /* this will display the object's date that was created */
+  }
 );
 
 const Product = mongoose.model("Product", productSchema);
