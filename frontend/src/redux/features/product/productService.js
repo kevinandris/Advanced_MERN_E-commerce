@@ -6,8 +6,7 @@ export const API_URL = `${BACKEND_URL}/api/products/`;
 // ! Create Product
 const createProduct = async (formData) => {
   const response = await axios.post(API_URL, formData);
-  return re;
-  sponse.data;
+  return response.data;
 };
 // ! Get Products
 const getProducts = async () => {
