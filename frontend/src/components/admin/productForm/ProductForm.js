@@ -5,6 +5,7 @@ import Card from "../../card/Card";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import UploadWidget from "./UploadWidget";
+import { BsTrash } from "react-icons/bs";
 
 const ProductForm = ({
   saveProduct,
@@ -18,6 +19,11 @@ const ProductForm = ({
   files,
   setFiles,
 }) => {
+  // ! This function is PASSED IN as a prop on an icon onCLick attribute.
+  const removeImage = (image) => {
+    setFiles(files.filter((img) => img !== image));
+  };
+
   return (
     <div className="add-product">
       <UploadWidget files={files} setFiles={setFiles} />
@@ -26,7 +32,30 @@ const ProductForm = ({
         <br />
 
         <form onSubmit={saveProduct}>
-          {/* // ! (1) Name */}
+          {/* // ! (9) Product images */}
+          <label>Product Images:</label>
+          <div className="slide-container">
+            <aside>
+              {files.length > 0 &&
+                files.map((image) => (
+                  <div className="thumbnail" key={image}>
+                    <img src={image} alt="productImage" height={100} />
+                    <div>
+                      <BsTrash
+                        size={25}
+                        className="thumbnailIcon"
+                        onClick={() => removeImage(image)}
+                      />
+                    </div>
+                  </div>
+                ))}
+              {files.length < 1 && (
+                <p className="--m">No image set for this product</p>
+              )}
+            </aside>
+          </div>
+
+          {/* // ! (1) Name: */}
           <label>Product Name:</label>
           <input
             type="text"
