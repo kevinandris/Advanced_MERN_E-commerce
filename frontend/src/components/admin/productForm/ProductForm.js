@@ -1,25 +1,59 @@
 // ! CHILD class -- Exported to `AddProduct.js`
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductForm.scss";
 import Card from "../../card/Card";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import UploadWidget from "./UploadWidget";
 import { BsTrash } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getBrands,
+  getCategories,
+} from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
 
 const ProductForm = ({
   saveProduct,
-  product,
-  handleInputChange,
-  categories,
   isEditing,
-  filteredBrands,
+  product,
+  setProduct,
   description,
   setDescription,
   files,
   setFiles,
 }) => {
-  // ! This function is PASSED IN as a prop on an icon onCLick attribute.
+  const dispatch = useDispatch();
+  const [filteredBrands, setFilteredBrands] = useState([]);
+  const { categories, brands } = useSelector((state) => state.category);
+
+  // ! Fetching `categories and brand properties` when the page is refreshed by using "useEffect"
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getBrands());
+  }, [dispatch]);
+
+  // ! (4) Filter brands based on selected category
+  const filterBrands = (selectedCategory) => {
+    const newBrands = brands.filter(
+      (brand) => brand.category === selectedCategory
+    );
+    setFilteredBrands(newBrands);
+  };
+
+  // ! To cast filterBrands function every time it runs
+  useEffect(() => {
+    filterBrands(product?.category);
+  }, [product?.category]);
+  /* =======================================  */
+
+  // ! (1) This function is passed in as a prop at <ProductForm />
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setProduct({ ...product, [name]: value });
+  };
+
+  // ! This function is PASSED IN as a prop on an icon onClick attribute.
   const removeImage = (image) => {
     setFiles(files.filter((img) => img !== image));
   };

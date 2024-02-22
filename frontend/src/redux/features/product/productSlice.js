@@ -4,7 +4,7 @@ import productService from "./productService";
 import { toast } from "react-toastify";
 
 const initialState = {
-  product: null,
+  product: "",
   products: [],
   minPrice: null,
   maxPrice: null,
@@ -91,6 +91,24 @@ export const getProduct = createAsyncThunk(
   }
 );
 
+// ! Update a product (5)
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async ({ id, formData }, thunkAPI) => {
+    try {
+      return await productService.updateProduct(id, formData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 /* ==============> PRODUCT SLICE <=============== */
 const productSlice = createSlice({
   name: "product",
@@ -108,12 +126,12 @@ const productSlice = createSlice({
     builder
 
       // ! Create a Product (1)
-      // * Create a Product -- when it is pending
+      // *  when it is pending
       .addCase(createProduct.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * Create a Product -- when it is achieved
+      // * when it is achieved
       .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -127,7 +145,7 @@ const productSlice = createSlice({
         }
       })
 
-      // * Create a Product -- when it is failed
+      // * when it is failed
       .addCase(createProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -136,12 +154,12 @@ const productSlice = createSlice({
       })
 
       // ! Get products (2)
-      // * Get products -- when it is pending
+      // * when it is pending
       .addCase(getProducts.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * Get Products -- when it is achieved
+      // * when it is achieved
       .addCase(getProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -150,7 +168,7 @@ const productSlice = createSlice({
         console.log(action.payload);
       })
 
-      // * Get Products -- when it is failed
+      // * when it is failed
       .addCase(getProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -159,12 +177,12 @@ const productSlice = createSlice({
       })
 
       // ! Delete a product (3)
-      // * Delete a product -- when it is pending
+      // * when it is pending
       .addCase(deleteProduct.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * Delete a product -- when it is achieved
+      // * when it is achieved
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -172,7 +190,7 @@ const productSlice = createSlice({
         toast.success("Product deleted successfully");
       })
 
-      // * Delete a product -- when it is failed
+      // * when it is failed
       .addCase(deleteProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -181,21 +199,50 @@ const productSlice = createSlice({
       })
 
       // ! Get a product (4)
-      // * Delete a product -- when it is pending
+      // * when it is pending
       .addCase(getProduct.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * Delete a product -- when it is achieved
+      // * when it is achieved
       .addCase(getProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.products = action.payload;
+        state.product = action.payload;
+        console.log(action.payload);
       })
 
-      // * Delete a product -- when it is failed
+      // * when it is failed
       .addCase(getProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      // ! Update a product (5)
+      // * when it is pending
+      .addCase(updateProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * when it is achieved
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        console.log(action.payload);
+        if (action.payload && action.payload.hasOwnProperty("message")) {
+          toast.error(action.payload.message);
+        } else {
+          state.message = "Product updated successfully";
+          toast.success("Product updated successfully");
+        }
+      })
+
+      // * when it is failed
+      .addCase(updateProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -205,5 +252,7 @@ const productSlice = createSlice({
 });
 
 export const { RESET_PROD } = productSlice.actions;
+export const selectProduct = (state) => state.product.product;
+export const selectIsLoading = (state) => state.product.isLoading;
 
 export default productSlice.reducer;

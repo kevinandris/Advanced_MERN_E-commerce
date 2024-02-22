@@ -4,10 +4,6 @@ import Loader from "../../loader/Loader";
 import ProductForm from "../productForm/ProductForm";
 import "./AddProduct.scss";
 import {
-  getBrands,
-  getCategories,
-} from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
-import {
   RESET_PROD,
   createProduct,
 } from "../../../redux/features/product/productSlice";
@@ -29,32 +25,11 @@ const AddProduct = () => {
   const [product, setProduct] = useState(initialState);
   const [description, setDescription] = useState("");
   const [files, setFiles] = useState([]);
-  const [filteredBrands, setFilteredBrands] = useState([]);
   const { isLoading, message } = useSelector((state) => state.product);
-  const { categories, brands } = useSelector((state) => state.category);
   const { name, category, brand, price, quantity, color, regularPrice } =
     product;
 
-  // ! Fetching `categories and brand properties` when the page is refreshed by using "useEffect"
-  useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getBrands());
-  }, [dispatch]);
-
-  // ! (4) Filter brands based on selected category
-  const filterBrands = (selectedCategory) => {
-    const newBrands = brands.filter(
-      (brand) => brand.category === selectedCategory
-    );
-    setFilteredBrands(newBrands);
-  };
-
-  // ! To cast filterBrands function every time it runs
-  useEffect(() => {
-    filterBrands(category);
-  }, [category]);
-
-  // ! (3) This function is passed in to `saveProduct function` */
+  /* >>> (3) This function is passed in to `saveProduct function` */
   const generateSKU = (category) => {
     const letter = category.slice(0, 3).toUpperCase();
     const number = Date.now();
@@ -62,7 +37,7 @@ const AddProduct = () => {
     return sku;
   };
 
-  // ! (2) This function is passed in as a prop at <ProductForm /> | console.log(product); console.log(description);
+  /*  >>> (2) This function is passed in as a prop at <ProductForm /> | console.log(product); console.log(description); */
   const saveProduct = async (e) => {
     e.preventDefault();
 
@@ -83,27 +58,17 @@ const AddProduct = () => {
       description,
       image: files,
     };
-
     // console.log(formData);
     await dispatch(createProduct(formData));
-
-    // navigate("/admin/all-product");
   };
 
-  // ! To check if a product is created or not before navigating the admin
+  /* >>> To check if a product is created or not before navigating the admin */
   useEffect(() => {
     if (message === "Product created successfully") {
       navigate("/admin/all-product");
     }
     dispatch(RESET_PROD());
   }, [message, navigate, dispatch]);
-
-  // ! (1) This function is passed in as a prop at <ProductForm />
-  const handleInputChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
-  };
 
   return (
     <section>
@@ -114,10 +79,8 @@ const AddProduct = () => {
         <ProductForm
           saveProduct={saveProduct}
           product={product}
-          handleInputChange={handleInputChange}
-          categories={categories}
+          setProduct={setProduct}
           isEditing={false}
-          filteredBrands={filteredBrands}
           description={description}
           setDescription={setDescription}
           files={files}

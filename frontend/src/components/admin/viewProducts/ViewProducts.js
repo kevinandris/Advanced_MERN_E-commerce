@@ -119,7 +119,10 @@ const ViewProducts = () => {
                         {price}
                       </td>
                       <td>{quantity}</td>
-                      <td>{price * quantity}</td>
+                      <td>
+                        {"$"}
+                        {price * quantity}
+                      </td>
                       <td className="icons">
                         <span>
                           {/* >>> Use Link tag to give a space between icons */}
