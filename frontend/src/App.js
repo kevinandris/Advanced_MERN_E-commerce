@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLoginStatus, getUser } from "./redux/features/auth/authSlice";
 import Profile from "./pages/profile/Profile";
 import Admin from "./pages/admin/Admin";
+import AdminOnlyRoute from "./components/hiddenLink/AdminOnlyRoute";
 
 function App() {
   // ! using axios every time we send the token or credentials to the backend through "http request".
@@ -45,7 +46,14 @@ function App() {
           <Route path="/profile" element={<Profile />} />
 
           {/* for admin only */}
-          <Route path="/admin/*" element={<Admin />} />
+          <Route
+            path="/admin/*"
+            element={
+              <AdminOnlyRoute>
+                <Admin />
+              </AdminOnlyRoute>
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

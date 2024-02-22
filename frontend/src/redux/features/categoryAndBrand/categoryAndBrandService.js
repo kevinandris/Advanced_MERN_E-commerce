@@ -3,6 +3,8 @@ import axios from "axios";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const API_URL = `${BACKEND_URL}/api/`;
 
+/* =====================> CATEGORY <======================= */
+
 // ! Create a category (1)
 const createCategory = async (formData) => {
   const response = await axios.post(
@@ -24,7 +26,7 @@ const deleteCategory = async (slug) => {
   return response.data.message;
 };
 
-// ====================================================== //
+// ======================> BRAND <======================= //
 
 // ! Create a brand (4)
 const createBrand = async (formData) => {
@@ -38,7 +40,7 @@ const getBrands = async () => {
   return response.data;
 };
 
-// ! delete a Brands (6)
+// ! delete a Brand (6)
 const deleteBrand = async (slug) => {
   const response = await axios.delete(API_URL + "brand/" + slug);
   return response.data;

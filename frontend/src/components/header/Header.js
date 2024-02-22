@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { RESET_AUTH, logout } from "../../redux/features/auth/authSlice";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
 import { UserName } from "../../pages/profile/Profile";
+import { AdminOnlyLink } from "../hiddenLink/AdminOnlyRoute";
 
 // ! created this so we can use the LOGO on any page we like.
 export const logo = (
@@ -91,9 +92,11 @@ const Header = () => {
                 Shop
               </NavLink>
               &nbsp; {/* create a blank space */}
-              <NavLink to="/admin/home" className={activeLink}>
-                | Admin
-              </NavLink>
+              <AdminOnlyLink>
+                <NavLink to="/admin/home" className={activeLink}>
+                  | Admin
+                </NavLink>
+              </AdminOnlyLink>
             </li>
           </ul>
 

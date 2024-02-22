@@ -51,7 +51,7 @@ const EditProduct = () => {
     dispatch(getProduct(id));
   }, [dispatch, id]);
 
-  /* >>> To `send the updated information` of the product to the `database` */
+  /* >>> To `send the updated information` of the product to the `database` and update it in all-product page*/
   useEffect(() => {
     setProduct(editProduct);
     if (editProduct && editProduct.image) {

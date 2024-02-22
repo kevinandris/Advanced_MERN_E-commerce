@@ -30,12 +30,12 @@ const categoryAndBrandSlice = createSlice({
       // =========== CATEGORY ============ //
 
       // ! Create a Category (1)
-      // * create Category -- when it is pending
+      // *  when it is PENDING
       .addCase(createCategory.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * create Category -- when it is achieved
+      // *  when it is ACHIEVED
       .addCase(createCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -44,7 +44,7 @@ const categoryAndBrandSlice = createSlice({
         console.log(action.payload);
       })
 
-      // * create Category -- when it is failed
+      // *  when it is FAILED
       .addCase(createCategory.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -53,12 +53,12 @@ const categoryAndBrandSlice = createSlice({
       })
 
       // ! Get categories (2)
-      // * GET categories -- when it is pending
+      // *  when it is PENDING
       .addCase(getCategories.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * GET categories -- when it is achieved
+      // *  when it is ACHIEVED
       .addCase(getCategories.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -67,7 +67,7 @@ const categoryAndBrandSlice = createSlice({
         // console.log(action.payload);
       })
 
-      // * GET categories-- when it is failed
+      // * when it is FAILED
       .addCase(getCategories.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -76,12 +76,12 @@ const categoryAndBrandSlice = createSlice({
       })
 
       // ! Delete a category (3)
-      // * Delete a category -- when it is pending
+      // *  when it is PENDING
       .addCase(deleteCategory.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * Delete a category -- when it is achieved
+      // *  when it is ACHIEVED
       .addCase(deleteCategory.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -90,7 +90,7 @@ const categoryAndBrandSlice = createSlice({
         console.log(action.payload);
       })
 
-      // * Delete a category-- when it is failed
+      // * when it is FAILED
       .addCase(deleteCategory.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -101,12 +101,12 @@ const categoryAndBrandSlice = createSlice({
       // ============= BRAND ============== //
 
       // ! Create a brand (4)
-      // * create brand -- when it is pending
+      // *  when it is PENDING
       .addCase(createBrand.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * create brand -- when it is achieved
+      // *  when it is ACHIEVED
       .addCase(createBrand.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -115,7 +115,7 @@ const categoryAndBrandSlice = createSlice({
         console.log(action.payload);
       })
 
-      // * create brand -- when it is failed
+      // *  when it is FAILED
       .addCase(createBrand.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -124,12 +124,12 @@ const categoryAndBrandSlice = createSlice({
       })
 
       // ! Get brands (5)
-      // * Get Brands -- when it is pending
+      // *  when it is PENDING
       .addCase(getBrands.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * Get Brands -- when it is achieved
+      // *  when it is ACHIEVED
       .addCase(getBrands.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -138,7 +138,7 @@ const categoryAndBrandSlice = createSlice({
         // console.log(action.payload);
       })
 
-      // * Get Brands -- when it is failed
+      // *  when it is FAILED
       .addCase(getBrands.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
@@ -147,12 +147,12 @@ const categoryAndBrandSlice = createSlice({
       })
 
       // ! Delete a brand (6)
-      // * Delete a brand -- when it is pending
+      // *  when it is PENDING
       .addCase(deleteBrand.pending, (state) => {
         state.isLoading = true;
       })
 
-      // * Delete a brand -- when it is achieved
+      // *  when it is ACHIEVED
       .addCase(deleteBrand.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -161,7 +161,7 @@ const categoryAndBrandSlice = createSlice({
         console.log(action.payload);
       })
 
-      // * Delete a brand -- when it is failed
+      // *  when it is FAILED
       .addCase(deleteBrand.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
