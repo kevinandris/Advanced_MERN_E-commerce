@@ -121,6 +121,14 @@ section {
   text-align: center;
 }
 
+.--column-gap {
+  gap: 1rem;
+}
+
+.--row-gap {
+  gap: 1rem;
+}
+
 /* Heading */
 h1,
 h2,

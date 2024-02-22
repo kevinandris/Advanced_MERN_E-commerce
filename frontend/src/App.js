@@ -14,6 +14,7 @@ import { getLoginStatus, getUser } from "./redux/features/auth/authSlice";
 import Profile from "./pages/profile/Profile";
 import Admin from "./pages/admin/Admin";
 import AdminOnlyRoute from "./components/hiddenLink/AdminOnlyRoute";
+import NotFound from "./pages/404/NotFound";
 
 function App() {
   // ! using axios every time we send the token or credentials to the backend through "http request".
@@ -54,6 +55,9 @@ function App() {
               </AdminOnlyRoute>
             }
           />
+
+          {/* >>> Not Found page */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
