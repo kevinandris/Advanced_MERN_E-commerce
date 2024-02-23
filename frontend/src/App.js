@@ -17,6 +17,7 @@ import AdminOnlyRoute from "./components/hiddenLink/AdminOnlyRoute";
 import NotFound from "./pages/404/NotFound";
 import Product from "./pages/shop/Product";
 import ProductDetails from "./components/product/productDetails/ProductDetails";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   /* >>> ! using axios every time we send the token or credentials to the backend through "http request". */
@@ -49,6 +50,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/shop" element={<Product />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
 
           {/* for admin only route*/}
           <Route

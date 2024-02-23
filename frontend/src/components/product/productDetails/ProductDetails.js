@@ -79,11 +79,11 @@ const ProductDetails = () => {
               </div>
 
               <div className={styles.content}>
-                <h3>{product.name}</h3>
+                <h3>{product?.name}</h3>
                 {/* >>> Product's rating based on users */}
                 <ProductRating
                   averageRating={averageRating}
-                  numberOfRatings={product.ratings.length}
+                  numberOfRatings={product?.ratings.length}
                 />
                 <div className="--underline"></div>
                 <div className={styles.property}>
@@ -136,7 +136,7 @@ const ProductDetails = () => {
                 </div>
 
                 <div className="--flex-start">
-                  {product.quantity > 0 ? (
+                  {product?.quantity > 0 ? (
                     <button
                       className="--btn --btn-primary"
                       onClick={() => addToCart(product)}
