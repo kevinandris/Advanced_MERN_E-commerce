@@ -129,10 +129,12 @@ const ProductForm = ({
             value={product?.brand}
             onChange={handleInputChange}
           >
+            {/* >>> option tag below `CANNOT BE DISABLED`, otherwise it will throw bad request 404 
+                          although the form from the frontend is all filled */}
             {isEditing ? (
               <option value={product?.brand}>{product.brand}</option>
             ) : (
-              <option disabled>Select a brand:</option>
+              <option>Select a brand:</option>
             )}
             {filteredBrands.length > 0 &&
               filteredBrands.map((brand) => (

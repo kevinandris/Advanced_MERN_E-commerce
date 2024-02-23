@@ -15,20 +15,21 @@ import Profile from "./pages/profile/Profile";
 import Admin from "./pages/admin/Admin";
 import AdminOnlyRoute from "./components/hiddenLink/AdminOnlyRoute";
 import NotFound from "./pages/404/NotFound";
+import Product from "./pages/shop/Product";
 
 function App() {
-  // ! using axios every time we send the token or credentials to the backend through "http request".
+  /* >>> ! using axios every time we send the token or credentials to the backend through "http request". */
   axios.defaults.withCredentials = true;
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  // ! to check if the user is logged in - so the "My Order and Logout NavLinks" are static instead of
-  // ! showing "Login and Register NavLinks" after logging in when the "page is refreshed".
+  /* >>> To check if the user is logged in - so the "My Order and Logout NavLinks" are static 
+      instead of showing "Login and Register NavLinks" after logging in when the "page is refreshed". */
   useEffect(() => {
     dispatch(getLoginStatus());
   }, [dispatch]);
 
-  // ! (Admin) to keep the Admin name of the navbar and on the header every time the page refreshed.
+  /* >>> ( FOR ADMIN ) to keep the Admin name of the navbar and on the header every time the page refreshed. */
   useEffect(() => {
     if (isLoggedIn && user === null) {
       dispatch(getUser());
@@ -39,14 +40,15 @@ function App() {
     <>
       <BrowserRouter>
         <ToastContainer />
-        <Header /> {/* from components folder */}
+        <Header /> {/* >>> from components folder */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/shop" element={<Product />} />
 
-          {/* for admin only */}
+          {/* for admin only route*/}
           <Route
             path="/admin/*"
             element={

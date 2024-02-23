@@ -28,7 +28,7 @@ const ViewProducts = () => {
     }
   }, [isLoggedIn, dispatch]);
 
-  // ! This function is in trash icon as a prop at onClick
+  /* >>> This function is in trash icon as a prop at onClick */
   const confirmDelete = (id) => {
     confirmAlert({
       title: "Delete Product",
@@ -46,14 +46,14 @@ const ViewProducts = () => {
     });
   };
 
-  // ! This function is passed in to the `confirmDelete function`
+  /* >>> This function is passed in to the `confirmDelete function` */
   const removeProduct = async (id) => {
     await dispatch(deleteProduct(id));
     await dispatch(getProducts());
   };
 
-  // ! Pagination from `React-paginate`
-  const itemsPerPage = 3;
+  /* >>> Pagination from `React-paginate` */
+  const itemsPerPage = 5;
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = products.slice(itemOffset, endOffset);
@@ -63,7 +63,7 @@ const ViewProducts = () => {
     const newOffset = (event.selected * itemsPerPage) % products.length;
     setItemOffset(newOffset);
   };
-  /* ==================================== */
+  /* =========================================== */
 
   return (
     <section>
