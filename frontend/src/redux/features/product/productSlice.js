@@ -114,12 +114,28 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
+    /* // * function to reset my auth to the default */
     RESET_PROD(state) {
-      // * function to reset my auth to the default
       state.isError = false;
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
+    },
+
+    /* >>> Get price range function */
+    GET_PRICE_RANGE(state, action) {
+      const { products } = action.payload;
+      const array = [];
+      products.map((product) => {
+        const price = product.price;
+        return array.push(price);
+      });
+
+      const min = Math.min(...array);
+      const max = Math.max(...array);
+
+      state.minPrice = min;
+      state.maxPrice = max;
     },
   },
   extraReducers: (builder) => {
@@ -251,7 +267,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { RESET_PROD } = productSlice.actions;
+export const { RESET_PROD, GET_PRICE_RANGE } = productSlice.actions;
 export const selectProduct = (state) => state.product.product;
 export const selectIsLoading = (state) => state.product.isLoading;
 
