@@ -4,7 +4,7 @@ import productService from "./productService";
 import { toast } from "react-toastify";
 
 const initialState = {
-  product: "",
+  product: null,
   products: [],
   minPrice: null,
   maxPrice: null,

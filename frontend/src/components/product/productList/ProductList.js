@@ -11,6 +11,7 @@ import {
   SORT_PRODUCTS,
   selectFilteredProducts,
 } from "../../../redux/features/product/filterSlice";
+import ReactPaginate from "react-paginate";
 
 const ProductList = ({ products }) => {
   const [grid, setGrid] = useState(true);
@@ -28,6 +29,19 @@ const ProductList = ({ products }) => {
     dispatch(SORT_PRODUCTS({ products, sort }));
   }, [dispatch, products, sort]);
 
+  /* >>> Pagination from `React-paginate` */
+  const itemsPerPage = 6;
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = filteredProducts.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(filteredProducts.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
+    setItemOffset(newOffset);
+  };
+  /* =========================================== */
+
   return (
     <div className={styles["product-list"]}>
       <div className={styles.top}>
@@ -35,7 +49,7 @@ const ProductList = ({ products }) => {
           <BsFillGridFill size={22} color="red" onClick={() => setGrid(true)} />
           <FaListAlt size={24} color="#0066d4" onClick={() => setGrid(false)} />
           <p>
-            <b>{products.length} products found</b>
+            <b>{currentItems.length} products found</b>
           </p>
         </div>
 
@@ -60,8 +74,8 @@ const ProductList = ({ products }) => {
           <p>No product(s) found.</p>
         ) : (
           <>
-            {/* >>> products was replaced by filteredProducts */}
-            {filteredProducts.map((product) => {
+            {/* >>> filteredProducts was replaced by currentItems*/}
+            {currentItems.map((product) => {
               return (
                 <div key={product._id}>
                   <ProductItem {...product} grid={grid} product={product} />
@@ -71,6 +85,21 @@ const ProductList = ({ products }) => {
           </>
         )}
       </div>
+
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}
+        previousLabel="prev"
+        renderOnZeroPageCount={null}
+        containerClassName="pagination"
+        pageLinkClassName="page-num"
+        previousLinkClassName="page-num"
+        nextLinkClassName="page-num"
+        activeLinkClassName="activePage"
+      />
     </div>
   );
 };

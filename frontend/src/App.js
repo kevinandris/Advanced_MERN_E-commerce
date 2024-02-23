@@ -16,6 +16,7 @@ import Admin from "./pages/admin/Admin";
 import AdminOnlyRoute from "./components/hiddenLink/AdminOnlyRoute";
 import NotFound from "./pages/404/NotFound";
 import Product from "./pages/shop/Product";
+import ProductDetails from "./components/product/productDetails/ProductDetails";
 
 function App() {
   /* >>> ! using axios every time we send the token or credentials to the backend through "http request". */
@@ -47,6 +48,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/shop" element={<Product />} />
+          <Route path="/product-details/:id" element={<ProductDetails />} />
 
           {/* for admin only route*/}
           <Route
