@@ -7,6 +7,11 @@ import { calculateAverageRating, shortenText } from "../../../utils/index";
 import { toast } from "react-toastify";
 import DOMPurify from "dompurify";
 import ProductRating from "../productRating/ProductRating";
+import {
+  ADD_TO_CART,
+  saveCartDB,
+} from "../../../redux/features/cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductItem = ({
   product,
@@ -17,7 +22,17 @@ const ProductItem = ({
   image,
   regularPrice,
 }) => {
+  const dispatch = useDispatch();
   const averageRating = calculateAverageRating(product.ratings);
+
+  /* >> This function located at ADD TO CART */
+  const addToCart = (product) => {
+    dispatch(ADD_TO_CART(product));
+    dispatch(
+      saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems")) })
+    );
+  };
+
   return (
     <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
       <Link to={`/product-details/${_id}`}>
@@ -54,7 +69,12 @@ const ProductItem = ({
           )}
 
           {product?.quantity > 0 ? (
-            <button className="--btn --btn-primary">Add To Cart</button>
+            <button
+              className="--btn --btn-primary"
+              onClick={() => addToCart(product)}
+            >
+              Add To Cart
+            </button>
           ) : (
             <button
               className="--btn --btn-red"

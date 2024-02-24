@@ -197,6 +197,35 @@ const updatePhoto = asyncHandler(async (req, res) => {
   res.status(200).json(updatedUser);
 });
 
+// ! Save Cart from the frontend to the database - PATCH method (8)
+const saveCart = asyncHandler(async (req, res) => {
+  const { cartItems } = req.body;
+
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.cartItems = cartItems;
+    user.save();
+    res.status(200).json({ message: "Cart is saved" });
+  } else {
+    res.status(404);
+    throw new Error("The user is not found");
+  }
+});
+
+// ! Get the cart from the backend - GET method (9)
+const getCart = asyncHandler(async (req, res) => {
+  /* >> firstly, access the user by finding user's id */
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.status(200).json(user.cartItems);
+  } else {
+    res.status(404);
+    throw new Error("The user is not found");
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,
@@ -205,4 +234,6 @@ module.exports = {
   getLoginStatus,
   updateUser,
   updatePhoto,
+  saveCart,
+  getCart,
 };

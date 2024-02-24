@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, logout } from "../../redux/features/auth/authSlice";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
 import { UserName } from "../../pages/profile/Profile";
 import { AdminOnlyLink } from "../hiddenLink/AdminOnlyRoute";
+import {
+  CALCULATE_TOTAL_QUANTITY,
+  selectCartItems,
+  selectCartTotalQuantity,
+} from "../../redux/features/cart/cartSlice";
 
 // ! created this so we can use the LOGO on any page we like.
 export const logo = (
@@ -25,10 +30,12 @@ export const logo = (
 const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
 
 const Header = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [scrollPage, setScrollPage] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
+  const [scrollPage, setScrollPage] = useState(false);
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+  const cartItems = useSelector(selectCartItems);
 
   const fixNavbar = () => {
     if (window.scrollY > 50) {
@@ -53,12 +60,17 @@ const Header = () => {
     navigate("/login");
   };
 
+  /* >> To calculate the quantity of the items next to CART ICON */
+  useEffect(() => {
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  }, [dispatch, cartItems]);
+
   const cart = (
     <span className={styles.cart}>
       <Link to={"/cart"}>
         Cart
         <FaShoppingCart size={20} />
-        <p>0</p>
+        <p>{cartTotalQuantity}</p>
       </Link>
     </span>
   );

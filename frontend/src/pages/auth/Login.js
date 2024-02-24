@@ -8,6 +8,7 @@ import { validateEmail } from "../../utils";
 import Loader from "../../components/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, login } from "../../redux/features/auth/authSlice";
+import { getCartDB } from "../../redux/features/cart/cartSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -43,7 +44,8 @@ const Login = () => {
   // ! Monitoring whether the registration is successful or a user is logged in and direct them to the homepage.
   useEffect(() => {
     if (isSuccess && isLoggedIn) {
-      navigate("/");
+      // navigate("/");
+      dispatch(getCartDB());
     }
 
     // * In case there is another redux function that fires from the homepage, it will have a fresh state.

@@ -44,6 +44,9 @@ const userSchema = new mongoose.Schema({
     type: Object,
     // address, state, country
   },
+  cartItems: {
+    type: [Object],
+  },
 });
 
 // ! Encrypt password before saving to MongoDB -- this is a callback function

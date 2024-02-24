@@ -1,21 +1,62 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Cart.module.scss";
 import "./Radio.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "../../redux/features/cart/cartSlice";
+import {
+  ADD_TO_CART,
+  CALCULATE_SUB_TOTAL,
+  CALCULATE_TOTAL_QUANTITY,
+  CLEAR_CART,
+  DECREASE_CART,
+  REMOVE_FROM_CART,
+  saveCartDB,
+  selectCartItems,
+  selectCartTotalAmount,
+  selectCartTotalQuantity,
+} from "../../redux/features/cart/cartSlice";
 import { FaTrashAlt } from "react-icons/fa";
+import Card from "../../components/card/Card";
 
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
+  const cartTotalAmount = useSelector(selectCartTotalAmount);
 
-  const increaseCart = () => {};
+  const increaseCart = (product) => {
+    dispatch(ADD_TO_CART(product));
+    dispatch(
+      saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems")) })
+    );
+  };
 
-  const decreaseCart = () => {};
+  const decreaseCart = (product) => {
+    dispatch(DECREASE_CART(product));
+    dispatch(
+      saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems")) })
+    );
+  };
 
-  const removeFromCart = () => {};
+  const removeFromCart = (product) => {
+    dispatch(REMOVE_FROM_CART(product));
+    dispatch(
+      saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems")) })
+    );
+  };
+
+  const clearCart = () => {
+    dispatch(CLEAR_CART());
+    dispatch(saveCartDB({ cartItems: [] }));
+  };
+
+  /* >> To calculate the total quantity and total amount every time the quantity changes */
+  useEffect(() => {
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+    dispatch(CALCULATE_SUB_TOTAL());
+  }, [dispatch, cartItems]);
+
   return (
     <section>
       <div className={`container ${styles.table}`}>
@@ -91,6 +132,28 @@ const Cart = () => {
                 })}
               </tbody>
             </table>
+
+            <div className={styles.summary}>
+              <button className="--btn --btn-red" onClick={clearCart}>
+                CLEAR CART
+              </button>
+              <div className={styles.checkout}>
+                <div>
+                  <Link to={"/shop"}>&larr; Back to shopping page</Link>
+                </div>
+                <br />
+                <Card cardClass={styles.card}>
+                  <p>
+                    <b>{`Cart item(s): ${cartTotalQuantity}`}</b>
+                  </p>
+
+                  <div className={styles.text}>
+                    <h4>SUBTOTAL:</h4>
+                    <h3>{`$${cartTotalAmount?.toFixed(2)}`}</h3>
+                  </div>
+                </Card>
+              </div>
+            </div>
           </>
         )}
       </div>

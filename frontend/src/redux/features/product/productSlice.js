@@ -181,7 +181,7 @@ const productSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         state.products = action.payload;
-        console.log(action.payload);
+        // console.log(action.payload);
       })
 
       // * when it is failed
