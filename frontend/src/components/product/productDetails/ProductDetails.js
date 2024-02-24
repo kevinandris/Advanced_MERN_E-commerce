@@ -9,6 +9,7 @@ import { calculateAverageRating } from "../../../utils";
 import { toast } from "react-toastify";
 import DOMPurify from "dompurify";
 import Card from "../../card/Card";
+import { ADD_TO_CART } from "../../../redux/features/cart/cartSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -41,7 +42,10 @@ const ProductDetails = () => {
     return () => clearInterval(slideInterval);
   }, [imageIndex, slideInterval, product]);
 
-  const addToCart = () => {};
+  /* >> This function located at ADD TO CART BUTTON */
+  const addToCart = (product) => {
+    dispatch(ADD_TO_CART(product));
+  };
 
   return (
     <section>

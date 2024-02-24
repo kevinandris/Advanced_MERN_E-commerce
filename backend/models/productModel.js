@@ -28,8 +28,8 @@ const productSchema = new mongoose.Schema(
     },
     color: {
       type: String,
-      // required: [true, "Please add a color"],
-      default: "As seen",
+      required: [true, "Please add a color"],
+      default: "As seen" /* This doesn't work */,
       trim: true,
     },
     quantity: {
