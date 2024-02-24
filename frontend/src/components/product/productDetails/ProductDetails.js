@@ -9,7 +9,11 @@ import { calculateAverageRating } from "../../../utils";
 import { toast } from "react-toastify";
 import DOMPurify from "dompurify";
 import Card from "../../card/Card";
-import { ADD_TO_CART } from "../../../redux/features/cart/cartSlice";
+import {
+  ADD_TO_CART,
+  DECREASE_CART,
+  selectCartItems,
+} from "../../../redux/features/cart/cartSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -17,6 +21,13 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const [imageIndex, setImageIndex] = useState(0);
   const averageRating = calculateAverageRating(product?.ratings);
+  const cartItems = useSelector(selectCartItems);
+  /*  give access about the cart information in the cart items*/
+  const cart = cartItems.find((cart) => cart._id === id);
+  /* to check the cart has been added to the cart items */
+  const isCartAdded = cartItems.findIndex((cart) => {
+    return cart._id === id;
+  });
 
   /* >>> To fetch a single product */
   useEffect(() => {
@@ -42,9 +53,14 @@ const ProductDetails = () => {
     return () => clearInterval(slideInterval);
   }, [imageIndex, slideInterval, product]);
 
-  /* >> This function located at ADD TO CART BUTTON */
+  /* >> This function located at ADD TO CART and PLUS BUTTON */
   const addToCart = (product) => {
     dispatch(ADD_TO_CART(product));
+  };
+
+  /* >> This function located at MINUS button */
+  const decreaseCart = (product) => {
+    dispatch(DECREASE_CART(product));
   };
 
   return (
@@ -139,6 +155,29 @@ const ProductDetails = () => {
                   <p>{product?.sold}</p>
                 </div>
 
+                {/* >> - and + button */}
+                <div className={styles.count}>
+                  {isCartAdded < 0 ? null : (
+                    <>
+                      <button
+                        className="--btn"
+                        onClick={() => decreaseCart(product)}
+                      >
+                        -
+                      </button>
+                      <p>
+                        <b>{cart.cartQuantity}</b>
+                      </p>
+                      <button
+                        className="--btn"
+                        onClick={() => addToCart(product)}
+                      >
+                        +
+                      </button>
+                    </>
+                  )}
+                </div>
+
                 <div className="--flex-start">
                   {product?.quantity > 0 ? (
                     <button
@@ -157,6 +196,7 @@ const ProductDetails = () => {
                       Out of Stock
                     </button>
                   )}
+
                   <button
                     className="--btn --btn-danger"
                     onClick={() => addToCart(product)}
@@ -166,6 +206,9 @@ const ProductDetails = () => {
                 </div>
 
                 <div className="--underline"></div>
+                <p>
+                  <b>Product description:</b>
+                </p>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(product?.description),
