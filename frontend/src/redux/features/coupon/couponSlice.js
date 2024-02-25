@@ -87,7 +87,11 @@ export const deleteCoupon = createAsyncThunk(
 const couponSlice = createSlice({
   name: "coupon",
   initialState,
-  reducers: {},
+  reducers: {
+    REMOVE_COUPON(state, action) {
+      state.coupon = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -186,6 +190,6 @@ const couponSlice = createSlice({
   },
 });
 
-export const {} = couponSlice.actions;
+export const { REMOVE_COUPON } = couponSlice.actions;
 
 export default couponSlice.reducer;

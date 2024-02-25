@@ -24,11 +24,12 @@ const PageHeading = ({ heading, btnText }) => {
 const Home = () => {
   const dispatch = useDispatch();
 
-  /* Get all products from the database */
+  /* >> Get all products from the database */
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
+  /* >> Fetch the products from redux and store into the variable */
   const { products } = useSelector((state) => state.product);
 
   /* >> Capture the latest products */
@@ -48,6 +49,7 @@ const Home = () => {
     })
     ?.filter((product, index) => index < 7);
 
+  /* >> Show "latest" products and passed into CarouselItem */
   const latestProducts = latest.map((item) => (
     <div key={item.id}>
       <CarouselItem
@@ -61,6 +63,7 @@ const Home = () => {
     </div>
   ));
 
+  /* >> Show "phone" products and passed into CarouselItem */
   const phoneProducts = phones.map((item) => (
     <div key={item.id}>
       <CarouselItem
@@ -73,8 +76,10 @@ const Home = () => {
       />
     </div>
   ));
+
   return (
     <>
+      {/* >> component */}
       <Slider />
 
       <section>

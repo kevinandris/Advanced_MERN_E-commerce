@@ -17,6 +17,7 @@ import {
 } from "../../redux/features/cart/cartSlice";
 import { FaTrashAlt } from "react-icons/fa";
 import Card from "../../components/card/Card";
+import VerifyCoupon from "../../components/verifyCoupon/VerifyCoupon";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Cart = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
   const cartTotalAmount = useSelector(selectCartTotalAmount);
+  const { coupon } = useSelector((state) => state.coupon);
 
   const increaseCart = (product) => {
     dispatch(ADD_TO_CART(product));
@@ -54,8 +56,8 @@ const Cart = () => {
   /* >> To calculate the total quantity and total amount every time the quantity changes */
   useEffect(() => {
     dispatch(CALCULATE_TOTAL_QUANTITY());
-    dispatch(CALCULATE_SUB_TOTAL());
-  }, [dispatch, cartItems]);
+    dispatch(CALCULATE_SUB_TOTAL({ coupon }));
+  }, [dispatch, cartItems, coupon]);
 
   return (
     <section>
@@ -151,6 +153,9 @@ const Cart = () => {
                     <h4>SUBTOTAL:</h4>
                     <h3>{`$${cartTotalAmount?.toFixed(2)}`}</h3>
                   </div>
+
+                  {/* >> Component */}
+                  <VerifyCoupon />
                 </Card>
               </div>
             </div>

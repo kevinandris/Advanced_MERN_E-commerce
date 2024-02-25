@@ -1,3 +1,4 @@
+// ! CHILD class
 import React from "react";
 import "./Carousel.scss";
 import { Link } from "react-router-dom";
@@ -33,7 +34,7 @@ const CarouselItem = ({
         <img className="product--image" src={url} alt="product" />
         <p className="price">
           <span>{regularPrice > 0 && <del>${regularPrice}</del>}</span>
-          {`${price}`}
+          {` $${price}`}
         </p>
         <h4>{shortenText(name, 18)}</h4>
         <p className="--mb">{shortenText(desc, 26)}</p>
