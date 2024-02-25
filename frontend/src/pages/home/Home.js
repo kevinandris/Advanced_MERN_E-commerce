@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "../../components/slider/Slider";
 import "./Home.scss";
 import HomeInfoBox from "./HomeInfoBox";
-import { productData } from "../../components/corousel/data";
 import CarouselItem from "../../components/corousel/CarouselItem";
 import ProductCarousel from "../../components/corousel/Carousel";
 import ProductCategory from "./ProductCategory";
 import FooterLinks from "../../components/footer/FooterLinks";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/features/product/productSlice";
 
 const PageHeading = ({ heading, btnText }) => {
   return (
@@ -21,13 +22,54 @@ const PageHeading = ({ heading, btnText }) => {
 };
 
 const Home = () => {
-  const productss = productData.map((item) => (
+  const dispatch = useDispatch();
+
+  /* Get all products from the database */
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  const { products } = useSelector((state) => state.product);
+
+  /* >> Capture the latest products */
+  const latest = products
+    ?.filter((product) => {
+      return product.quantity > 0;
+    })
+    ?.filter((product, index) => index < 7);
+
+  /* >> Capture the phone products */
+  const phones = products
+    ?.filter((product) => {
+      return product.quantity > 0;
+    })
+    ?.filter((product) => {
+      return product.category === "Phone";
+    })
+    ?.filter((product, index) => index < 7);
+
+  const latestProducts = latest.map((item) => (
     <div key={item.id}>
       <CarouselItem
         name={item.name}
-        url={item.imageurl}
+        url={item.image[0]}
         price={item.price}
+        regularPrice={item.regularPrice}
         description={item.description}
+        product={item}
+      />
+    </div>
+  ));
+
+  const phoneProducts = phones.map((item) => (
+    <div key={item.id}>
+      <CarouselItem
+        name={item.name}
+        url={item.image[0]}
+        price={item.price}
+        regularPrice={item.regularPrice}
+        description={item.description}
+        product={item}
       />
     </div>
   ));
@@ -39,7 +81,7 @@ const Home = () => {
         <HomeInfoBox />
         <div className="container">
           <PageHeading heading={"Latest Products"} btnText={"Shop Now>>>"} />
-          <ProductCarousel products={productss} />
+          <ProductCarousel products={latestProducts} />
         </div>
       </section>
 
@@ -53,7 +95,7 @@ const Home = () => {
       <section>
         <div className="container">
           <PageHeading heading={"Mobile Phones"} btnText={"Shop Now>>>"} />
-          <ProductCarousel products={productss} />
+          <ProductCarousel products={phoneProducts} />
         </div>
       </section>
 
