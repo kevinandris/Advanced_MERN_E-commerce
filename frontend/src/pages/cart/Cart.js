@@ -18,6 +18,7 @@ import {
 import { FaTrashAlt } from "react-icons/fa";
 import Card from "../../components/card/Card";
 import VerifyCoupon from "../../components/verifyCoupon/VerifyCoupon";
+import PaymentOptions from "../../components/paymentOptions/PaymentOptions";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -156,6 +157,12 @@ const Cart = () => {
 
                   {/* >> Component */}
                   <VerifyCoupon />
+
+                  <br />
+                  <div className="--underline"></div>
+                  <br />
+                  {/* >> Component */}
+                  <PaymentOptions />
                 </Card>
               </div>
             </div>

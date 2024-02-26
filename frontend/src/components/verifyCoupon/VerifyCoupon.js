@@ -7,7 +7,8 @@ import {
   getCoupon,
 } from "../../redux/features/coupon/couponSlice";
 
-const CartDiscount = () => {
+/* >> This  piece of code is also used in CheckoutSummary.js */
+export const CartDiscount = () => {
   const { coupon } = useSelector((state) => state.coupon);
   const { initialCartTotalAmount } = useSelector((state) => state.cart);
   return (

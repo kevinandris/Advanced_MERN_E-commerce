@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./auth.module.scss";
 import loginImg from "../../assets/login.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { toast } from "react-toastify";
 import { validateEmail } from "../../utils";
 import Loader from "../../components/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, login } from "../../redux/features/auth/authSlice";
-import { getCartDB } from "../../redux/features/cart/cartSlice";
+import { getCartDB, saveCartDB } from "../../redux/features/cart/cartSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +18,8 @@ const Login = () => {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [urlParams] = useSearchParams();
+  const redirect = urlParams.get("redirect");
 
   const loginUser = async (e) => {
     e.preventDefault(); /* preventing a reload every-time a user submits the their details */
@@ -30,27 +32,33 @@ const Login = () => {
       return toast.error("Please enter a valid email");
     }
 
-    // * Send the name, email and passwords in an object to the "BACKEND" to register the user using dispatch (redux-toolkit)
+    /* >> Send the name, email and passwords in an object to the "BACKEND" to register the user using dispatch (redux-toolkit) */
     const userData = {
       email,
       password,
     };
-
-    // console.log(userData);
-
     await dispatch(login(userData));
   };
 
-  // ! Monitoring whether the registration is successful or a user is logged in and direct them to the homepage.
+  /*  >> Monitoring whether the registration is successful or a user is logged in and direct them to the homepage.
+      AND redirect a user to the cart page
+  */
   useEffect(() => {
     if (isSuccess && isLoggedIn) {
-      // navigate("/");
+      if (redirect === "cart") {
+        dispatch(
+          saveCartDB({
+            cartItems: JSON.parse(localStorage.getItem("cartItems")),
+          })
+        );
+        return navigate("/cart");
+      }
       dispatch(getCartDB());
     }
 
-    // * In case there is another redux function that fires from the homepage, it will have a fresh state.
+    /*  >> In case there is another redux function that fires from the homepage, it will have a fresh state. */
     dispatch(RESET_AUTH());
-  }, [isSuccess, isLoggedIn, dispatch, navigate]);
+  }, [isSuccess, isLoggedIn, dispatch, navigate, redirect]);
 
   return (
     <>

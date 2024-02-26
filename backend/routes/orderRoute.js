@@ -6,6 +6,7 @@ const {
   getOrders,
   getOrder,
   updateOrderStatus,
+  payWithStripe,
 } = require("../controllers/orderController");
 
 // ! Routes
@@ -15,5 +16,7 @@ router.get("/", protect, getOrders);
 router.get("/:id", protect, getOrder);
 
 router.patch("/:id", protect, adminOnly, updateOrderStatus);
+
+router.post("/create-payment-intent", payWithStripe);
 
 module.exports = router;

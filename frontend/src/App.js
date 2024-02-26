@@ -18,6 +18,8 @@ import NotFound from "./pages/404/NotFound";
 import Product from "./pages/shop/Product";
 import ProductDetails from "./components/product/productDetails/ProductDetails";
 import Cart from "./pages/cart/Cart";
+import CheckoutDetails from "./pages/checkout/CheckoutDetails";
+import Checkout from "./pages/checkout/Checkout";
 
 function App() {
   /* >>> ! using axios every time we send the token or credentials to the backend through "http request". */
@@ -51,6 +53,8 @@ function App() {
           <Route path="/shop" element={<Product />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout-details" element={<CheckoutDetails />} />
+          <Route path="/checkout-stripe" element={<Checkout />} />
 
           {/* for admin only route*/}
           <Route
