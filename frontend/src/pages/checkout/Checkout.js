@@ -1,13 +1,70 @@
-import React from "react";
-import "./Checkout.scss";
+import React, { useState, useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "../../components/checkout/checkoutForm/CheckoutForm";
+import { useSelector } from "react-redux";
+import { extractIdAndCartQuantity } from "../../utils";
+import { selectShippingAddress } from "../../redux/features/checkout/checkoutSlice";
+import { selectUser } from "../../redux/features/auth/authSlice";
+import { toast } from "react-toastify";
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Checkout = () => {
+  const [message, setMessage] = useState("Initializing checkout...");
+  const [clientSecret, setClientSecret] = useState("");
+  const user = useSelector(selectUser);
+  const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
+  const productIDs = extractIdAndCartQuantity(cartItems);
+  const shippingAddress = useSelector(selectShippingAddress);
+  const { coupon } = useSelector((state) => state.coupon);
+  const description = `Keipy Payment by email: ${user.email}, Amount: ${cartTotalAmount}`;
+
+  useEffect(() => {
+    fetch("/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: productIDs,
+        shipping: shippingAddress,
+        description,
+        coupon,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        /* >> If something goes wrong during the payment*/
+        return res.json().then((json) => Promise.reject(json));
+      })
+
+      .then((data) => setClientSecret(data.clientSecret))
+      .catch((error) => {
+        setMessage("Failed to initialize checkout.");
+        toast.error("Something went wrong!!!");
+      });
+  }, []);
+
+  const appearance = {
+    theme: "stripe",
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
+
   return (
-    <section>
-      <div className="container">
-        <h2>Checkout</h2>
-      </div>
-    </section>
+    <>
+      <section>
+        <div className="container">{!clientSecret && <h3>{message}</h3>}</div>
+      </section>
+      {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+      )}
+    </>
   );
 };
 

@@ -140,6 +140,7 @@ const payWithStripe = asyncHandler(async (req, res) => {
       name: shipping.name,
       phone: shipping.phone,
     },
+    /* // TODO: go to Stripe website and set up the `receipt_email: customerEmail` */
   });
 
   res.send({
