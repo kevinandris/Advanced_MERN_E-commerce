@@ -21,16 +21,19 @@ const Checkout = () => {
   const description = `Keipy Payment by email: ${user.email}, Amount: ${cartTotalAmount}`;
 
   useEffect(() => {
-    fetch("/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        items: productIDs,
-        shipping: shippingAddress,
-        description,
-        coupon,
-      }),
-    })
+    fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/order/create-payment-intent`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: productIDs,
+          shipping: shippingAddress,
+          description,
+          coupon,
+        }),
+      }
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -43,6 +46,7 @@ const Checkout = () => {
       .catch((error) => {
         setMessage("Failed to initialize checkout.");
         toast.error("Something went wrong!!!");
+        console.log(error);
       });
   }, []);
 

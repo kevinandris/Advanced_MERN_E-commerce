@@ -122,7 +122,7 @@ const payWithStripe = asyncHandler(async (req, res) => {
     orderAmount = TotalAfterDiscount;
   }
 
-  const paymentIntent = await stripe.paymentIntents.create({
+  const paymentIntent = await Stripe.paymentIntents.create({
     amount: orderAmount,
     currency: "nzd",
     automatic_payment_methods: {
