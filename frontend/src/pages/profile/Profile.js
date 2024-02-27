@@ -39,14 +39,14 @@ const Profile = () => {
 
   const dispatch = useDispatch();
 
-  // ! Maintain user's profile every time the user refreshes the page.
+  /* >> Maintain user's profile every time the user refreshes the page. */
   useEffect(() => {
     if (user === null) {
       dispatch(getUser());
     }
   }, [dispatch, user]);
 
-  // ! fetch the user data from the backend to display on the profile form.
+  /*  >> Fetch the user data from the backend to display on the profile form. */
   useEffect(() => {
     if (user) {
       setProfile({
@@ -132,7 +132,7 @@ const Profile = () => {
 
   return (
     <>
-      <section>
+      <section style={{ height: "87.8vh" }}>
         {isLoading && <Loader />}
         <div className="container">
           <PageMenu />

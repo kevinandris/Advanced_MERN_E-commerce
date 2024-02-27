@@ -8,16 +8,18 @@ import Loader from "../../components/loader/Loader";
 const OrderHistory = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading, isError, message, orders } = useSelector(
-    (state) => state.order
-  );
+  const { isLoading, orders } = useSelector((state) => state.order);
 
   useEffect(() => {
     dispatch(getOrders());
   }, [dispatch]);
 
+  const openOrderDetails = (id) => {
+    navigate(`/order-details/${id}`);
+  };
+
   return (
-    <section>
+    <section style={{ height: "87.8vh" }}>
       <div className="container order">
         <h2>Your Order History</h2>
         <p>
@@ -41,7 +43,7 @@ const OrderHistory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order, index) => {
+                  {orders?.map((order, index) => {
                     const {
                       _id,
                       orderDate,
@@ -50,7 +52,7 @@ const OrderHistory = () => {
                       orderStatus,
                     } = order;
                     return (
-                      <tr key={_id}>
+                      <tr key={_id} onClick={() => openOrderDetails(_id)}>
                         <td>{index + 1}</td>
                         <td>
                           {orderDate} at {orderTime}

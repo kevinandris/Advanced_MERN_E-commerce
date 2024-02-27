@@ -64,7 +64,30 @@ const orderSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        toast.orders(action.payload);
+        toast.error(action.payload);
+      })
+
+      // ! get a single order (3)
+      // * when it is PENDING
+      .addCase(getOrder.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * when it is ACHIEVED
+      .addCase(getOrder.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.order = action.payload;
+        console.log(action.payload);
+      })
+
+      // * when it is FAILED
+      .addCase(getOrder.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
       });
   },
 });
@@ -94,6 +117,24 @@ export const getOrders = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       return await orderService.getOrders();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// ! Get a single order (3)
+export const getOrder = createAsyncThunk(
+  "orders/getOrder",
+  async (id, thunkAPI) => {
+    try {
+      return await orderService.getOrder(id);
     } catch (error) {
       const message =
         (error.response &&
