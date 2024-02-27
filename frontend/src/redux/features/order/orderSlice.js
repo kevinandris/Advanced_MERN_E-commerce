@@ -79,11 +79,34 @@ const orderSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         state.order = action.payload;
-        console.log(action.payload);
+        // console.log(action.payload);
       })
 
       // * when it is FAILED
       .addCase(getOrder.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      // ! Update order status (4)
+      // * when it is PENDING
+      .addCase(updateOrderStatus.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * when it is ACHIEVED
+      .addCase(updateOrderStatus.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        toast.success(action.payload);
+        console.log(action.payload);
+      })
+
+      // * when it is FAILED
+      .addCase(updateOrderStatus.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -135,6 +158,24 @@ export const getOrder = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       return await orderService.getOrder(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// ! Update order status (4)
+export const updateOrderStatus = createAsyncThunk(
+  "orders/updateOrderStatus",
+  async ({ id, formData }, thunkAPI) => {
+    try {
+      return await orderService.updateOrderStatus(id, formData);
     } catch (error) {
       const message =
         (error.response &&

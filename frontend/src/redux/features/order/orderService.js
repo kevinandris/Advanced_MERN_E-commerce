@@ -21,10 +21,20 @@ const getOrder = async (id) => {
   return response.data;
 };
 
+// ! Update Order Status (4)
+const updateOrderStatus = async (id, formData) => {
+  const response = await axios.patch(
+    `${API_URL}${id}`,
+    formData
+  ); /* >> Can't have a blank space between ${API_URL}${id} otherwise an error occurs*/
+  return response.data.message;
+};
+
 const orderService = {
   createOrder,
   getOrders,
   getOrder,
+  updateOrderStatus,
 };
 
 export default orderService;

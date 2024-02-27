@@ -1,16 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getOrder } from "../../redux/features/order/orderSlice";
-import { Link, useParams } from "react-router-dom";
-import { Spinner } from "../../components/loader/Loader";
+import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import OrderDetailsComponent from "./OrderDetailsComponent";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const pdfRef = useRef();
-  const { isLoading, order } = useSelector((state) => state.order);
 
   useEffect(() => {
     dispatch(getOrder(id));
@@ -42,103 +41,7 @@ const OrderDetails = () => {
 
   return (
     <section style={{ height: "87.8vh" }}>
-      <div className="container" ref={pdfRef}>
-        <h2>Order Details</h2>
-
-        <div>
-          <Link to="/order-history">&larr; Back to Orders</Link>
-        </div>
-        <br />
-        <div className="table">
-          {isLoading && order === null ? (
-            <Spinner />
-          ) : (
-            <>
-              <p>
-                <b>Ship to &rarr;</b> {order?.shippingAddress?.name}
-              </p>
-              <p>
-                <b>Order ID &rarr;</b> {order?._id}
-              </p>
-              <p>
-                <b>Order Amount &rarr;</b> {order?.orderAmount}
-              </p>
-              <p>
-                <b>Coupon &rarr;</b> {order?.coupon.name} |{" "}
-                {order?.coupon?.discount}%
-              </p>
-              <p>
-                <b>Payment Method &rarr;</b> {order?.paymentMethod}
-              </p>
-              <p>
-                <b>Order Status &rarr;</b> {order?.orderStatus}
-              </p>
-              <p>
-                <b>Shipping Address</b>
-                <br />
-                Address &rarr; {order?.shippingAddress.line1},
-                {order?.shippingAddress.line2}, {order?.shippingAddress.city}
-                <br />
-                State &rarr; {order?.shippingAddress.state}
-                <br />
-                Country &rarr; {order?.shippingAddress.country}
-              </p>
-              <br />
-
-              {/* >> Table */}
-              <table>
-                <thead>
-                  <tr>
-                    <th>s/n</th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total </th>
-                    <th>Action </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {order?.cartItems?.map((cart, index) => {
-                    const { _id, name, price, image, cartQuantity } = cart;
-                    return (
-                      <tr key={_id}>
-                        <td>{index + 1}</td>
-                        <td>
-                          <p>
-                            <b>{name}</b>
-                          </p>
-                          <img
-                            src={image[0]}
-                            alt={name}
-                            style={{ width: "100px" }}
-                          />
-                        </td>
-                        <td>${price}</td>
-                        <td>{cartQuantity}</td>
-                        <td>${price * cartQuantity}</td>
-                        <td className={"icons"}>
-                          <button className="--btn --btn-primary">
-                            Review Product
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </>
-          )}
-        </div>
-
-        <div className="--center-all --my">
-          <button
-            className="--btn --btn-primary --btn-lg"
-            onClick={() => downloadPDF()}
-          >
-            Download as PDF
-          </button>
-        </div>
-      </div>
+      <OrderDetailsComponent orderPageLink={"/order-history"} />
     </section>
   );
 };
