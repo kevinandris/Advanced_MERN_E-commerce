@@ -2,6 +2,8 @@ const asyncHandler = require("express-async-handler");
 const Order = require("../models/orderModel");
 const { calculateTotalPrice } = require("../utils");
 const Product = require("../models/productModel");
+const sendEmail = require("../utils/sendEmail");
+const { orderSuccessEmail } = require("../emailTemplates/orderTemplate");
 const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // ! Create the order (1)
@@ -18,13 +20,13 @@ const createOrder = asyncHandler(async (req, res) => {
     coupon,
   } = req.body;
 
-  // * Validation
+  /* >> Validation */
   if (!cartItems || !orderStatus || !shippingAddress || !paymentMethod) {
     res.status(400);
     throw new Error("Order data missing!!!");
   }
 
-  // * Create the order - we don't send the order to the frontend
+  /* >> Create the order - we don't send the order to the frontend */
   await Order.create({
     user: req.user._id,
     orderDate,
@@ -36,6 +38,15 @@ const createOrder = asyncHandler(async (req, res) => {
     paymentMethod,
     coupon,
   });
+
+  /* >> Send an order email to the user */
+  const subject = "New Order Placed - Keipy Shop";
+  const send_to = req.user.email;
+  const template = orderSuccessEmail(req.user.name, cartItems);
+  const reply_to = "no_reply@keipy.com";
+
+  await sendEmail(subject, send_to, template, reply_to);
+  /* ===================================== */
 
   res.status(201).json({ message: "Order Created" });
 });
