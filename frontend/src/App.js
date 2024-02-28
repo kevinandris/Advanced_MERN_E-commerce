@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import { Spinner } from "./components/loader/Loader";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import axios from "axios";
@@ -19,10 +18,12 @@ import Product from "./pages/shop/Product";
 import ProductDetails from "./components/product/productDetails/ProductDetails";
 import Cart from "./pages/cart/Cart";
 import CheckoutDetails from "./pages/checkout/CheckoutDetails";
-import Checkout from "./pages/checkout/Checkout";
+import CheckoutStripe from "./pages/checkout/CheckoutStripe";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import OrderHistory from "./pages/order/OrderHistory";
 import OrderDetails from "./pages/order/OrderDetails";
+import CheckoutFlutterwave from "./pages/checkout/CheckoutFlutterwave";
+import CheckoutPaypal from "./pages/checkout/CheckoutPaypal";
 
 function App() {
   /* >>> ! using axios every time we send the token or credentials to the backend through "http request". */
@@ -58,11 +59,16 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout-success" element={<CheckoutSuccess />} />
           <Route path="/checkout-details" element={<CheckoutDetails />} />
-          <Route path="/checkout-stripe" element={<Checkout />} />
+          <Route path="/checkout-stripe" element={<CheckoutStripe />} />
+          <Route
+            path="/checkout-flutterwave"
+            element={<CheckoutFlutterwave />}
+          />
+          <Route path="/checkout-paypal" element={<CheckoutPaypal />} />
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/order-details/:id" element={<OrderDetails />} />
 
-          {/* for admin only route*/}
+          {/* >> for admin only route*/}
           <Route
             path="/admin/*"
             element={

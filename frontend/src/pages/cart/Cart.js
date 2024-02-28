@@ -151,7 +151,7 @@ const Cart = () => {
                   </p>
 
                   <div className={styles.text}>
-                    <h4>SUBTOTAL:</h4>
+                    <h4>SUBTOTAL &rarr; </h4>
                     <h3>{`$${cartTotalAmount?.toFixed(2)}`}</h3>
                   </div>
 

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
-const Checkout = () => {
+const CheckoutStripe = () => {
   const [message, setMessage] = useState("Initializing checkout...");
   const [clientSecret, setClientSecret] = useState("");
   const user = useSelector(selectUser);
@@ -60,16 +60,16 @@ const Checkout = () => {
 
   return (
     <>
-      <section>
+      <section style={{ height: "87.8vh" }}>
         <div className="container">{!clientSecret && <h3>{message}</h3>}</div>
+        {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        )}
       </section>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      )}
     </>
   );
 };
 
-export default Checkout;
+export default CheckoutStripe;
