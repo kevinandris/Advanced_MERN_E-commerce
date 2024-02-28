@@ -173,7 +173,7 @@ const cartSlice = createSlice({
 
       const totalQuantity = array.reduce((a, b) => {
         return a + b;
-      }, 0);
+      }, 0); /* >> if 0 is missing, it will throw an error if the cart is empty */
 
       state.cartTotalQuantity = totalQuantity;
     },
@@ -190,7 +190,7 @@ const cartSlice = createSlice({
 
       const totalAmount = array.reduce((a, b) => {
         return a + b;
-      });
+      }, 0); /* >> if 0 is missing, it will throw an error if the cart is empty */
 
       /* >> cartTotalAmount was replaced by initialCartTotalAmount */
       state.initialCartTotalAmount = totalAmount;

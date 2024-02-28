@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Order = require("../models/orderModel");
-const { calculateTotalPrice } = require("../utils");
+const { calculateTotalPrice, updateProductQuantity } = require("../utils");
 const Product = require("../models/productModel");
 const sendEmail = require("../utils/sendEmail");
 const { orderSuccessEmail } = require("../emailTemplates/orderTemplate");
@@ -38,6 +38,9 @@ const createOrder = asyncHandler(async (req, res) => {
     paymentMethod,
     coupon,
   });
+
+  /* >> Update the product quantity */
+  await updateProductQuantity(cartItems);
 
   /* >> Send an order email to the user */
   const subject = "New Order Placed - Keipy Shop";

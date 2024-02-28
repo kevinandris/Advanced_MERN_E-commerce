@@ -114,7 +114,7 @@ const Register = () => {
             </form>
             <span className={styles.register}>
               <p>Already have an account? </p> &nbsp;
-              <Link to="/register">Login</Link>
+              <Link to="/login">Login</Link>
             </span>
           </div>
         </Card>
