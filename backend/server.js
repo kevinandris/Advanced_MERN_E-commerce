@@ -11,11 +11,12 @@ const categoryRoute = require("./routes/categoryRoute");
 const brandRoute = require("./routes/brandRoute");
 const couponRoute = require("./routes/couponRoute");
 const orderRoute = require("./routes/orderRoute");
+const transactionRoute = require("./routes/transactionRoute");
 
 const app = express();
 
-// ! Middlewares (3)
-app.use(express.json());
+/*   >> Cookie parser and cors must be on top, otherwise if w'ere using insomnia/postman
+      for testing it won't work. */
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -24,6 +25,13 @@ app.use(
     credentials: true,
   })
 );
+
+/*  >> Routes for `wallet` only and must be on top of `app.use(express.json());`
+     To `avoid applying stripe web hook` to app.use(express.json()); */
+app.use("/api/transaction", transactionRoute);
+
+// ! Middlewares (3)
+app.use(express.json());
 
 // ! Routes (1)
 app.get("/", (req, res) => {
@@ -35,7 +43,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-// * All routes for users
+// * All routes
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/category", categoryRoute);

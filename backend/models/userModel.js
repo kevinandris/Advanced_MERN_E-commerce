@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "+234",
   },
+  balance: {
+    type: Number,
+    default: 0,
+  },
   address: {
     type: Object,
     // address, state, country
