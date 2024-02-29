@@ -51,6 +51,9 @@ const userSchema = new mongoose.Schema({
   cartItems: {
     type: [Object],
   },
+  stripeCustomerId: {
+    type: String,
+  },
 });
 
 // ! Encrypt password before saving to MongoDB -- this is a callback function

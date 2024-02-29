@@ -4,6 +4,7 @@ const { calculateTotalPrice, updateProductQuantity } = require("../utils");
 const Product = require("../models/productModel");
 const sendEmail = require("../utils/sendEmail");
 const { orderSuccessEmail } = require("../emailTemplates/orderTemplate");
+const { Axios } = require("axios");
 const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // ! Create the order (1)
@@ -162,10 +163,43 @@ const payWithStripe = asyncHandler(async (req, res) => {
   });
 });
 
+// ! Verify FLW Payment
+const verifyFlwPayment = asyncHandler(async (req, res) => {
+  const { transaction_id } = req.query;
+
+  /* >> Confirm transaction */
+  const url = `https://api.flutterwave.com/v3/transactions/${transaction_id}/verify`;
+
+  const response = await Axios({
+    url,
+    method: "get",
+    headers: {
+      "Content-type": "application/json",
+      Accept: "application/json",
+      Authorization: process.env.FLW_SECRET_KEY /* The key is not yet exist! */,
+    },
+  });
+
+  console.log(response.data);
+  const { tx_ref } = response.data.data;
+  const successURL =
+    process.env.FRONTEND_URL +
+    `/checkout-flutterwave?payment=successful&ref${tx_ref}`;
+  const failureURL =
+    process.env.FRONTEND_URL + `/checkout-flutterwave?payment=failed`;
+
+  if (req.query.status === "successful") {
+    res.redirect(successURL);
+  } else {
+    res.redirect(failureURL);
+  }
+});
+
 module.exports = {
   createOrder,
   getOrders,
   getOrder,
   updateOrderStatus,
   payWithStripe,
+  verifyFlwPayment,
 };

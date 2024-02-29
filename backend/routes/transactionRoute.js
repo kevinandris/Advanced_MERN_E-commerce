@@ -5,6 +5,9 @@ const {
   transferFund,
   verifyAccount,
   getUserTransactions,
+  depositFundStripe,
+  webhook,
+  depositFundFLW,
 } = require("../controllers/transactionController");
 
 router.post("/transferFund", express.json(), protect, transferFund);
@@ -15,5 +18,8 @@ router.get(
   protect,
   getUserTransactions
 );
+router.post("/depositFundStripe", express.json(), protect, depositFundStripe);
+router.get("/depositFundFLW", express.json(), protect, depositFundFLW);
+router.post("/webhook", express.raw({ type: "application/json" }), webhook);
 
 module.exports = router;

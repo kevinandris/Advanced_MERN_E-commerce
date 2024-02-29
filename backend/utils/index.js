@@ -1,7 +1,7 @@
 const Product = require("../models/productModel");
 
 // ! STRIPE SECRET KEY (1)
-const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // ! Calculate total price (2)
 const calculateTotalPrice = (products, cartItems) => {
@@ -40,7 +40,10 @@ const updateProductQuantity = async (cartItems) => {
   await Product.bulkWrite(bulkOption, {});
 };
 
+
+
 module.exports = {
   calculateTotalPrice,
   updateProductQuantity,
+  stripe,
 };
