@@ -60,19 +60,22 @@ const verifyAccount = asyncHandler(async (req, res) => {
     throw new Error("Your account is not exist!");
   }
 
-  res.status(200).json({ message: "Account verification successful" });
+  res.status(200).json({
+    receiverName: user.name,
+    message: "Account verification successful",
+  });
 });
 
 // ! Get user transactions (3)
 const getUserTransactions = asyncHandler(async (req, res) => {
   /* >> Check if a user is logged in */
-  if (req.user.email !== req.body.email) {
-    res.status(400);
-    throw new Error("Not authorized top view the transaction.");
-  }
+  // if (req.user.email !== req.body.email) {
+  //   res.status(400);
+  //   throw new Error("Not authorized top view the transaction.");
+  // }
 
   const transactions = await Transaction.find({
-    $or: [{ sender: req.body.email }, { receiver: req.body.email }],
+    $or: [{ sender: req.user.email }, { receiver: req.user.email }],
   })
     .sort({ createdAt: -1 })
     .populate("sender")

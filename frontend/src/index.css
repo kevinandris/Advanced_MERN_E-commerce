@@ -46,6 +46,7 @@ section {
   /* border: 1px solid #000000; */
 
   max-width: 1000px;
+  min-height: 84.8vh;
   margin: 0 auto;
   padding: 0 20px;
   h3 {
@@ -199,7 +200,7 @@ p {
   color: #007bff;
 }
 .--color-danger {
-  color: orangered;
+  color: red;
 }
 .--color-success {
   color: #28a745;

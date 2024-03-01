@@ -24,6 +24,7 @@ import OrderHistory from "./pages/order/OrderHistory";
 import OrderDetails from "./pages/order/OrderDetails";
 import CheckoutFlutterwave from "./pages/checkout/CheckoutFlutterwave";
 import CheckoutPaypal from "./pages/checkout/CheckoutPaypal";
+import Wallet from "./pages/wallet/Wallet";
 
 function App() {
   /* >>> ! using axios every time we send the token or credentials to the backend through "http request". */
@@ -65,6 +66,7 @@ function App() {
             element={<CheckoutFlutterwave />}
           />
           <Route path="/checkout-paypal" element={<CheckoutPaypal />} />
+          <Route path="/wallet" element={<Wallet />} />
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/order-details/:id" element={<OrderDetails />} />
 

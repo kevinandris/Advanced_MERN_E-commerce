@@ -40,8 +40,6 @@ const updateProductQuantity = async (cartItems) => {
   await Product.bulkWrite(bulkOption, {});
 };
 
-
-
 module.exports = {
   calculateTotalPrice,
   updateProductQuantity,

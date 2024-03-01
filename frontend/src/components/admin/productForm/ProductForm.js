@@ -26,13 +26,13 @@ const ProductForm = ({
   const [filteredBrands, setFilteredBrands] = useState([]);
   const { categories, brands } = useSelector((state) => state.category);
 
-  // ! Fetching `categories and brand properties` when the page is refreshed by using "useEffect"
+  /* >> Fetching `categories and brand properties` when the page is refreshed by using "useEffect" */
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getBrands());
   }, [dispatch]);
 
-  // ! (4) Filter brands based on selected category
+  /*  >> (4) Filter brands based on selected category */
   const filterBrands = (selectedCategory) => {
     const newBrands = brands.filter(
       (brand) => brand.category === selectedCategory
@@ -40,20 +40,20 @@ const ProductForm = ({
     setFilteredBrands(newBrands);
   };
 
-  // ! To cast filterBrands function every time it runs
+  /* >> To cast filterBrands function every time it runs */
   useEffect(() => {
     filterBrands(product?.category);
   }, [product?.category]);
   /* =======================================  */
 
-  // ! (1) This function is passed in as a prop at <ProductForm />
+  /* >> (1) This function is passed in as a prop at <ProductForm /> */
   const handleInputChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
 
-  // ! This function is PASSED IN as a prop on an icon onClick attribute.
+  /* >> This function is PASSED IN as a prop on an icon onClick attribute. */
   const removeImage = (image) => {
     setFiles(files.filter((img) => img !== image));
   };
