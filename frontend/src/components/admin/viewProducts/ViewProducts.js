@@ -53,7 +53,7 @@ const ViewProducts = () => {
   };
 
   /* >>> Pagination from `React-paginate` */
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = products.slice(itemOffset, endOffset);
@@ -111,7 +111,7 @@ const ViewProducts = () => {
                   const { _id, name, category, price, quantity } = product;
                   return (
                     <tr key={_id}>
-                      <td>{index + 1}</td>
+                      <td>{itemOffset + index + 1}</td>
                       <td>{shortenText(name, 16)}</td>
                       <td>{category}</td>
                       <td>

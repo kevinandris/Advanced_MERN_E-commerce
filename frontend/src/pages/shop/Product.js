@@ -23,7 +23,7 @@ const Product = () => {
   };
 
   return (
-    <section style={{ height: "87.8vh" }}>
+    <section >
       {/* // ! 1 */}
       <div className={`container ${styles.product}`}>
         <aside

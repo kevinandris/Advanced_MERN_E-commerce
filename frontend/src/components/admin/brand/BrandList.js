@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   deleteBrand,
   getBrands,
@@ -7,6 +7,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { FaTrashAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import ReactPaginate from "react-paginate";
 
 const BrandList = () => {
   const { IsLoading, brands } = useSelector((state) => state.category);
@@ -40,6 +41,19 @@ const BrandList = () => {
     });
   };
 
+  /* >>> Pagination from `React-paginate` */
+  const itemsPerPage = 10;
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = brands.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(brands.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % brands.length;
+    setItemOffset(newOffset);
+  };
+  /* =========================================== */
+
   return (
     <div className="--mb2">
       <h3>All Brands</h3>
@@ -57,11 +71,11 @@ const BrandList = () => {
               </tr>
             </thead>
             <tbody>
-              {brands.map((brand, index) => {
+              {currentItems.map((brand, index) => {
                 const { _id, name, slug, category } = brand;
                 return (
                   <tr key={_id}>
-                    <td>{index + 1}</td>
+                    <td>{itemOffset + index + 1}</td>
                     <td>{name}</td>
                     <td>{category}</td>
                     <td>
@@ -80,6 +94,21 @@ const BrandList = () => {
           </table>
         )}
       </div>
+
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}
+        previousLabel="prev"
+        renderOnZeroPageCount={null}
+        containerClassName="pagination"
+        pageLinkClassName="page-num"
+        previousLinkClassName="page-num"
+        nextLinkClassName="page-num"
+        activeLinkClassName="activePage"
+      />
     </div>
   );
 };

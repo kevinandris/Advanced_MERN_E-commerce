@@ -1,18 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import "./TransferModal.scss";
-import { AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { selectReceiverName } from "../../redux/features/transaction/transactionSlice";
+import { AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai";
 
 const TransferModal = ({
+  closeModal,
   transferData,
-  isVerified,
-  isLoading,
   handleInputChange,
   handleAccountChange,
   verifyUserAccount,
+  isVerified,
+  isLoading,
   transferMoney,
-  closeModal,
 }) => {
   const inputRef = useRef(null);
 
@@ -52,39 +52,37 @@ const TransferModal = ({
                   value={transferData.amount}
                   onChange={handleInputChange}
                 />
-
                 <label>Receiver's account</label>
-                {receiverName !== "" && (
-                  <p className="--text-sm --color-danger">
-                    <b>Hello </b> {receiverName}
-                  </p>
-                )}
-                <span className="--flex-end">
+                <p className="--color-danger">
+                  <b>{receiverName}</b>
+                </p>
+                <span className="--flex-end --row-gap">
                   <input
                     type="text"
                     placeholder="Receiver's account"
+                    required
                     name="receiver"
                     value={transferData.receiver}
                     onChange={handleAccountChange}
-                    required
                   />
 
                   <input
+                    className="--btn --btn-red --btn-lg"
                     type="button"
-                    className="--btn --btn-danger --btn-lg"
                     name="verify"
                     value={"Verify"}
                     onClick={verifyUserAccount}
                   />
                 </span>
+
                 <label>Description</label>
                 <input
                   type="text"
-                  placeholder="Description"
+                  placeholder="Receiver's account"
+                  required
                   name="description"
                   value={transferData.description}
                   onChange={handleInputChange}
-                  required
                 />
               </p>
 
@@ -102,11 +100,10 @@ const TransferModal = ({
                   >
                     Cancel
                   </button>
-
                   {isLoading ? (
                     <button
-                      type="button"
-                      className="--btn --btn-primary --btn-lg cm"
+                      type="submit"
+                      className="--btn --btn-primary --btn-lg"
                       disabled
                     >
                       Sending...
@@ -114,7 +111,7 @@ const TransferModal = ({
                   ) : (
                     <button
                       type="submit"
-                      className="--btn --btn-primary --btn-lg cm"
+                      className="--btn --btn-primary --btn-lg"
                     >
                       Send
                     </button>

@@ -19,11 +19,13 @@ import {
   getUserTransactions,
   selectTransactionMessage,
   selectTransactions,
+  transferFund,
   verifyAccount,
 } from "../../redux/features/transaction/transactionSlice";
 import TransferModal from "./TransferModal";
 import { toast } from "react-toastify";
 import { validateEmail } from "../../utils";
+import DepositModal from "./DepositModal";
 
 const transactionss = [
   {
@@ -46,12 +48,17 @@ const transactionss = [
   },
 ];
 
-const initialState = {
+const initialTransferDataState = {
   amount: 0,
   sender: "",
   receiver: "",
   description: "",
   status: "",
+};
+
+const initialDepositState = {
+  amount: 0,
+  paymentMethod: "",
 };
 
 const Wallet = () => {
@@ -62,14 +69,18 @@ const Wallet = () => {
   const transactionMessage = useSelector(selectTransactionMessage);
 
   /* ============== FOR THE TRANSFER MODAL FORM ================== */
-  const [transferData, setTransferData] = useState(initialState);
+  const [transferData, setTransferData] = useState(initialTransferDataState);
   const { amount, sender, receiver, description, status } = transferData;
-  const [showTransferModal, setShowTransferModal] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTransferData({ ...transferData, [name]: value });
+  };
+
+  const handleDepositChange = (e) => {
+    const { name, value } = e.target;
+    setDepositData({ ...depositData, [name]: value });
   };
 
   const handleAccountChange = (e) => {
@@ -94,17 +105,35 @@ const Wallet = () => {
     dispatch(verifyAccount(formData));
   };
 
-  const transferMoney = () => {};
   const closeModal = (e) => {
     if (e.target.classList.contains("cm")) {
       setShowTransferModal(false);
-      setTransferData({ ...initialState });
+      setShowDepositModal(false);
+      setTransferData({ ...initialTransferDataState });
+      setTransferData({ ...initialDepositState });
       setIsVerified(false);
       dispatch(RESET_TRANSACTION_MESSAGE());
     }
   };
   const { isLoading } = useSelector((state) => state.transaction);
-  /* ======================================================== */
+
+  const transferMoney = async (e) => {
+    e.preventDefault();
+    if (amount < 1) {
+      return toast.error("The amount must be bigger than 0");
+    } else if (!description) {
+      return toast.error("Please enter a description");
+    }
+
+    const formData = {
+      ...transferData,
+      sender: user.email,
+      status: "Success",
+    };
+
+    await dispatch(transferFund(formData));
+    await dispatch(getUser());
+  };
 
   /* >> To ensure we have fresh details of a user */
   useEffect(() => {
@@ -117,17 +146,35 @@ const Wallet = () => {
     dispatch(getUserTransactions());
   }, [dispatch]);
 
-  /* >> */
+  /* >> Updating the user's current money and receiver's money*/
   useEffect(() => {
     if (transactionMessage === "Account verification successful") {
       setIsVerified(true);
+    } else if (transactionMessage === "Transaction successful") {
+      setTransferData({ ...initialTransferDataState });
+      setShowTransferModal(false);
+      setIsVerified(false);
+      dispatch(RESET_RECEIVER());
+      dispatch(getUserTransactions());
     }
 
     dispatch(RESET_TRANSACTION_MESSAGE());
   }, [transactionMessage, dispatch]);
+  /* ======================================================== */
+  /* ================= FOR THE DEPOSIT MODAL FORM ================== */
+
+  const [depositData, setDepositData] = useState(initialDepositState);
+  const { amount: depositAmount, paymentMethod } = depositData;
+  const [showTransferModal, setShowTransferModal] = useState(false);
+  const [showDepositModal, setShowDepositModal] = useState(false);
+
+  const depositMoney = (e) => {};
 
   return (
-    <section className="container" style={{ marginTop: "40px" }}>
+    <section
+      className="container"
+      style={{ marginTop: "40px", height: "84.8vh" }}
+    >
       <PageMenu />
 
       <div className="wallet">
@@ -140,12 +187,17 @@ const Wallet = () => {
               <p>Account Balance</p>
               <img src={mcImg} alt="cc" width={50} />
             </span>
+
             <h4>${user?.balance.toFixed(2)}</h4>
             <div className="buttons --flex-center">
-              <button className="--btn --btn-primary">
+              <button
+                className="--btn --btn-primary"
+                onClick={() => setShowDepositModal(true)}
+              >
                 <AiOutlineDollarCircle />
                 &nbsp; Deposit Money
               </button>
+
               <button
                 className="--btn --btn-danger"
                 onClick={() => setShowTransferModal(true)}
@@ -195,6 +247,16 @@ const Wallet = () => {
           verifyUserAccount={verifyUserAccount}
           transferMoney={transferMoney}
           closeModal={closeModal}
+        />
+      )}
+
+      {/* >>  DepositModal.js*/}
+      {showDepositModal && (
+        <DepositModal
+          depositData={depositData}
+          closeModal={closeModal}
+          handleDepositChange={handleDepositChange}
+          depositMoney={depositMoney}
         />
       )}
     </section>

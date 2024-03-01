@@ -46,6 +46,17 @@ section {
   /* border: 1px solid #000000; */
 
   max-width: 1000px;
+  /* min-height: 84.8vh; */
+  margin: 0 auto;
+  padding: 0 20px;
+  h3 {
+    color: #000000;
+  }
+}
+
+.containerWallet {
+
+  max-width: 1000px;
   min-height: 84.8vh;
   margin: 0 auto;
   padding: 0 20px;

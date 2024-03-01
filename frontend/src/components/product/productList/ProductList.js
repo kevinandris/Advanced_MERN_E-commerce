@@ -99,6 +99,7 @@ const ProductList = ({ products }) => {
         previousLinkClassName="page-num"
         nextLinkClassName="page-num"
         activeLinkClassName="activePage"
+        color="primary"
       />
     </div>
   );
