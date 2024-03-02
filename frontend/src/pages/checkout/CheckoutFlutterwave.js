@@ -14,6 +14,7 @@ const CheckoutFlutterwave = () => {
   const user = useSelector(selectUser);
 
   function makePayment() {
+    // eslint disable-next-line no-undef
     // FlutterwaveCheckout({
     //   public_key: process.env.REACT_APP_FLUTTERWAVE_PK,
     //   tx_ref: process.env.REACT_APP_TX_REF,

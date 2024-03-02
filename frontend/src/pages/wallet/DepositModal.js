@@ -15,6 +15,8 @@ const DepositModal = ({
     inputRef.current?.focus();
   }, []); /* // ! If [] is missing, the input field cant be typed */
 
+
+
   return (
     <section className="--100vh modal-section">
       <div className="--flex-center modal">

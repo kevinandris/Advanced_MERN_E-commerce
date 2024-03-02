@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Wallet.scss";
+import Confetti from "react-confetti";
 import PageMenu from "../../components/pageMenu/PageMenu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, selectUser } from "../../redux/features/auth/authSlice";
 import mcImg from "../../assets/mc_symbol.png";
@@ -26,6 +27,7 @@ import TransferModal from "./TransferModal";
 import { toast } from "react-toastify";
 import { validateEmail } from "../../utils";
 import DepositModal from "./DepositModal";
+import axios from "axios";
 
 const transactionss = [
   {
@@ -60,6 +62,8 @@ const initialDepositState = {
   amount: 0,
   paymentMethod: "",
 };
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Wallet = () => {
   const dispatch = useDispatch();
@@ -167,99 +171,158 @@ const Wallet = () => {
   const { amount: depositAmount, paymentMethod } = depositData;
   const [showTransferModal, setShowTransferModal] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
+  const [urlParams] = useSearchParams();
+  const payment = urlParams.get("payment");
 
-  const depositMoney = (e) => {};
+  const depositMoney = async (e) => {
+    e.preventDefault();
+
+    /* >> Validation */
+    if (depositAmount < 1) {
+      return toast.error("Please enter an amount that is greater than 0");
+    } else if (paymentMethod === "") {
+      return toast.error("Please select a payment method");
+    } else if (paymentMethod === "flutterwave") {
+      //   >> eslint disable-next-line no-undef
+      //   FlutterwaveCheckout({
+      //     public_key: process.env.REACT_APP_FLUTTERWAVE_PK,
+      //     tx_ref: process.env.REACT_APP_TX_REF,
+      //     amount: depositAmount,
+      //     currency: "NZD",
+      //     payment_options: "card, banktransfer, ussd",
+      //     redirect_url: `${process.env.REACT_APP_BACKEND_URL}/api/transaction/depositFundFLW`,
+      //     // meta: {
+      //     //   source: "docs-inline-test",
+      //     //   consumer_mac: "92a3-912ba-1192a",
+      //     // },
+      //     customer: {
+      //       email: user.email,
+      //       phone_number: user.phone,
+      //       name: user.name,
+      //     },
+      //     customizations: {
+      //       title: "Keipy Wallet Deposit",
+      //       description: "Deposit funds to your Keipy wallet",
+      //       logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
+      //     },
+      //   });
+      //   return;
+    } else if (paymentMethod === "stripe") {
+      const { data } = await axios.post(
+        `${BACKEND_URL}/api/transaction/depositFundStripe`,
+        {
+          amount: depositAmount,
+        }
+      );
+      window.location.href = data.url;
+      return;
+    }
+  };
+
+  useEffect(() => {
+    if (payment === "successful") {
+      toast.success("Payment Successful");
+      setTimeout(() => {
+        navigate("/wallet");
+      }, 5000);
+    } else if (payment === "failed") {
+      toast.error("Payment failed, please try later.");
+    }
+  }, [payment, navigate]);
 
   return (
-    <section
-      className="container"
-      style={{ marginTop: "40px", height: "84.8vh" }}
-    >
-      <PageMenu />
+    <>
+      {payment === "successful" && <Confetti />}
+      <section
+        className="container"
+        style={{ marginTop: "40px", height: "84.8vh" }}
+      >
+        <PageMenu />
 
-      <div className="wallet">
-        <div className="wallet-data --flex-start --flex-dir-column">
-          <div className="wallet-info --card --mr">
-            <span>Hello, </span>
-            <h4>{user?.name}</h4>
-            <div className="--underline"></div>
-            <span className="--flex-between">
-              <p>Account Balance</p>
-              <img src={mcImg} alt="cc" width={50} />
-            </span>
+        <div className="wallet">
+          <div className="wallet-data --flex-start --flex-dir-column">
+            <div className="wallet-info --card --mr">
+              <span>Hello, </span>
+              <h4>{user?.name}</h4>
+              <div className="--underline"></div>
+              <span className="--flex-between">
+                <p>Account Balance</p>
+                <img src={mcImg} alt="cc" width={50} />
+              </span>
 
-            <h4>${user?.balance.toFixed(2)}</h4>
-            <div className="buttons --flex-center">
-              <button
-                className="--btn --btn-primary"
-                onClick={() => setShowDepositModal(true)}
-              >
-                <AiOutlineDollarCircle />
-                &nbsp; Deposit Money
-              </button>
+              <h4>${user?.balance.toFixed(2)}</h4>
+              <div className="buttons --flex-center">
+                <button
+                  className="--btn --btn-primary"
+                  onClick={() => setShowDepositModal(true)}
+                >
+                  <AiOutlineDollarCircle />
+                  &nbsp; Deposit Money
+                </button>
 
-              <button
-                className="--btn --btn-danger"
-                onClick={() => setShowTransferModal(true)}
-              >
-                <FaRegPaperPlane /> &nbsp; Transfer
-              </button>
+                <button
+                  className="--btn --btn-danger"
+                  onClick={() => setShowTransferModal(true)}
+                >
+                  <FaRegPaperPlane /> &nbsp; Transfer
+                </button>
+              </div>
+            </div>
+
+            {/* >> Wallet Promo */}
+            <div className="wallet-promo --flex-between --card">
+              <div className="wallet-text">
+                <span className="--flex-start">
+                  <AiFillDollarCircle size={25} color="#ff7722" /> &nbsp;
+                  <h4>Keipy Wallet</h4>
+                </span>
+
+                <span className="--flex-start">
+                  <h4>Cashback up to 80%</h4> &nbsp;
+                  <AiFillGift size={20} color="#007bff" />
+                </span>
+                <span>
+                  Use your Keipy wallet at checkout and get up to 80% cashback.
+                </span>
+              </div>
+
+              <div className="wallet-img">
+                <img src={paymentImg} width={150} alt="pay" />
+              </div>
             </div>
           </div>
 
-          {/* >> Wallet Promo */}
-          <div className="wallet-promo --flex-between --card">
-            <div className="wallet-text">
-              <span className="--flex-start">
-                <AiFillDollarCircle size={25} color="#ff7722" /> &nbsp;
-                <h4>Keipy Wallet</h4>
-              </span>
-
-              <span className="--flex-start">
-                <h4>Cashback up to 80%</h4>
-                <AiFillGift size={20} color="#007bff" /> &nbsp;
-              </span>
-              <span>
-                Use your Keipy wallet at checkout and get up to 80% cashback.
-              </span>
-            </div>
-
-            <div className="wallet-img">
-              <img src={paymentImg} width={150} alt="pay" />
-            </div>
-          </div>
+          {/* >> Wallet Transactions component */}
+          {user !== null && (
+            <WalletTransactions transactions={transactions} user={user} />
+          )}
         </div>
 
-        {/* >> Wallet Transactions component */}
-        {user !== null && (
-          <WalletTransactions transactions={transactions} user={user} />
+        {/* >> Input Form from TransferModal.js*/}
+        {showTransferModal && (
+          <TransferModal
+            isVerified={isVerified}
+            isLoading={isLoading}
+            transferData={transferData}
+            handleInputChange={handleInputChange}
+            handleAccountChange={handleAccountChange}
+            verifyUserAccount={verifyUserAccount}
+            transferMoney={transferMoney}
+            closeModal={closeModal}
+          />
         )}
-      </div>
 
-      {/* >> Input Form from TransferModal.js*/}
-      {showTransferModal && (
-        <TransferModal
-          isVerified={isVerified}
-          isLoading={isLoading}
-          transferData={transferData}
-          handleInputChange={handleInputChange}
-          handleAccountChange={handleAccountChange}
-          verifyUserAccount={verifyUserAccount}
-          transferMoney={transferMoney}
-          closeModal={closeModal}
-        />
-      )}
-
-      {/* >>  DepositModal.js*/}
-      {showDepositModal && (
-        <DepositModal
-          depositData={depositData}
-          closeModal={closeModal}
-          handleDepositChange={handleDepositChange}
-          depositMoney={depositMoney}
-        />
-      )}
-    </section>
+        {/* >>  DepositModal.js*/}
+        {showDepositModal && (
+          <DepositModal
+            depositData={depositData}
+            closeModal={closeModal}
+            handleDepositChange={handleDepositChange}
+            depositMoney={depositMoney}
+          />
+        )}
+      </section>
+    </>
   );
 };
 

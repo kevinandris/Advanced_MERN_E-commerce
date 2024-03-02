@@ -122,6 +122,9 @@ const depositFundStripe = asyncHandler(async (req, res) => {
     cancel_url: `${process.env.FRONTEND_URL}/wallet?payment=failed`,
   });
 
+  console.log(session);
+
+  /* >> session is an object that contains some properties, one of them is the URL */
   return res.json(session);
 });
 
@@ -188,6 +191,7 @@ const webhook = asyncHandler(async (req, res) => {
   res.send().end();
 });
 
+// ! Flutterwave (6)
 const depositFundFLW = asyncHandler(async (req, res) => {
   const { transaction_id } = req.query;
 
