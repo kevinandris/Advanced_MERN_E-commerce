@@ -133,7 +133,7 @@ const depositFund = async (customer, data, description, source) => {
   await Transaction.create({
     amount:
       source === "stripe" ? data.amount_subtotal / 100 : data.amount_subtotal,
-    sender: "Self",
+    sender: "self",
     receiver: customer.email,
     description: description,
     status: "success",

@@ -5,6 +5,8 @@ const Product = require("../models/productModel");
 const sendEmail = require("../utils/sendEmail");
 const { orderSuccessEmail } = require("../emailTemplates/orderTemplate");
 const { Axios } = require("axios");
+const User = require("../models/userModel");
+const Transaction = require("../models/transactionModel");
 const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // ! Create the order (1)
@@ -163,7 +165,7 @@ const payWithStripe = asyncHandler(async (req, res) => {
   });
 });
 
-// ! Verify FLW Payment
+// ! Verify FLutterwave Payment (6)
 const verifyFlwPayment = asyncHandler(async (req, res) => {
   const { transaction_id } = req.query;
 
@@ -195,6 +197,89 @@ const verifyFlwPayment = asyncHandler(async (req, res) => {
   }
 });
 
+// ! Pay With Wallet (7)
+const payWithWallet = asyncHandler(async (req, res) => {
+  /* >> Find the user ID */
+  const user = await User.findById(req.user._id);
+
+  /* >> Create an order */
+  const { items, cartItems, shippingAddress, coupon } = req.body;
+
+  const products = await Product.find();
+  const today = new Date();
+
+  let orderAmount;
+  orderAmount = calculateTotalPrice(products, items);
+
+  if (coupon !== null && coupon?.name !== "nil") {
+    let TotalAfterDiscount =
+      orderAmount - (orderAmount * coupon.discount) / 100;
+    orderAmount = TotalAfterDiscount;
+  }
+
+  /* >> Check users wallet balance */
+  if (user.balance < orderAmount) {
+    res.status(400);
+    throw new Error("Insufficient balance");
+  } else {
+    const newTransaction = await Transaction.create({
+      amount: orderAmount,
+      sender: user.email,
+      receiver: "Keipy store",
+      description: "Payment for products.",
+      status: "success",
+    });
+
+    /* >> Decrease senders wallet balance */
+    const newBalance = await User.findOneAndUpdate(
+      {
+        email: user.email,
+      },
+      {
+        $inc: {
+          balance: -orderAmount,
+        },
+      }
+    );
+
+    /* >> Create the order */
+    const newOrder = await Order.create({
+      user: user._id,
+      orderDate: today.toDateString(),
+      orderTime: today.toLocaleTimeString(),
+      orderAmount,
+      orderStatus: "Order Placed...",
+      cartItems,
+      shippingAddress,
+      paymentMethod: "Keipy Wallet",
+      coupon,
+    });
+
+    /* >> Update the product quantity */
+    await updateProductQuantity(cartItems);
+
+    /* >> Send an order email to the user */
+    const subject = "New Order Placed - Keipy";
+    const send_to = user.email;
+    const template = orderSuccessEmail(user.name, cartItems);
+    const reply_to = "no_reply@keipy.com";
+    await sendEmail(subject, send_to, template, reply_to);
+
+    /* >> Ensure the response is sent to the user */
+    if (newTransaction && newBalance && newOrder) {
+      return res.status(200).json({
+        message: "Payment was successful",
+        url: `${process.env.FRONTEND_URL}/checkout-success`,
+      });
+    } else {
+      res.status(400).json({
+        message:
+          "Something went wrong, please contact our stuff for further processes.",
+      });
+    }
+  }
+});
+
 module.exports = {
   createOrder,
   getOrders,
@@ -202,4 +287,5 @@ module.exports = {
   updateOrderStatus,
   payWithStripe,
   verifyFlwPayment,
+  payWithWallet,
 };
