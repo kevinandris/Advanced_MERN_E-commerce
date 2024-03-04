@@ -156,9 +156,9 @@ const depositFund = async (customer, data, description, source) => {
 };
 
 // ! Stripe webhook (5)
-const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
+const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET_DEV;
 const webhook = asyncHandler(async (req, res) => {
-  const sig = request.headers["stripe-signature"];
+  const sig = req.headers["stripe-signature"];
 
   let data;
   let event;
@@ -169,7 +169,7 @@ const webhook = asyncHandler(async (req, res) => {
     console.log("Webhook verified");
   } catch (err) {
     console.log("Webhook error", err);
-    response.status(400).send(`Webhook Error: ${err.message}`);
+    res.status(400).send(`Webhook Error: ${err.message}`);
     return;
   }
 

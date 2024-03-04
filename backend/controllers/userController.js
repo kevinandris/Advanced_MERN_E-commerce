@@ -54,7 +54,7 @@ const registerUser = asyncHandler(async (req, res) => {
       expires: new Date(Date.now() + 1000 * 86400),
       /* // TODO in development mode, comment out the 2 properties below, error might occur if we try to login */
       // secure: true,
-      // sameSite: none,
+      // sameSite: "none",
     });
 
     // Send user data
