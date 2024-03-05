@@ -11,6 +11,9 @@ const {
   updatePhoto,
   saveCart,
   getCart,
+  addToWishlist,
+  getWishlist,
+  removeFromWishlist,
 } = require("../controllers/userController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -28,5 +31,10 @@ router.patch("/updatePhoto", protect, updatePhoto);
 // >> Cart
 router.get("/getCart", protect, getCart);
 router.patch("/saveCart", protect, saveCart);
+
+// >> Wishlist
+router.get("/addToWishlist", protect, addToWishlist);
+router.get("/getWishlist", protect, getWishlist);
+router.put("/wishlist/:productId", protect, removeFromWishlist);
 
 module.exports = router;

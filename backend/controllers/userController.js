@@ -226,6 +226,45 @@ const getCart = asyncHandler(async (req, res) => {
   }
 });
 
+// ! Add to Wishlist (10)
+const addToWishlist = asyncHandler(async (req, res) => {
+  const { productId } = req.body;
+
+  await User.findOneAndUpdate(
+    { email: req.user.email },
+    { $addToSet: { wishlist: productId } }
+  );
+
+  res
+    .status(200)
+    .json({ message: "The product is successfully added to wishlist" });
+});
+
+// ! Get Wishlist (11)
+const getWishlist = asyncHandler(async (req, res) => {
+  const list = await User.findOne({ email: req.user.email })
+    .select("wishlist")
+    .populate(
+      "wishlist"
+    ); /* This function used to fetch all items stored in the wishlist */
+
+  res.status(200).json(list);
+});
+
+// ! Remove from Wishlist (12)
+const removeFromWishlist = asyncHandler(async (req, res) => {
+  const { productId } = req.params;
+
+  await User.findOneAndUpdate(
+    { email: req.user.email },
+    { $pull: { wishlist: productId } }
+  );
+
+  res
+    .status(200)
+    .json({ message: "The product is successfully removed from wishlist" });
+});
+
 module.exports = {
   registerUser,
   loginUser,
@@ -236,4 +275,7 @@ module.exports = {
   updatePhoto,
   saveCart,
   getCart,
+  addToWishlist,
+  getWishlist,
+  removeFromWishlist,
 };

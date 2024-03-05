@@ -48,6 +48,12 @@ const userSchema = new mongoose.Schema({
     type: Object,
     // address, state, country
   },
+  wishlist: [
+    {
+      type: ObjectId,
+      ref: "Product",
+    },
+  ],
   cartItems: {
     type: [Object],
   },
