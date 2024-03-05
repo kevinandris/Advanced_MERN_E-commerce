@@ -1,4 +1,4 @@
-// ! this is for USER MENU
+// ! CHILD class - imported to profile.js
 import React from "react";
 import "./PageMenu.scss";
 import { NavLink } from "react-router-dom";

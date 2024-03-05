@@ -33,7 +33,7 @@ router.get("/getCart", protect, getCart);
 router.patch("/saveCart", protect, saveCart);
 
 // >> Wishlist
-router.get("/addToWishlist", protect, addToWishlist);
+router.post("/addToWishlist", protect, addToWishlist);
 router.get("/getWishlist", protect, getWishlist);
 router.put("/wishlist/:productId", protect, removeFromWishlist);
 

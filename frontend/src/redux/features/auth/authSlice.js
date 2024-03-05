@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 const initialState = {
   isLoggedIn: false,
   user: null,
+  wishlist: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -128,7 +129,61 @@ export const updatePhoto = createAsyncThunk(
   }
 );
 
-// !
+// ! Add to Wishlist (8)
+export const addToWishlist = createAsyncThunk(
+  "auth/addToWishlist",
+  async (productData, thunkAPI) => {
+    try {
+      return await authService.addToWishlist(productData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// ! Get Wishlist (9)
+export const getWishlist = createAsyncThunk(
+  "auth/getWishlist",
+  async (_, thunkAPI) => {
+    try {
+      return await authService.getWishlist();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// ! Remove from Wishlist (10)
+export const removeFromWishlist = createAsyncThunk(
+  "auth/removeFromWishlist",
+  async (productId, thunkAPI) => {
+    try {
+      return await authService.removeFromWishlist(productId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// =================== AUTH SLICE =================== //
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -141,7 +196,7 @@ const authSlice = createSlice({
       state.message = "";
     },
   },
-  // ! to receive response from the database
+  // ! To receive response from the database
   extraReducers: (builder) => {
     builder
 
@@ -333,6 +388,83 @@ const authSlice = createSlice({
 
       // * UPDATE PHOTO   -- when it is failed
       .addCase(updatePhoto.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      // ! 9
+      // * Add to Wishlist -- when it is pending
+      .addCase(addToWishlist.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * Add to Wishlist  -- when it is achieved
+      .addCase(addToWishlist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message =
+          action.payload; /* it will send the user data to payload */
+        toast.success(action.payload);
+
+        /* == to check the stored data from the database. ==*/
+        // console.log(action.payload);
+      })
+
+      // * Add to Wishlist   -- when it is failed
+      .addCase(addToWishlist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      // ! 9
+      // * Get Wishlist-- when it is pending
+      .addCase(getWishlist.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * Get Wishlist -- when it is achieved
+      .addCase(getWishlist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.wishlist =
+          action.payload.wishlist; /* it will send the user data to payload */
+
+        /* == to check the stored data from the database. ==*/
+        // console.log(action.payload);
+      })
+
+      // * Get Wishlist  -- when it is failed
+      .addCase(getWishlist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+
+      // ! 10
+      // * Remove from Wishlist-- when it is pending
+      .addCase(removeFromWishlist.pending, (state) => {
+        state.isLoading = true;
+      })
+
+      // * Remove from Wishlist -- when it is achieved
+      .addCase(removeFromWishlist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message =
+          action.payload; /* it will send the user data to payload */
+        toast.success(action.payload);
+
+        /* == to check the stored data from the database. ==*/
+        // console.log(action.payload);
+      })
+
+      // * Remove from Wishlist  -- when it is failed
+      .addCase(removeFromWishlist.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
