@@ -15,6 +15,7 @@ import {
   saveCartDB,
   selectCartItems,
 } from "../../../redux/features/cart/cartSlice";
+import { addToWishlist } from "../../../redux/features/auth/authSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -66,6 +67,15 @@ const ProductDetails = () => {
   const decreaseCart = (product) => {
     dispatch(DECREASE_CART(product));
     saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems")) });
+  };
+
+  /* >> ADD wishlist */
+  const addWishlist = async (product) => {
+    const productData = {
+      productId: product._id,
+    };
+
+    dispatch(addToWishlist(productData));
   };
 
   return (
@@ -204,7 +214,7 @@ const ProductDetails = () => {
 
                   <button
                     className="--btn --btn-danger"
-                    onClick={() => addToCart(product)}
+                    onClick={() => addWishlist(product)}
                   >
                     ADD TO WISHLIST
                   </button>
