@@ -19,7 +19,8 @@ const calculateTotalPrice = (products, cartItems) => {
     }
   });
 
-  return totalPrice * 100;
+  // return totalPrice * 100;
+  return totalPrice;
 };
 
 // ! update product quantity (3)

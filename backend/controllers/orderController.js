@@ -217,6 +217,8 @@ const payWithWallet = asyncHandler(async (req, res) => {
     orderAmount = TotalAfterDiscount;
   }
 
+  console.log(orderAmount);
+
   /* >> Check users wallet balance */
   if (user.balance < orderAmount) {
     res.status(400);
