@@ -16,6 +16,7 @@ import {
   selectCartItems,
 } from "../../../redux/features/cart/cartSlice";
 import { addToWishlist } from "../../../redux/features/auth/authSlice";
+import StarRating from "react-star-ratings";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -237,6 +238,54 @@ const ProductDetails = () => {
         {/* >>> Review section */}
         <Card cardClass={styles.card}>
           <h3>Product Reviews</h3>
+
+          <ProductRating
+            averageRating={averageRating}
+            numberOfRatings={product?.ratings?.length}
+          />
+
+          <div className="--underline"></div>
+
+          <div className={styles.ratings}>
+            {product !== null && product?.ratings?.length > 0 && (
+              <p>Product Rating Summary</p>
+            )}
+
+            <div className="--m">
+              {product?.ratings?.length === 0 ? (
+                <p>There are no reviews for this product yet.</p>
+              ) : (
+                <>
+                  {product?.ratings?.map((item, index) => {
+                    const { star, reviewDate, review, name } = item;
+
+                    return (
+                      <div className={styles.review} key={index}>
+                        <StarRating
+                          starDimension="20px"
+                          starSpacing="2px"
+                          starRatedColor="#F6B01E"
+                          // starHoverColor="#F6B01E"
+                          rating={star}
+                          // changeRating={changeStar}
+                          editing={false}
+                          // isSelectable={true}
+                        />
+                        <p>{review}</p>
+                        <span>
+                          <b>{reviewDate}</b>
+                        </span>
+                        <br />
+                        <span>
+                          <b>By: {name}</b>
+                        </span>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          </div>
         </Card>
       </div>
     </section>

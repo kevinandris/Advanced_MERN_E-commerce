@@ -27,6 +27,7 @@ import CheckoutPaypal from "./pages/checkout/CheckoutPaypal";
 import Wallet from "./pages/wallet/Wallet";
 import CheckoutWallet from "./pages/checkout/CheckoutWallet";
 import Wishlist from "./pages/wishlist/Wishlist";
+import ReviewProduct from "./pages/reviewProduct/ReviewProduct";
 
 function App() {
   /* >>> ! using axios every time we send the token or credentials to the backend through "http request". */
@@ -71,6 +72,7 @@ function App() {
           <Route path="/checkout-wallet" element={<CheckoutWallet />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/review-product/:id" element={<ReviewProduct />} />
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/order-details/:id" element={<OrderDetails />} />
 
