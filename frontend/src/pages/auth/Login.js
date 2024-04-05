@@ -79,6 +79,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+
               <input
                 type="password"
                 placeholder="Password"
@@ -86,10 +87,12 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+
               <button type="submit" className="--btn --btn-primary --btn-block">
                 Login
               </button>
             </form>
+
             <span className={styles.register}>
               <p>Don't have an account? </p> &nbsp;
               <Link to="/register">Register</Link>

@@ -11,7 +11,7 @@ import {
   reviewProduct,
   updateReview,
 } from "../../redux/features/product/productSlice";
-import "./ReviewProduct.module.scss";
+import styles from "./ReviewProduct.module.scss";
 import { Spinner } from "../../components/loader/Loader";
 
 const ReviewProduct = () => {
@@ -102,7 +102,7 @@ const ReviewProduct = () => {
   };
 
   return (
-    <section>
+    <section style={{ height: "87.8vh" }}>
       <div className="container review">
         <h2>Review Product</h2>
         {isLoading && product === null ? (

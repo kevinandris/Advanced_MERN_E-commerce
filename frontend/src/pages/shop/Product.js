@@ -23,7 +23,7 @@ const Product = () => {
   };
 
   return (
-    <section >
+    <section>
       {/* // ! 1 */}
       <div className={`container ${styles.product}`}>
         <aside

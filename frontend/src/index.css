@@ -15,7 +15,7 @@
   --color-purple: #9d0191;
   --color-orange: #ff7722;
 
-  --color-primary: #007bff;
+  --color-primary: #006;
   --color-success: #28a745;
   --color-danger: orangered;
   --color-red: rgba(189, 9, 9, 0.847);
@@ -55,7 +55,6 @@ section {
 }
 
 .containerWallet {
-
   max-width: 1000px;
   min-height: 84.8vh;
   margin: 0 auto;
@@ -327,7 +326,12 @@ p {
 
 .--btn-primary {
   color: #fff;
-  background: #007bff;
+  background: #006;
+
+  &:hover {
+    color: #fff;
+    background: #006494;
+  }
 }
 .--btn-secondary {
   color: #fff;
