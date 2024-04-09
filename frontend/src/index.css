@@ -3,7 +3,7 @@
 :root {
   --font-family: "Poppins", sans-serif;
   --dark-blue: #0a1930;
-  --light-blue: #1f93ff;
+  --light-blue: #67c3ee;
 
   --color-white: #fff;
   --color-dark: #333;
@@ -46,7 +46,7 @@ section {
   /* border: 1px solid #000000; */
 
   max-width: 1000px;
-  /* min-height: 84.8vh; */
+  /* min-height: 80vh; */
   margin: 0 auto;
   padding: 0 20px;
   h3 {
@@ -147,7 +147,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
   color: var(--color-dark);
   margin-bottom: 1rem;
@@ -354,7 +354,7 @@ p {
 }
 
 /* Background */
-.--bg-light {
+.--bg-white {
   background: #fff;
 }
 .--bg-dark {

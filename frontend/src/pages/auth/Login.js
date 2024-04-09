@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./auth.module.scss";
-import loginImg from "../../assets/login.png";
+import loginImg from "../../assets/login.jpg";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { toast } from "react-toastify";
@@ -74,7 +74,7 @@ const Login = () => {
             <form onSubmit={loginUser}>
               <input
                 type="text"
-                placeholder="Email"
+                placeholder="Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -82,7 +82,7 @@ const Login = () => {
 
               <input
                 type="password"
-                placeholder="Password"
+                placeholder="Your Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

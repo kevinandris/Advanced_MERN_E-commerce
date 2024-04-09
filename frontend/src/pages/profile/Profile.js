@@ -254,7 +254,7 @@ export const UserName = () => {
   const username = user?.name || "...";
 
   return (
-    <span style={{ color: "#FF0000" }}>Hi, {shortenText(username, 8)}</span>
+    <span style={{ color: "#67c3ee" }}>Hi, {shortenText(username, 8)}</span>
   );
 };
 

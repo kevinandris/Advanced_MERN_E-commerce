@@ -61,12 +61,12 @@ const Slider = () => {
                   <h2>{heading}</h2>
                   <p>{desc}</p>
                   <hr />
-                  <button
+                  {/* <button
                     className="--btn --btn-red"
                     onClick={() => navigate("/shop")}
                   >
                     Shop Now
-                  </button>
+                  </button> */}
                 </div>
               </>
             )}

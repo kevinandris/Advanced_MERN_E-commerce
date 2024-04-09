@@ -2,28 +2,28 @@
 
 export const sliderData = [
   {
-    image: "https://i.ibb.co/D1TvpVL/white-shoe.jpg",
-    heading: "Shoes Villa",
-    desc: "Up to 30% off on all on sale products.",
+    image: "https://i.ibb.co/1K37SM9/Discounted-Books.jpg",
+    heading: "Old but gold",
+    desc: "Up to 50% off on all on sale books.",
   },
   {
-    image: "https://i.ibb.co/Bz5v6xs/gadget.jpg",
-    heading: "Hot Gadgets",
-    desc: "Up to 30% off on all on sale products.",
+    image: "https://i.ibb.co/DQhfs59/book2.jpg",
+    heading: "Find your favourite category.",
+    desc: "Check it out down below!",
   },
   {
-    image: "https://i.ibb.co/RThT5KJ/men-wear.jpg",
-    heading: "Men Fashion",
-    desc: "Up to 30% off on all on sale products.",
+    image: "https://i.ibb.co/17bBfGW/fiction.jpg",
+    heading: "Fiction",
+    desc: "Plenty of mysterious and adventurous stories.",
   },
   {
-    image: "https://i.ibb.co/ZVQHTjk/phone.jpg",
-    heading: "Android Phones",
-    desc: "Up to 30% off on all on sale products.",
+    image: "https://i.ibb.co/jGBFPXz/romance.jpg",
+    heading: "Romance",
+    desc: "Discover the unexpected stories of two strangers who fell in love.",
   },
   {
-    image: "https://i.ibb.co/tYcmTKr/blue-shoe.jpg",
-    heading: "Nike Sneakers",
-    desc: "Up to 30% off on all on sale products.",
+    image: "https://i.ibb.co/5j2jrRN/fantasy.jpg",
+    heading: "Fantasy",
+    desc: "Explore the intriguing and unusual adventure.",
   },
 ];

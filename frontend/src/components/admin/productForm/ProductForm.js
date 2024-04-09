@@ -122,7 +122,7 @@ const ProductForm = ({
           </select>
 
           {/* // ! (3) Brand */}
-          <label>Brand</label>
+          <label>Book</label>
           {/* Used value={product?.category} not to throw an error if the page is blank */}
           <select
             name="brand"
@@ -134,12 +134,12 @@ const ProductForm = ({
             {isEditing ? (
               <option value={product?.brand}>{product.brand}</option>
             ) : (
-              <option>Select a brand:</option>
+              <option>Select a Book:</option>
             )}
             {filteredBrands.length > 0 &&
-              filteredBrands.map((brand) => (
-                <option key={brand._id} value={brand.name}>
-                  {brand.name}
+              filteredBrands?.map((book) => (
+                <option key={book._id} value={book.name}>
+                  {book.name}
                 </option>
               ))}
           </select>

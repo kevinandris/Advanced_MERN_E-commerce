@@ -56,10 +56,10 @@ const BrandList = () => {
 
   return (
     <div className="--mb2">
-      <h3>All Brands</h3>
+      <h3>All Books</h3>
       <div className="table">
         {brands.length === 0 ? (
-          <p>No Brand Found</p>
+          <p>No Book Found</p>
         ) : (
           <table>
             <thead>

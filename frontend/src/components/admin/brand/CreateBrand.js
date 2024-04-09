@@ -48,14 +48,14 @@ const CreateBrand = () => {
       {isLoading && <Loader />}
 
       <div className="--mb2">
-        <h3>Create Brand</h3>
+        <h3>Create Book</h3>
         <p>
-          User the form to <b>create a brand.</b>
+          User the form to <b>create a book.</b>
         </p>
         <Card cardClass={"card"}>
           <br />
           <form onSubmit={saveBrand}>
-            <label>Brand Name:</label>
+            <label>Book Name:</label>
             <input
               type="text"
               placeholder="Enter a name"
@@ -83,7 +83,7 @@ const CreateBrand = () => {
 
             <div className="--my">
               <button type="submit" className="--btn --btn-primary">
-                Save Brand
+                Save Book
               </button>
             </div>
           </form>

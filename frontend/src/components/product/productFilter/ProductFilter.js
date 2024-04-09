@@ -17,7 +17,7 @@ const ProductFilter = () => {
   );
   const [category, setCategory] = useState("All");
   const [brand, setBrand] = useState("All");
-  const [price, setPrice] = useState([50, 2000]);
+  const [price, setPrice] = useState([50, 200]);
   const dispatch = useDispatch();
 
   const allCategories = [
@@ -73,7 +73,7 @@ const ProductFilter = () => {
               }
               onClick={() => filterProductCategory(eachCategory)}
             >
-              &#8250; {eachCategory}
+              {eachCategory}
             </button>
           );
         })}
@@ -99,7 +99,7 @@ const ProductFilter = () => {
           range
           marks={{
             1: `${price[0]}`,
-            1500: `${price[1]}`,
+            60: `${price[1]}`,
           }}
           min={minPrice}
           max={maxPrice}
@@ -114,7 +114,7 @@ const ProductFilter = () => {
         />
       </div>
       <br /> <br />
-      <button className="--btn --btn-red --btn-block" onClick={clearFilter}>
+      <button className="--btn --btn-primary --btn-block" onClick={clearFilter}>
         Clear Filter
       </button>
     </div>

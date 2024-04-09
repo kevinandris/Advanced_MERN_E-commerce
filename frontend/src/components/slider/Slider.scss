@@ -172,7 +172,7 @@
   opacity: 1;
 }
 .arrow {
-  border: 2px solid #ff0000;
+  border: 2px solid #67c3ee;
   border-radius: 50%;
   background: transparent;
   color: #fff;
@@ -186,16 +186,16 @@
 }
 
 .arrow:hover {
-  background: #fff;
+  background: #000000;
 }
 
 .next {
   right: 1.5rem;
-  color: #ff0000;
+  color: #67c3ee;
 }
 .prev {
   left: 1.5rem;
-  color: #ff0000;
+  color: #67c3ee;
 }
 
 hr {

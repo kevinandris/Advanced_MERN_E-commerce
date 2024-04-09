@@ -107,7 +107,7 @@ const ViewProducts = () => {
               </thead>
               <tbody>
                 {/* >>> NOTE: "products variable" was replaced by "currentItems" from pagination variable */}
-                {currentItems.map((product, index) => {
+                {currentItems?.map((product, index) => {
                   const { _id, name, category, price, quantity } = product;
                   return (
                     <tr key={_id}>
@@ -130,11 +130,13 @@ const ViewProducts = () => {
                             <AiOutlineEye size={25} color={"purple"} />
                           </Link>
                         </span>
+
                         <span>
                           <Link to={`/admin/edit-product/${_id}`}>
                             <FaEdit size={20} color={"green"} />
                           </Link>
                         </span>
+
                         <span>
                           <FaTrash
                             size={20}

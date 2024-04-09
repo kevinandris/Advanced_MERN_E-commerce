@@ -40,7 +40,7 @@ const CarouselItem = ({
         <p className="--mb">{shortenText(desc, 26)}</p>
       </Link>
       <button
-        className="--btn --btn-red --btn-block"
+        className="--btn --btn-primary --btn-block"
         onClick={() => addToCart(product)}
       >
         Add To Cart

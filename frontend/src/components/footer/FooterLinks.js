@@ -16,7 +16,7 @@ const FooterLinks = () => {
             <FaYoutube className="i" />
           </div>
           <h2>Let's Connect?</h2>
-          <a href="#home" className="btn -btn-dark">
+          <a href="#home" className="btn btn-dark">
             Make an enquiry!
           </a>
         </div>

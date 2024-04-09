@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./auth.module.scss";
-import loginImg from "../../assets/login.png";
+import loginImg from "../../assets/register.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
 import { toast } from "react-toastify";
@@ -120,7 +120,7 @@ const Register = () => {
         </Card>
 
         <div className={styles.img}>
-          <img src={loginImg} alt="Login" width={400} />
+          <img src={loginImg} alt="Login" width={400} height={600} />
         </div>
       </section>
     </>

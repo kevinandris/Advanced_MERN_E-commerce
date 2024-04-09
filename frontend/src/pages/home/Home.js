@@ -14,7 +14,7 @@ const PageHeading = ({ heading, btnText }) => {
     <>
       <div className="--flex-between">
         <h2 className="--fw-thin">{heading}</h2>
-        <button className="--btn --btn-red">{btnText}</button>
+        {/* <button className="--btn --btn-red">{btnText}</button> */}
       </div>
       <div className="--hr"></div>
     </>
@@ -45,7 +45,7 @@ const Home = () => {
       return product.quantity > 0;
     })
     ?.filter((product) => {
-      return product.category === "Phone";
+      return product.category === "Old";
     })
     ?.filter((product, index) => index < 7);
 
@@ -85,21 +85,21 @@ const Home = () => {
       <section>
         <HomeInfoBox />
         <div className="container">
-          <PageHeading heading={"Latest Products"} btnText={"Shop Now>>>"} />
+          <PageHeading heading={"Popular Books"} btnText={"Shop Now>>>"} />
           <ProductCarousel products={latestProducts} />
         </div>
       </section>
 
-      <section className="--bg-grey">
+      <section className="--bg-white">
         <div className="container">
-          <h3>Categories</h3>
+          <h3>Popular Categories</h3>
           <ProductCategory />
         </div>
       </section>
 
       <section>
         <div className="container">
-          <PageHeading heading={"Mobile Phones"} btnText={"Shop Now>>>"} />
+          <PageHeading heading={"Discounted books"} btnText={"Shop Now>>>"} />
           <ProductCarousel products={phoneProducts} />
         </div>
       </section>

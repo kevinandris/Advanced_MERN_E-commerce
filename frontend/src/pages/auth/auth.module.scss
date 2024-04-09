@@ -9,11 +9,13 @@
   }
 
   .form {
-    width: 35rem;
+    width: 40rem;
+    height: 46.6vh;
+
     padding: 1.5rem;
     animation: slide-up 0.5s ease;
     h2 {
-      color: var(--color-danger);
+      color: var(--dark-blue);
       text-align: center;
     }
     form {

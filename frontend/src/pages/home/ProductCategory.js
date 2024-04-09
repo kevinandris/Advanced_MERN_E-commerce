@@ -5,18 +5,18 @@ import "./ProductCategory.scss";
 const categories = [
   {
     id: 1,
-    title: "Gadgets",
-    image: "https://i.ibb.co/5GVkd3m/c1.jpg",
+    title: "Fantasy",
+    image: "https://i.ibb.co/g9kQMg9/fantasyC.jpg",
   },
   {
     id: 2,
-    title: "Womens Fashion",
-    image: "https://i.ibb.co/nQKLjrW/c2.jpg",
+    title: "Science Fiction",
+    image: "https://i.ibb.co/h9z2gZ8/fictionC.jpg",
   },
   {
     id: 3,
-    title: "Sport Sneakers",
-    image: "https://i.ibb.co/fNkBYgr/c3.jpg",
+    title: "Romance",
+    image: "https://i.ibb.co/D8vyM9z/romanceC.jpg",
   },
 ];
 
@@ -27,8 +27,11 @@ const Category = ({ title, image }) => {
     <div className="category">
       <h3>{title}</h3>
       <img src={image} alt="cat" />
-      <button className="--btn" onClick={() => navigate("/shop")}>
-        {"Shop Now>>>"}
+      <button
+        className="--btn --btn-primary --btn-block"
+        onClick={() => navigate("/shop")}
+      >
+        {"Shop Now"}
       </button>
     </div>
   );
