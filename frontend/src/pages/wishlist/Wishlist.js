@@ -8,6 +8,7 @@ import {
   removeFromWishlist,
 } from "../../redux/features/auth/authSlice";
 import Loader from "../../components/loader/Loader";
+import "./Wishlist.scss";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const Wishlist = () => {
                     <div key={product._id}>
                       <ProductItem {...product} grid={grid} product={product} />
                       <button
-                        className="--btn --btn-red --btn-block"
+                        className="wishlistButton --btn-red --btn-block"
                         onClick={() => removeWishlist(product)}
                       >
                         Remove from wishlist

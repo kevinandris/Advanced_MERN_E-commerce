@@ -2,13 +2,14 @@
   border-right: 0.5px solid #000000;
   min-height: 87.6vh;
   max-height: 100vh;
+
   .user {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 4rem;
-    background-color: var(--light-blue);
+    background-color: #007bff;
 
     h4 {
       color: #fff;
@@ -39,5 +40,6 @@
   top: 0;
   width: 4px;
   height: 100%;
-  background-color: var(--light-blue);
+  // background-color: var(--light-blue);
+  background-color: #007bff;
 }

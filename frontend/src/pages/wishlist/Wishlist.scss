@@ -1,0 +1,12 @@
+.wishlistButton {
+  width: 88%;
+  height: 3vh;
+
+  border-radius: 5px;
+  margin-left: 15px;
+
+  &:hover {
+    background-color: rgb(222, 42, 42);
+    cursor: pointer;
+  }
+}

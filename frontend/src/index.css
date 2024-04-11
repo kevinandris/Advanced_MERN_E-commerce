@@ -27,6 +27,9 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+
+  /* font-family: "PT Sans", sans-serif; */
+  font-family: "Kanit", sans-serif;
 }
 
 html {
@@ -40,6 +43,10 @@ body {
 section {
   width: 100%;
   padding: 4rem 0;
+}
+
+.wishlistButton {
+  width: 80%;
 }
 
 .container {
@@ -511,6 +518,7 @@ a:hover {
   color: #fff;
   background-color: var(--light-blue);
 }
+
 .activePage {
   color: #fff;
   background-color: var(--light-blue);
