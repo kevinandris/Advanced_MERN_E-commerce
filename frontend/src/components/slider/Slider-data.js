@@ -8,8 +8,8 @@ export const sliderData = [
   },
   {
     image: "https://i.ibb.co/DQhfs59/book2.jpg",
-    heading: "Find your favourite category.",
-    desc: "Check it out down below!",
+    heading: "Find your favourite category",
+    desc: "Check it out down below or visit our books page!",
   },
   {
     image: "https://i.ibb.co/17bBfGW/fiction.jpg",

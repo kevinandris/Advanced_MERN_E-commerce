@@ -145,7 +145,7 @@ const ProductDetails = () => {
 
                 <div className={styles.property}>
                   <p>
-                    <b>Brand:</b>
+                    <b>Book Name:</b>
                   </p>
                   <p>{product?.brand}</p>
                 </div>

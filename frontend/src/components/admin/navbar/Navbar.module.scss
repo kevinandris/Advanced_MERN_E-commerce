@@ -1,6 +1,6 @@
 .navbar {
   border-right: 0.5px solid #000000;
-  min-height: 87.8vh;
+  min-height: 87.6vh;
   max-height: 100vh;
   .user {
     display: flex;
@@ -39,5 +39,5 @@
   top: 0;
   width: 4px;
   height: 100%;
-  background-color: orangered;
+  background-color: var(--light-blue);
 }

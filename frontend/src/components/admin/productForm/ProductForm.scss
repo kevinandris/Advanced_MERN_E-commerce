@@ -1,10 +1,12 @@
 .add-product {
   margin-bottom: 5rem;
+
   .card {
     width: 100%;
     max-width: 500px;
     padding: 1rem;
   }
+
   form {
     label {
       display: block;
@@ -12,6 +14,7 @@
       font-weight: 500;
       color: var(--color-dark);
     }
+
     input[type="text"],
     input[type="number"],
     input[type="file"],
@@ -27,6 +30,23 @@
       border: 1px solid #777;
       border-radius: 3px;
       outline: none;
+    }
+
+    .regAndCurPriceContainer,
+    .colourAndQuantityContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5.5rem;
+    }
+
+    .catAndBookContainer {
+      display: flex;
+      gap: 7.2rem;
+
+      .catContainer {
+        width: 47%;
+      }
     }
   }
 }
@@ -149,6 +169,8 @@ label:hover,
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 aside {

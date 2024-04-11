@@ -79,7 +79,7 @@ const ProductFilter = () => {
         })}
       </div>
       {/* >>> BRANDS */}
-      <h4>Brands</h4>
+      <h4>Books</h4>
       <div className={styles.brand}>
         <select value={brand} onChange={(e) => setBrand(e.target.value)}>
           {allBrands.map((brand, index) => {
@@ -113,7 +113,6 @@ const ProductFilter = () => {
           onChange={(price) => setPrice(price)}
         />
       </div>
-      <br /> <br />
       <button className="--btn --btn-primary --btn-block" onClick={clearFilter}>
         Clear Filter
       </button>

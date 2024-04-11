@@ -101,12 +101,12 @@ const Header = () => {
             </li>
             <li>
               <NavLink to="/shop" className={activeLink}>
-                Shop
+                Books
               </NavLink>
               &nbsp; {/* create a blank space */}
               <AdminOnlyLink>
                 <NavLink to="/admin/home" className={activeLink}>
-                  | Admin
+                  > Admin
                 </NavLink>
               </AdminOnlyLink>
             </li>

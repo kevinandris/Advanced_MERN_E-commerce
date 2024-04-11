@@ -1,6 +1,13 @@
 import React from "react";
 import "./FooterLinks.scss";
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedin,
+  FaLinkedinIn,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 import logoImg from "../../assets/shopito_logo.png";
 
 const FooterLinks = () => {
@@ -10,8 +17,8 @@ const FooterLinks = () => {
       <section className="contact-section">
         <div className="container contact">
           <div className="contact-icon">
+            <FaLinkedin className="i" />
             <FaFacebookF className="i" />
-            <FaTwitter className="i" />
             <FaInstagram className="i" />
             <FaYoutube className="i" />
           </div>

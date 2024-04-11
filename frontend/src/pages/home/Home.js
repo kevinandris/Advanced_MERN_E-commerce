@@ -35,9 +35,9 @@ const Home = () => {
   /* >> Capture the latest products */
   const latest = products
     ?.filter((product) => {
-      return product.quantity > 0;
+      return product.quantity > 10;
     })
-    ?.filter((product, index) => index < 7);
+    ?.filter((product, index) => index < 10);
 
   /* >> Capture the phone products */
   const phones = products

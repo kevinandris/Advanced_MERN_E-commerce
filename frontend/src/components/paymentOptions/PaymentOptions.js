@@ -43,7 +43,7 @@ const PaymentOptions = () => {
           Stripe
         </label>
 
-        <label htmlFor="flutterwave" className="radio-label">
+        {/* <label htmlFor="flutterwave" className="radio-label">
           <input
             className="radio-input"
             type="radio"
@@ -54,7 +54,7 @@ const PaymentOptions = () => {
           />
           <span className="custom-radio"></span>
           Flutterwave
-        </label>
+        </label> */}
 
         <label htmlFor="paypal" className="radio-label">
           <input

@@ -31,7 +31,7 @@ const Category = ({ title, image }) => {
         className="--btn --btn-primary --btn-block"
         onClick={() => navigate("/shop")}
       >
-        {"Shop Now"}
+        {"View Book"}
       </button>
     </div>
   );

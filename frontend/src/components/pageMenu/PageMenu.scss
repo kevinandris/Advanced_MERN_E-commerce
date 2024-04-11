@@ -1,6 +1,12 @@
 .pageMenu {
-  color: #fff;
-  background: rgb(174, 49, 4);
+  // color: #fff;
+  // background: rgb(174, 49, 4);
+
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+  // max-width: 1000px;
 }
 
 .home-links {
@@ -12,6 +18,7 @@
   & li a {
     color: #fff;
   }
+
   & > * {
     margin-left: 1rem;
     color: #fff;

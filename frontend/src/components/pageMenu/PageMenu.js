@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const PageMenu = () => {
   return (
-    <div>
+    <div className="pageMenu">
       <nav className="--bg-primary --p --mb">
         <ul className="home-links">
           <li>

@@ -242,7 +242,7 @@ const Wallet = () => {
         <div className="wallet">
           <div className="wallet-data --flex-start --flex-dir-column">
             <div className="wallet-info --card --mr">
-              <span>Hello, </span>
+              <span className="hello">Hello </span>
               <h4>{user?.name}</h4>
               <div className="--underline"></div>
               <span className="--flex-between">
@@ -256,7 +256,7 @@ const Wallet = () => {
                   className="--btn --btn-primary"
                   onClick={() => setShowDepositModal(true)}
                 >
-                  <AiOutlineDollarCircle />
+                  <AiOutlineDollarCircle size={20} />
                   &nbsp; Deposit Money
                 </button>
 
@@ -264,7 +264,7 @@ const Wallet = () => {
                   className="--btn --btn-danger"
                   onClick={() => setShowTransferModal(true)}
                 >
-                  <FaRegPaperPlane /> &nbsp; Transfer
+                  <FaRegPaperPlane size={20} /> &nbsp; Transfer
                 </button>
               </div>
             </div>
@@ -278,10 +278,10 @@ const Wallet = () => {
                 </span>
 
                 <span className="--flex-start">
-                  <h4>Cashback up to 80%</h4> &nbsp;
+                  <h4>Cashback up to 50%</h4> &nbsp;
                   <AiFillGift size={20} color="#007bff" />
                 </span>
-                <span>
+                <span className="hello">
                   Use your Keipy wallet at checkout and get up to 80% cashback.
                 </span>
               </div>

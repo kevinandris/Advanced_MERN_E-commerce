@@ -44,11 +44,12 @@ section {
 
 .container {
   /* border: 1px solid #000000; */
+  /* min-height: 80vh; */
 
   max-width: 1000px;
-  /* min-height: 80vh; */
   margin: 0 auto;
   padding: 0 20px;
+
   h3 {
     color: #000000;
   }
@@ -59,6 +60,7 @@ section {
   min-height: 84.8vh;
   margin: 0 auto;
   padding: 0 20px;
+
   h3 {
     color: #000000;
   }
@@ -237,9 +239,11 @@ p {
 .--m {
   margin: 1rem;
 }
+
 .--ml {
   margin-left: 1rem;
 }
+
 .--mr {
   margin-right: 1rem;
 }
@@ -262,6 +266,7 @@ p {
 .--ml2 {
   margin-left: 2rem;
 }
+
 .--mr2 {
   margin-right: 2rem;
 }
@@ -340,7 +345,11 @@ p {
 }
 .--btn-danger {
   color: #fff;
-  background: orangered;
+  background: #28a745;
+
+  &:hover {
+    background: #43ca62;
+  }
 }
 
 .--btn-success {
@@ -390,6 +399,7 @@ p {
   border-radius: 3px;
   outline: none;
 }
+
 .--form-control select {
   font-size: 1.4rem;
   font-weight: 400;
@@ -416,6 +426,7 @@ p {
 .--block {
   display: block;
 }
+
 .--inline-block {
   display: inline-block;
 }
@@ -431,6 +442,7 @@ p {
 .--line {
   position: relative;
 }
+
 .--line::after {
   content: "";
   position: absolute;

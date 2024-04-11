@@ -164,7 +164,7 @@ const Profile = () => {
                   </div>
                   <form onSubmit={saveProfile}>
                     <p>
-                      <label>Change Photo:</label>
+                      <label>Change Photo</label>
                       <input
                         type="file"
                         accept="image/*"
@@ -173,7 +173,7 @@ const Profile = () => {
                       />
                     </p>
                     <p>
-                      <label>Name:</label>
+                      <label>Name</label>
                       <input
                         type="text"
                         name="name"
@@ -183,7 +183,7 @@ const Profile = () => {
                       />
                     </p>
                     <p>
-                      <label>Email:</label>
+                      <label>Email</label>
                       <input
                         type="email"
                         name="email"
@@ -193,7 +193,7 @@ const Profile = () => {
                       />
                     </p>
                     <p>
-                      <label>Phone:</label>
+                      <label>Phone</label>
                       <input
                         type="text"
                         name="phone"
@@ -203,7 +203,7 @@ const Profile = () => {
                       />
                     </p>
                     <p>
-                      <label>Address:</label>
+                      <label>Address</label>
                       <input
                         type="text"
                         name="address"
@@ -213,7 +213,7 @@ const Profile = () => {
                       />
                     </p>
                     <p>
-                      <label>State:</label>
+                      <label>State</label>
                       <input
                         type="text"
                         name="state"
@@ -223,7 +223,7 @@ const Profile = () => {
                       />
                     </p>
                     <p>
-                      <label>Country:</label>
+                      <label>Country</label>
                       <input
                         type="text"
                         name="country"

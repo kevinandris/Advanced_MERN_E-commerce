@@ -18,7 +18,7 @@ const DepositModal = ({
   return (
     <section className="--100vh modal-section">
       <div className="--flex-center modal">
-        <div className="--bg-light --p --card modal-content">
+        <div className="--p --card modal-content">
           <AiOutlineClose
             color="red"
             size={16}
@@ -60,7 +60,7 @@ const DepositModal = ({
               </label>
               <br />
 
-              <label htmlFor="flutterwave" className="radio-label">
+              {/* <label htmlFor="flutterwave" className="radio-label">
                 <input
                   className="radio-input"
                   type="radio"
@@ -71,7 +71,7 @@ const DepositModal = ({
                 />
                 <span className="custom-radio" />
                 Flutterwave
-              </label>
+              </label> */}
               <br />
 
               <span className="--flex-end">
@@ -82,10 +82,7 @@ const DepositModal = ({
                   Cancel
                 </button>
 
-                <button
-                  type="submit"
-                  className="--btn --btn-primary --btn-lg cm"
-                >
+                <button type="submit" className="--btn --btn-primary --btn-lg">
                   Proceed
                 </button>
               </span>
