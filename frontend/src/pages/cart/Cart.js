@@ -100,7 +100,7 @@ const Cart = () => {
                           style={{ width: "100px" }}
                         />
                       </td>
-                      <td>{price}</td>
+                      <td>${price}</td>
                       <td>
                         <div className={styles.count}>
                           <>

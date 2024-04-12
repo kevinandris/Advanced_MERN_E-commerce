@@ -235,7 +235,7 @@ const Wallet = () => {
       {payment === "successful" && <Confetti />}
       <section
         className="container"
-        style={{ marginTop: "40px", height: "84.8vh" }}
+        style={{ marginTop: "40px", height: "84.46vh" }}
       >
         <PageMenu />
 

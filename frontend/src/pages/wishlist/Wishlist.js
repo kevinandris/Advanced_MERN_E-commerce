@@ -28,7 +28,7 @@ const Wishlist = () => {
 
   return (
     <>
-      <section style={{ height: "87.8vh" }}>
+      <section style={{ height: "87.6vh" }}>
         {isLoading && <Loader />}
         <div className="container">
           {/* Component file here*/}

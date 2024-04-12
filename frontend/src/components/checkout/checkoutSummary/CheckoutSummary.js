@@ -47,7 +47,7 @@ const CheckoutSummary = () => {
               const { _id, name, price, cartQuantity } = item;
               return (
                 <Card key={_id} cardClass={styles.card}>
-                  <h4>Product &rarr; {name}</h4>
+                  <h4>Book's name &rarr; {name}</h4>
                   <p>Quantity &rarr; {cartQuantity}</p>
                   <p>Unit price &rarr; ${price}</p>
                   <p>Total price &rarr; ${price * cartQuantity}</p>
