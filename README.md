@@ -93,6 +93,7 @@
    25) stripe
    26) @paypal/react-paypal-js
    27) @reduxjs/toolkit
+   28) react-hot-toast
 
 #  Backend Dependencies:
    1) axios
