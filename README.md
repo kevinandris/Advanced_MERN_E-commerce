@@ -1,4 +1,4 @@
-![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/abf97ef5-542e-4013-b001-e11e7060eabb)#  Project Description:
+#  Project Description:
    1) MERN stack - MongoDB, ExpressJs, ReactJs, NodeJs
    2) Represents Various books based on categories such as Romance, Fiction,
       Thriller, History, Self-help, Crime, Cooking, Horror, Action and Adventure.
