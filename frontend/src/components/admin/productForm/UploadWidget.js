@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Card from "../../card/Card";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 
 const upload_preset = process.env.REACT_APP_UPLOAD_PRESET;
 const url = "https://api.cloudinary.com/v1_1/keipy/image/upload";
@@ -92,6 +92,7 @@ const UploadWidget = ({ files, setFiles }) => {
 
   return (
     <div>
+      <Toaster />
       <Card cardClass={"formcard group"}>
         <label className="uploadWidget">
           <AiOutlineCloudUpload size={35} />

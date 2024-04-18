@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import couponService from "./couponService";
 import { toast } from "react-toastify";
+// import toast, { Toaster } from "react-hot-toast";
 
 const initialState = {
   coupon: null,

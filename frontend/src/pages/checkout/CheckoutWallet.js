@@ -12,7 +12,7 @@ import { selectUser } from "../../redux/features/auth/authSlice";
 import masterCardImg from "../../assets/mc_symbol.png";
 import { Spinner } from "../../components/loader/Loader";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { extractIdAndCartQuantity } from "../../utils";
 import { selectShippingAddress } from "../../redux/features/checkout/checkoutSlice";
 
@@ -54,6 +54,7 @@ const CheckoutWallet = () => {
 
   return (
     <>
+      <Toaster />
       <section style={{ height: "87.8vh" }}>
         <div className={`container ${styles.checkout}`}>
           <h2>Welcome to checkout page </h2>

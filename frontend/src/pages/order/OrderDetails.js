@@ -40,7 +40,7 @@ const OrderDetails = () => {
   };
 
   return (
-    <section style={{ height: "87.8vh" }}>
+    <section style={{ height: "87.6vh" }}>
       <OrderDetailsComponent orderPageLink={"/order-history"} />
     </section>
   );

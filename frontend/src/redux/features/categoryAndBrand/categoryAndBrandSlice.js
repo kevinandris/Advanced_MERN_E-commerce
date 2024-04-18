@@ -2,6 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import categoryAndBrandService from "./categoryAndBrandService";
 import { toast } from "react-toastify";
+// import toast, { Toaster } from "react-hot-toast";
 
 const initialState = {
   categories: [],

@@ -1,6 +1,7 @@
 // ! Rxslice
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+// import toast, { Toaster } from "react-hot-toast";
 import { getCartQuantityById } from "../../../utils";
 import cartService from "./cartService";
 
@@ -86,7 +87,7 @@ const cartSlice = createSlice({
         } else {
           /* >> Item already exists in the cart, increase the cartQuantity by 1*/
           state.cartItems[productIndex].cartQuantity += 1;
-          toast.info(`${action.payload.name} is ncreased by one`, {
+          toast.info(`${action.payload.name} is increased by one`, {
             position: "top-left",
           });
         }

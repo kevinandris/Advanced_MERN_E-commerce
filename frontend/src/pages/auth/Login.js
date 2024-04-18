@@ -3,7 +3,7 @@ import styles from "./auth.module.scss";
 import loginImg from "../../assets/login.jpg";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Card from "../../components/card/Card";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { validateEmail } from "../../utils";
 import Loader from "../../components/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,6 +62,7 @@ const Login = () => {
 
   return (
     <>
+      <Toaster />
       {isLoading && <Loader />}
       <section className={`container ${styles.auth}`}>
         <div className={styles.img}>
@@ -70,7 +71,7 @@ const Login = () => {
 
         <Card>
           <div className={styles.form}>
-            <h2>Login</h2>
+            <h2>Login Page</h2>
             <form onSubmit={loginUser}>
               <input
                 type="text"

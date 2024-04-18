@@ -5,7 +5,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import Card from "../../card/Card";
 import CheckoutSummary from "../checkoutSummary/CheckoutSummary";
 import { Spinner } from "../../loader/Loader";
@@ -111,6 +111,7 @@ export default function CheckoutForm() {
 
   return (
     <>
+      <Toaster />
       <section>
         <div className={`container ${styles.checkout}`}>
           <h2>Checkout</h2>

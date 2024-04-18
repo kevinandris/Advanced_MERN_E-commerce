@@ -1,5 +1,5 @@
 .auth {
-  min-height: 87.8vh;
+  min-height: 87.6vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +49,34 @@
       align-items: center;
       margin-top: 1rem;
     }
+  }
+
+  // Password Visibility Toggle
+  .password {
+    position: relative;
+
+    .icon {
+      position: absolute;
+      top: 1.5rem;
+      right: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  .hide-indicator {
+    display: none;
+  }
+
+  .show-indicator {
+    display: block;
+    animation: slide-up 0.5s ease;
+  }
+
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
   }
 
   @keyframes slide-up {

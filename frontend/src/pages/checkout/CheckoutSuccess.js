@@ -14,13 +14,13 @@ const CheckoutSuccess = () => {
   return (
     <>
       <Confetti />
-      <section style={{ height: "87.8vh" }}>
+      <section style={{ height: "87.6vh" }}>
         <div className="container">
           <h2>Checkout Successful</h2>
           <p>Thank you for your purchase</p>
           <br />
 
-          <button className="--btn --btn-primary">
+          <button className="--btn --btn-secondary">
             <Link to="/order-history">View Order Status</Link>
           </button>
         </div>

@@ -102,7 +102,7 @@ const ReviewProduct = () => {
   };
 
   return (
-    <section style={{ height: "87.8vh" }}>
+    <section style={{ height: "87.6vh" }}>
       <div className="container review">
         <h2>Review Product</h2>
         {isLoading && product === null ? (

@@ -28,6 +28,7 @@ import { toast } from "react-toastify";
 import { validateEmail } from "../../utils";
 import DepositModal from "./DepositModal";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 const transactionss = [
   {
@@ -232,6 +233,7 @@ const Wallet = () => {
 
   return (
     <>
+      <Toaster />
       {payment === "successful" && <Confetti />}
       <section
         className="container"

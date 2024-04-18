@@ -15,7 +15,7 @@ import Card from "../../components/card/Card";
 import CheckoutSummary from "../../components/checkout/checkoutSummary/CheckoutSummary";
 import { selectUser } from "../../redux/features/auth/authSlice";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 
 const CheckoutPaypal = () => {
   const dispatch = useDispatch();
@@ -52,8 +52,9 @@ const CheckoutPaypal = () => {
 
   return (
     <>
+      <Toaster />
       <PayPalScriptProvider options={initialOptions}>
-        <section style={{ height: "87.8vh" }}>
+        <section style={{ height: "87.6vh" }}>
           <div className={`container ${styles.checkout}`}>
             <h2>Welcome to checkout page </h2>
             <form>

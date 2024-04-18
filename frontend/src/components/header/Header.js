@@ -106,7 +106,7 @@ const Header = () => {
               &nbsp; {/* create a blank space */}
               <AdminOnlyLink>
                 <NavLink to="/admin/home" className={activeLink}>
-                  > Admin
+                  | Admin
                 </NavLink>
               </AdminOnlyLink>
             </li>

@@ -345,11 +345,13 @@ p {
     background: #006494;
   }
 }
+
 .--btn-secondary {
   color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid #006494;
   background: transparent;
 }
+
 .--btn-danger {
   color: #fff;
   background: #28a745;

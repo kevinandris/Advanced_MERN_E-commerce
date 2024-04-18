@@ -80,7 +80,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <section style={{ height: "87.8vh" }}>
+    <section style={{ height: "87.6vh" }}>
       <div className={`container ${styles.product}`}>
         <h2>Product Details</h2>
         <div>
@@ -244,7 +244,7 @@ const ProductDetails = () => {
             numberOfRatings={product?.ratings?.length}
           />
 
-          <div className="--underline"></div>
+          {/* <div className="--underline"></div> */}
 
           <div className={styles.ratings}>
             {product !== null && product?.ratings?.length > 0 && (

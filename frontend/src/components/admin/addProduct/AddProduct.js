@@ -8,7 +8,8 @@ import {
   createProduct,
 } from "../../../redux/features/product/productSlice";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const initialState = {
   name: "",

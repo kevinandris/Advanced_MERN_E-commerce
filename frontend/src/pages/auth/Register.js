@@ -3,7 +3,7 @@ import styles from "./auth.module.scss";
 import loginImg from "../../assets/register.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { validateEmail } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, register } from "../../redux/features/auth/authSlice";
@@ -21,6 +21,7 @@ const Register = () => {
   const { isLoading, isLoggedIn, isSuccess } = useSelector(
     (state) => state.auth
   );
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -70,11 +71,12 @@ const Register = () => {
 
   return (
     <>
+      <Toaster />
       {isLoading && <Loader />}
       <section className={`container ${styles.auth}`}>
         <Card>
           <div className={styles.form}>
-            <h2>Register</h2>
+            <h2>Register Page</h2>
             <form onSubmit={registerUser}>
               <input
                 type="text"
@@ -84,6 +86,7 @@ const Register = () => {
                 onChange={handleInputChange}
                 required
               />
+
               <input
                 type="text"
                 placeholder="Email"
@@ -92,6 +95,7 @@ const Register = () => {
                 onChange={handleInputChange}
                 required
               />
+
               <input
                 type="password"
                 placeholder="Password"
@@ -100,6 +104,7 @@ const Register = () => {
                 onChange={handleInputChange}
                 required
               />
+
               <input
                 type="password"
                 placeholder="Confirm Password"
@@ -108,7 +113,10 @@ const Register = () => {
                 onChange={handleInputChange}
                 required
               />
-              <button type="submit" className="--btn --btn-primary --btn-block">
+              <button
+                type="submit"
+                className={"--btn --btn-primary --btn-block"}
+              >
                 Register
               </button>
             </form>

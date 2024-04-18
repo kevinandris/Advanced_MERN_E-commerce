@@ -8,7 +8,7 @@ import {
   getBrands,
   getCategories,
 } from "../../../redux/features/categoryAndBrand/categoryAndBrandSlice";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const CreateBrand = () => {
   const [name, setName] = useState("");

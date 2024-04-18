@@ -11,7 +11,7 @@ const OrderHistory = () => {
   };
 
   return (
-    <section style={{ height: "87.8vh" }}>
+    <section style={{ height: "87.6vh" }}>
       <div className="container order">
         <h2>Your Order History</h2>
         <p>

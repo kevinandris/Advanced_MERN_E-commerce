@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import { toast } from "react-toastify";
+// import toast, { Toaster } from "react-hot-toast";
 
 const initialState = {
   isLoggedIn: false,
