@@ -125,3 +125,7 @@
    2) Create folders for each page for better structure and be more productive.
    3) Rely on extensions for productivity.
    4) Keep compiling the code to detect errors as soon as possible.
+   5) It is better to create a global css first. For example: deciding what colours, fonts and images 
+      to use for faster and smooth implementation.
+   6) It is better to use SCSS than using CSS. The effectiveness of using SCSS is that 
+      I could identify the class names that belong to its parent class.
