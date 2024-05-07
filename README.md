@@ -52,7 +52,11 @@
    14) My wallet page - Users could deposit and transfer money to other account and view transaction histories
        ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/fa766577-5fce-4533-8901-b437780378b3)
 
-   15) Admin page - has All products, Add product, Orders, Coupon, Category, Brand pages.
+   15) MongoDB - collections inside the database contains brands, categories, coupons, orders, products,
+       transactions, and users.
+       ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/28ed4600-435d-40b6-92f7-d3d8952348af)
+
+   16) Admin page - has All products, Add product, Orders, Coupon, Category, Brand pages.
        For testing purposes ==> Admin username: admin@gmail.com | password: test123
        ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/1b629e5f-0b21-465a-9ad0-99386b4950bf)
        ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/1ad12638-1c70-4126-a23c-6104e2c347db)
@@ -121,3 +125,7 @@
    2) Create folders for each page for better structure and be more productive.
    3) Rely on extensions for productivity.
    4) Keep compiling the code to detect errors as soon as possible.
+   5) It is better to create a global css first. For example: deciding what colours, fonts and images 
+      to use for faster and smooth implementation.
+   6) It is better to use SCSS than using CSS. The effectiveness of using SCSS is that 
+      I could identify the class names that belong to its parent class.
