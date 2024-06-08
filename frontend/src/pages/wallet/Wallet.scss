@@ -1,31 +1,38 @@
-.wallet {
-  .wallet-data {
-    width: 100%;
-    margin-bottom: 2rem;
-  }
+.walletContainer {
+  width: 100%;
+  height: 88.88vh;
 
-  .wallet-info {
-    width: 35%;
-    padding: 1rem;
-    border-color: var(--color-primary);
-  }
+  .wallet {
+    margin-top: 5vh;
 
-  .wallet-promo {
-    width: 65%;
-    padding: 1rem;
-  }
+    .wallet-data {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
 
-  .wallet-text {
-    width: 65%;
-  }
+    .wallet-info {
+      width: 35%;
+      padding: 1rem;
+      border-color: var(--color-primary);
+    }
 
-  .wallet-img {
-    width: 35%;
-    margin-left: 40px;
-  }
+    .wallet-promo {
+      width: 65%;
+      padding: 1rem;
+    }
 
-  .hello {
-    color: #007bff;
-    font-size: 12px;
+    .wallet-text {
+      width: 65%;
+    }
+
+    .wallet-img {
+      width: 35%;
+      margin-left: 40px;
+    }
+
+    .hello {
+      color: #007bff;
+      font-size: 12px;
+    }
   }
 }

@@ -235,95 +235,96 @@ const Wallet = () => {
     <>
       <Toaster />
       {payment === "successful" && <Confetti />}
-      <section
-        className="container"
-        style={{ marginTop: "40px", height: "84.46vh" }}
-      >
-        <PageMenu />
 
-        <div className="wallet">
-          <div className="wallet-data --flex-start --flex-dir-column">
-            <div className="wallet-info --card --mr">
-              <span className="hello">Hello </span>
-              <h4>{user?.name}</h4>
-              <div className="--underline"></div>
-              <span className="--flex-between">
-                <p>Account Balance</p>
-                <img src={mcImg} alt="cc" width={50} />
-              </span>
+      <div className="walletContainer">
+        <section className="container">
+          <PageMenu />
 
-              <h4>${user?.balance.toFixed(2)}</h4>
-              <div className="buttons --flex-center">
-                <button
-                  className="--btn --btn-primary"
-                  onClick={() => setShowDepositModal(true)}
-                >
-                  <AiOutlineDollarCircle size={20} />
-                  &nbsp; Deposit Money
-                </button>
+          <div className="wallet">
+            <div className="wallet-data --flex-start --flex-dir-column">
+              <div className="wallet-info --card --mr">
+                <span className="hello">Hello </span>
+                <h4>{user?.name}</h4>
+                <div className="--underline"></div>
+                <span className="--flex-between">
+                  <p>Account Balance</p>
+                  <img src={mcImg} alt="cc" width={50} />
+                </span>
 
-                <button
-                  className="--btn --btn-danger"
-                  onClick={() => setShowTransferModal(true)}
-                >
-                  <FaRegPaperPlane size={20} /> &nbsp; Transfer
-                </button>
+                <h4>${user?.balance.toFixed(2)}</h4>
+                <div className="buttons --flex-center">
+                  <button
+                    className="--btn --btn-primary"
+                    onClick={() => setShowDepositModal(true)}
+                  >
+                    <AiOutlineDollarCircle size={20} />
+                    &nbsp; Deposit Money
+                  </button>
+
+                  <button
+                    className="--btn --btn-danger"
+                    onClick={() => setShowTransferModal(true)}
+                  >
+                    <FaRegPaperPlane size={20} /> &nbsp; Transfer
+                  </button>
+                </div>
+              </div>
+
+              {/* >> Wallet Promo */}
+              <div className="wallet-promo --flex-between --card">
+                <div className="wallet-text">
+                  <span className="--flex-start">
+                    <AiFillDollarCircle size={25} color="#ff7722" /> &nbsp;
+                    <h4>Keipy Wallet</h4>
+                  </span>
+
+                  <span className="--flex-start">
+                    <h4>Cashback up to 50%</h4> &nbsp;
+                    <AiFillGift size={20} color="#007bff" />
+                  </span>
+                  <span className="hello">
+                    Use your Keipy wallet at checkout and get up to 80%
+                    cashback.
+                  </span>
+                </div>
+
+                <div className="wallet-img">
+                  <img src={paymentImg} width={150} alt="pay" />
+                </div>
               </div>
             </div>
 
-            {/* >> Wallet Promo */}
-            <div className="wallet-promo --flex-between --card">
-              <div className="wallet-text">
-                <span className="--flex-start">
-                  <AiFillDollarCircle size={25} color="#ff7722" /> &nbsp;
-                  <h4>Keipy Wallet</h4>
-                </span>
-
-                <span className="--flex-start">
-                  <h4>Cashback up to 50%</h4> &nbsp;
-                  <AiFillGift size={20} color="#007bff" />
-                </span>
-                <span className="hello">
-                  Use your Keipy wallet at checkout and get up to 80% cashback.
-                </span>
-              </div>
-
-              <div className="wallet-img">
-                <img src={paymentImg} width={150} alt="pay" />
-              </div>
-            </div>
+            {/* >> Wallet Transactions component */}
+            {user !== null && (
+              <WalletTransactions transactions={transactions} user={user} />
+            )}
           </div>
 
-          {/* >> Wallet Transactions component */}
-          {user !== null && (
-            <WalletTransactions transactions={transactions} user={user} />
+          {/* >> Input Form from TransferModal.js*/}
+          {showTransferModal && (
+            <TransferModal
+              isVerified={isVerified}
+              isLoading={isLoading}
+              transferData={transferData}
+              handleInputChange={handleInputChange}
+              handleAccountChange={handleAccountChange}
+              verifyUserAccount={verifyUserAccount}
+              transferMoney={transferMoney}
+              closeModal={closeModal}
+            />
           )}
-        </div>
 
-        {/* >> Input Form from TransferModal.js*/}
-        {showTransferModal && (
-          <TransferModal
-            isVerified={isVerified}
-            isLoading={isLoading}
-            transferData={transferData}
-            handleInputChange={handleInputChange}
-            handleAccountChange={handleAccountChange}
-            verifyUserAccount={verifyUserAccount}
-            transferMoney={transferMoney}
-            closeModal={closeModal}
-          />
-        )}
-
-        {/* >>  DepositModal.js*/}
-        {showDepositModal && (
-          <DepositModal
-            depositData={depositData}
-            closeModal={closeModal}
-            handleDepositChange={handleDepositChange}
-            depositMoney={depositMoney}
-          />
-        )}
-      </section>
+          {/* >>  DepositModal.js*/}
+          {showDepositModal && (
+            <DepositModal
+              depositData={depositData}
+              closeModal={closeModal}
+              handleDepositChange={handleDepositChange}
+              depositMoney={depositMoney}
+            />
+          )}
+        </section>
+      </div>
     </>
   );
 };

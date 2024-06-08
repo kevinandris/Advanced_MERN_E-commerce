@@ -27,8 +27,15 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [files, setFiles] = useState([]);
   const { isLoading, message } = useSelector((state) => state.product);
-  const { name, category, brand, price, quantity, color, regularPrice } =
-    product;
+  const {
+    name,
+    category,
+    brand,
+    price,
+    quantity,
+    color,
+    regularPrice,
+  } = product;
 
   /* >>> (3) This function is passed in to `saveProduct function` */
   const generateSKU = (category) => {

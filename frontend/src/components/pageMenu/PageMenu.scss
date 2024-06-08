@@ -1,19 +1,10 @@
-.pageMenu {
-  // color: #fff;
-  // background: rgb(174, 49, 4);
-
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-
-  // max-width: 1000px;
-}
-
 .home-links {
   display: flex;
   justify-content: center;
   align-items: center;
   list-style: none;
+
+  color: #fff;
 
   & li a {
     color: #fff;

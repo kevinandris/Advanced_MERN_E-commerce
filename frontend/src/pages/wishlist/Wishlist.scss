@@ -1,12 +1,17 @@
-.wishlistButton {
-  width: 88%;
-  height: 3vh;
+.wishlistContainer {
+  width: 100%;
+  height: 88.82vh;
 
-  border-radius: 5px;
-  margin-left: 15px;
+  .wishlistButton {
+    width: 88%;
+    height: 3vh;
 
-  &:hover {
-    background-color: rgb(222, 42, 42);
-    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 15px;
+
+    &:hover {
+      background-color: rgb(222, 42, 42);
+      cursor: pointer;
+    }
   }
 }

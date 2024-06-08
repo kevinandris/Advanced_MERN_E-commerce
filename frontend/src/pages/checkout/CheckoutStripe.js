@@ -60,7 +60,7 @@ const CheckoutStripe = () => {
 
   return (
     <>
-      <section style={{ height: "87.8vh" }}>
+      <section style={{ height: "88.9vh" }}>
         <div className="container">{!clientSecret && <h3>{message}</h3>}</div>
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>

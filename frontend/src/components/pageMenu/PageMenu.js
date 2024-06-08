@@ -5,21 +5,20 @@ import { NavLink } from "react-router-dom";
 
 const PageMenu = () => {
   return (
-    <div className="pageMenu">
-      <nav className="--bg-primary --p --mb">
-        <ul className="home-links">
+    <nav className="--bg-primary --p">
+      <ul className="home-links">
+        <div>
           <li>
             <NavLink to="/profile">Profile</NavLink>
           </li>
+        </div>
+        <div>
           <li>
             <NavLink to="/wallet">My Wallet</NavLink>
           </li>
-          <li>
-            <NavLink to="/wishlist">Wishlist</NavLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
+        </div>
+      </ul>
+    </nav>
   );
 };
 

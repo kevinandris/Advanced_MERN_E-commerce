@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Confetti from "react-confetti";
 import { useDispatch } from "react-redux";
 import { CLEAR_CART } from "../../redux/features/cart/cartSlice";
+import "./Checkout.scss";
 
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const CheckoutSuccess = () => {
   return (
     <>
       <Confetti />
-      <section style={{ height: "87.6vh" }}>
+      <section style={{ height: "88.9vh" }}>
         <div className="container">
           <h2>Checkout Successful</h2>
           <p>Thank you for your purchase</p>

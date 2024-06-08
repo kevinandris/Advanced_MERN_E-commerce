@@ -39,8 +39,8 @@ const Home = () => {
     })
     ?.filter((product, index) => index < 10);
 
-  /* >> Capture the phone products */
-  const phones = products
+  /* >> Capture the discounted books */
+  const books = products
     ?.filter((product) => {
       return product.quantity > 0;
     })
@@ -50,7 +50,7 @@ const Home = () => {
     ?.filter((product, index) => index < 7);
 
   /* >> Show "latest" products and passed into CarouselItem */
-  const latestProducts = latest.map((item) => (
+  const popularBooks = latest.map((item) => (
     <div key={item.id}>
       <CarouselItem
         name={item.name}
@@ -63,8 +63,8 @@ const Home = () => {
     </div>
   ));
 
-  /* >> Show "phone" products and passed into CarouselItem */
-  const phoneProducts = phones.map((item) => (
+  /* >> Show "discounted books" products and passed into CarouselItem */
+  const discountedBooks = books.map((item) => (
     <div key={item.id}>
       <CarouselItem
         name={item.name}
@@ -86,13 +86,13 @@ const Home = () => {
         <HomeInfoBox />
         <div className="container">
           <PageHeading heading={"Popular Books"} btnText={"Shop Now>>>"} />
-          <ProductCarousel products={latestProducts} />
+          <ProductCarousel products={popularBooks} />
         </div>
       </section>
 
       <section className="--bg-white">
         <div className="container">
-          <h3>Popular Categories</h3>
+          <PageHeading heading={"Popular Categories"} />
           <ProductCategory />
         </div>
       </section>
@@ -100,7 +100,7 @@ const Home = () => {
       <section>
         <div className="container">
           <PageHeading heading={"Discounted books"} btnText={"Shop Now>>>"} />
-          <ProductCarousel products={phoneProducts} />
+          <ProductCarousel products={discountedBooks} />
         </div>
       </section>
 

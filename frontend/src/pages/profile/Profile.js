@@ -132,117 +132,121 @@ const Profile = () => {
 
   return (
     <>
-      <section style={{ height: "87.6vh" }}>
-        {isLoading && <Loader />}
-        <div className="container">
-          <PageMenu />
-          <h2>Profile</h2>
+      <div className="profileContainer">
+        <section >
+          {isLoading && <Loader />}
+          <div className="container">
+            <PageMenu />
+            <h2>Profile</h2>
 
-          <div className="--flex-start profile">
-            <Card cardClass={"card"}>
-              {!isLoading && (
-                <>
-                  <div className="profile-photo">
-                    <div>
-                      <img
-                        src={imagePreview === null ? user?.photo : imagePreview}
-                        alt="profile"
-                      />
-                      <h3>Role: {profile.role}</h3>
-                      {imagePreview !== null && (
-                        <div className="--center-all">
-                          <button
-                            className="--btn --btn-secondary"
-                            onClick={savePhoto}
-                          >
-                            <AiOutlineCloudUpload size={18} />
-                            Upload Photo
-                          </button>
-                        </div>
-                      )}
+            <div className="--flex-start profile">
+              <Card cardClass={"card"}>
+                {!isLoading && (
+                  <>
+                    <div className="profile-photo">
+                      <div>
+                        <img
+                          src={
+                            imagePreview === null ? user?.photo : imagePreview
+                          }
+                          alt="profile"
+                        />
+                        <h3>Role: {profile.role}</h3>
+                        {imagePreview !== null && (
+                          <div className="--center-all">
+                            <button
+                              className="--btn --btn-secondary"
+                              onClick={savePhoto}
+                            >
+                              <AiOutlineCloudUpload size={18} />
+                              Upload Photo
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <form onSubmit={saveProfile}>
-                    <p>
-                      <label>Change Photo</label>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        name="image"
-                        onChange={handleImageChange}
-                      />
-                    </p>
-                    <p>
-                      <label>Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={profile?.name}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </p>
-                    <p>
-                      <label>Email</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={profile?.email}
-                        onChange={handleInputChange}
-                        disabled
-                      />
-                    </p>
-                    <p>
-                      <label>Phone</label>
-                      <input
-                        type="text"
-                        name="phone"
-                        value={profile?.phone}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </p>
-                    <p>
-                      <label>Address</label>
-                      <input
-                        type="text"
-                        name="address"
-                        value={profile?.address?.address}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </p>
-                    <p>
-                      <label>State</label>
-                      <input
-                        type="text"
-                        name="state"
-                        value={profile?.address?.state}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </p>
-                    <p>
-                      <label>Country</label>
-                      <input
-                        type="text"
-                        name="country"
-                        value={profile?.address?.country}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </p>
+                    <form onSubmit={saveProfile}>
+                      <p>
+                        <label>Change Photo</label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          name="image"
+                          onChange={handleImageChange}
+                        />
+                      </p>
+                      <p>
+                        <label>Name</label>
+                        <input
+                          type="text"
+                          name="name"
+                          value={profile?.name}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </p>
+                      <p>
+                        <label>Email</label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={profile?.email}
+                          onChange={handleInputChange}
+                          disabled
+                        />
+                      </p>
+                      <p>
+                        <label>Phone</label>
+                        <input
+                          type="text"
+                          name="phone"
+                          value={profile?.phone}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </p>
+                      <p>
+                        <label>Address</label>
+                        <input
+                          type="text"
+                          name="address"
+                          value={profile?.address?.address}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </p>
+                      <p>
+                        <label>State</label>
+                        <input
+                          type="text"
+                          name="state"
+                          value={profile?.address?.state}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </p>
+                      <p>
+                        <label>Country</label>
+                        <input
+                          type="text"
+                          name="country"
+                          value={profile?.address?.country}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </p>
 
-                    <button className="--btn --btn-primary --btn-block">
-                      Update Profile
-                    </button>
-                  </form>
-                </>
-              )}
-            </Card>
+                      <button className="--btn --btn-primary --btn-block">
+                        Update Profile
+                      </button>
+                    </form>
+                  </>
+                )}
+              </Card>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 };

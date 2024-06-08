@@ -11,16 +11,18 @@ const OrderHistory = () => {
   };
 
   return (
-    <section style={{ height: "87.6vh" }}>
-      <div className="container order">
-        <h2>Your Order History</h2>
-        <p>
-          Open an order to leave a <b>Product Review</b>
-        </p>
-        <br />
-        <ListOfOrders openOrderDetails={openOrderDetails} />
-      </div>
-    </section>
+    <div className="orderHistoryContainer">
+      <section>
+        <div className="container order">
+          <h2>Your Order History</h2>
+          <p>
+            Open an order to leave a <b>Product Review</b>
+          </p>
+          <br />
+          <ListOfOrders openOrderDetails={openOrderDetails} />
+        </div>
+      </section>
+    </div>
   );
 };
 

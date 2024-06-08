@@ -61,7 +61,7 @@ const Cart = () => {
   }, [dispatch, cartItems, coupon]);
 
   return (
-    <section>
+    <section style={{ height: "88.82vh" }}>
       <div className={`container ${styles.table}`}>
         <h2>Shopping Cart</h2>
         {cartItems?.length === 0 ? (

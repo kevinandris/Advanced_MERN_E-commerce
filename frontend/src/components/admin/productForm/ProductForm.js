@@ -93,7 +93,7 @@ const ProductForm = ({
           <label> Name</label>
           <input
             type="text"
-            placeholder="E.g. iPhone 11, Samsung S10 + etc."
+            placeholder="E.g. After, The book of Enoch, Power etc."
             name="name"
             value={product?.name}
             onChange={handleInputChange}

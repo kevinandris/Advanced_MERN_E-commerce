@@ -1,5 +1,4 @@
 .table {
-  padding: 5px;
   width: 100%;
   overflow-x: auto;
   max-height: 107.6vh;
@@ -14,9 +13,9 @@
       border-bottom: 2px solid var(--light-blue);
     }
 
-    th {
-      border: 1px solid #eee;
-    }
+    // th {
+    //   border: 1px solid #eee;
+    // }
 
     th,
     td {

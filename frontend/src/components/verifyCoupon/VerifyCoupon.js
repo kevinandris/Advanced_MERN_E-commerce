@@ -16,7 +16,7 @@ export const CartDiscount = () => {
       {coupon !== null && (
         <Card cardClass={"coupon-msg"}>
           <p className="--center-all">
-            Initial Total: ${initialCartTotalAmount} | Coupon: ${coupon?.name} |
+            Initial Total: ${initialCartTotalAmount} | Coupon: {coupon?.name} |
             Discount: {coupon?.discount}%
           </p>
         </Card>
@@ -30,9 +30,9 @@ const VerifyCoupon = () => {
   const [couponName, setCouponName] = useState("");
   const [showForm, setShowForm] = useState(false);
   const { coupon } = useSelector((state) => state.coupon);
-  const { cartTotalAmount, initialCartTotalAmount } = useSelector(
-    (state) => state.cart
-  );
+  // const { cartTotalAmount, initialCartTotalAmount } = useSelector(
+  //   (state) => state.cart
+  // );
 
   const removeCoupon = () => {
     dispatch(REMOVE_COUPON());

@@ -55,7 +55,7 @@ const CheckoutWallet = () => {
   return (
     <>
       <Toaster />
-      <section style={{ height: "87.8vh" }}>
+      <section style={{ height: "88.9vh" }}>
         <div className={`container ${styles.checkout}`}>
           <h2>Welcome to checkout page </h2>
           <form>

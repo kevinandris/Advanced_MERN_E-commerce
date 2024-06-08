@@ -103,10 +103,15 @@ const Header = () => {
               <NavLink to="/shop" className={activeLink}>
                 Books
               </NavLink>
-              &nbsp; {/* create a blank space */}
+              &nbsp;&nbsp; &nbsp; &nbsp;
+              <NavLink to="/wishlist" className={activeLink}>
+                Wishlist
+                {/* create a blank space */}
+              </NavLink>
+              &nbsp; &nbsp; &nbsp;
               <AdminOnlyLink>
                 <NavLink to="/admin/home" className={activeLink}>
-                  | Admin
+                  Admin
                 </NavLink>
               </AdminOnlyLink>
             </li>
