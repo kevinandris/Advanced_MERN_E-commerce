@@ -45,6 +45,9 @@ const VerifyCoupon = () => {
   return (
     <>
       <CartDiscount />
+      <p>
+        Type <b>'BIGSALE'</b> for a discount
+      </p>
       <div className="--flex-between">
         <p>Have a coupon?</p>
         {coupon === null ? (

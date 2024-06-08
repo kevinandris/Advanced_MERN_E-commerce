@@ -37,7 +37,7 @@ const CarouselItem = ({
           {` $${price}`}
         </p>
         <h4>{shortenText(name, 18)}</h4>
-        <p className="--mb">{shortenText(desc, 26)}</p>
+        <p className="--mb">{shortenText(desc, 24)}</p>
       </Link>
       <button
         className="--btn --btn-primary --btn-block"
