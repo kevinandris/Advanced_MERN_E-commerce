@@ -21,7 +21,7 @@ const CheckoutPaypal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartTotalAmount = useSelector(selectCartTotalAmount);
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
   const cartItems = useSelector(selectCartItems);
   const shippingAddress = useSelector(selectShippingAddress);
   const paymentMethod = useSelector(selectPaymentMethod);

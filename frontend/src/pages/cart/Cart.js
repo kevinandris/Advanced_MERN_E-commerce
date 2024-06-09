@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./Cart.module.scss";
 import "./Radio.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ADD_TO_CART,
@@ -21,7 +21,7 @@ import VerifyCoupon from "../../components/verifyCoupon/VerifyCoupon";
 import PaymentOptions from "../../components/paymentOptions/PaymentOptions";
 
 const Cart = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);

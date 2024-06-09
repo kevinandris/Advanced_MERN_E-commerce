@@ -8,10 +8,10 @@ import { selectCartTotalAmount } from "../../redux/features/cart/cartSlice";
 import { selectUser } from "../../redux/features/auth/authSlice";
 
 const CheckoutFlutterwave = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const cartTotalAmount = useSelector(selectCartTotalAmount);
-  const user = useSelector(selectUser);
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const cartTotalAmount = useSelector(selectCartTotalAmount);
+  // const user = useSelector(selectUser);
 
   function makePayment() {
     // eslint disable-next-line no-undef

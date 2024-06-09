@@ -11,7 +11,7 @@ import "./Wishlist.scss";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
-  const [grid, setGrid] = useState(true);
+  const [grid] = useState(true);
   const { wishlist, isLoading } = useSelector((state) => state.auth);
 
   const removeWishlist = async (product) => {
