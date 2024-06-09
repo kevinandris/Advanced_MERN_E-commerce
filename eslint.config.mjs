@@ -8,3 +8,4 @@ export default [
   pluginJs.configs.recommended,
   pluginReactConfig,
 ];
+c

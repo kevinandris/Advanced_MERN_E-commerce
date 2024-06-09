@@ -80,7 +80,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <section style={{ height: "87.6vh" }}>
+    <section style={{ height: "88.82vh" }}>
       <div className={`container ${styles.product}`}>
         <h2>Product Details</h2>
         <div>
