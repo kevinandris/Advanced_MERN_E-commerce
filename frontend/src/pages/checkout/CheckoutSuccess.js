@@ -15,7 +15,7 @@ const CheckoutSuccess = () => {
   return (
     <>
       <Confetti />
-      <section style={{ height: "88.9vh" }}>
+      <section style={{ height: "88.82vh" }}>
         <div className="container">
           <h2>Checkout Successful</h2>
           <p>Thank you for your purchase</p>

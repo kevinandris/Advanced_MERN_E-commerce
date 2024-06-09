@@ -54,7 +54,7 @@ const CheckoutPaypal = () => {
     <>
       <Toaster />
       <PayPalScriptProvider options={initialOptions}>
-        <section style={{ height: "88.9vh" }}>
+        <section style={{ height: "88.82vh" }}>
           <div className={`container ${styles.checkout}`}>
             <h2>Welcome to checkout page </h2>
             <form>
