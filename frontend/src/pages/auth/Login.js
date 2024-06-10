@@ -11,9 +11,10 @@ import { RESET_AUTH, login } from "../../redux/features/auth/authSlice";
 import { getCartDB, saveCartDB } from "../../redux/features/cart/cartSlice";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
-const Login = ({ onShowPassword, onTogglePassword }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { isLoading, isLoggedIn, isSuccess } = useSelector(
     (state) => state.auth
   );
@@ -21,6 +22,10 @@ const Login = ({ onShowPassword, onTogglePassword }) => {
   const navigate = useNavigate();
   const [urlParams] = useSearchParams();
   const redirect = urlParams.get("redirect");
+
+  const onShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const loginUser = async (e) => {
     e.preventDefault(); /* preventing a reload every-time a user submits the their details */
@@ -83,16 +88,16 @@ const Login = ({ onShowPassword, onTogglePassword }) => {
 
               <div className={styles.password}>
                 <input
-                  type={onShowPassword ? "text" : "password"}
+                  type={showPassword ? "text" : "password"}
                   placeholder="Your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <span className={styles.icon} onClick={onTogglePassword}>
-                  {onShowPassword ? (
-                    <AiOutlineEyeInvisible size={20} color="darkblue" />
-                  ) : (
+                <span className={styles.icon} onClick={onShowPassword}>
+                  {showPassword ? (
                     <AiOutlineEye size={20} color="darkblue" />
+                  ) : (
+                    <AiOutlineEyeInvisible size={20} color="darkblue" />
                   )}
                 </span>
               </div>

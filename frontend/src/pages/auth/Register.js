@@ -23,12 +23,18 @@ const Register = () => {
     (state) => state.auth
   );
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const passwordToggler = () => {
+    setShowPassword(!showPassword);
   };
 
   const registerUser = async (e) => {
@@ -85,7 +91,6 @@ const Register = () => {
                 name="name"
                 value={name}
                 onChange={handleInputChange}
-                required
               />
 
               <input
@@ -94,25 +99,31 @@ const Register = () => {
                 name="email"
                 value={email}
                 onChange={handleInputChange}
-                required
               />
 
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={handleInputChange}
-                required
-              />
+              <div className={styles.password}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={handleInputChange}
+                />
+                <span className={styles.icon} onClick={passwordToggler}>
+                  {showPassword ? (
+                    <AiOutlineEye size={20} color="darkblue" />
+                  ) : (
+                    <AiOutlineEyeInvisible size={20} color="darkblue" />
+                  )}
+                </span>
+              </div>
 
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Confirm Password"
                 name="cPassword"
                 value={cPassword}
                 onChange={handleInputChange}
-                required
               />
               <button
                 type="submit"
