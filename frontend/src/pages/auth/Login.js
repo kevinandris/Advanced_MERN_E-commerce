@@ -9,8 +9,9 @@ import Loader from "../../components/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, login } from "../../redux/features/auth/authSlice";
 import { getCartDB, saveCartDB } from "../../redux/features/cart/cartSlice";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
-const Login = () => {
+const Login = ({ onShowPassword, onTogglePassword }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isLoading, isLoggedIn, isSuccess } = useSelector(
@@ -78,16 +79,23 @@ const Login = () => {
                 placeholder="Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
 
-              <input
-                type="password"
-                placeholder="Your Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <div className={styles.password}>
+                <input
+                  type={onShowPassword ? "text" : "password"}
+                  placeholder="Your Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span className={styles.icon} onClick={onTogglePassword}>
+                  {onShowPassword ? (
+                    <AiOutlineEyeInvisible size={20} color="darkblue" />
+                  ) : (
+                    <AiOutlineEye size={20} color="darkblue" />
+                  )}
+                </span>
+              </div>
 
               <button type="submit" className="--btn --btn-primary --btn-block">
                 Login

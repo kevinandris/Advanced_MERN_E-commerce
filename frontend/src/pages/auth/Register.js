@@ -8,6 +8,7 @@ import { validateEmail } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, register } from "../../redux/features/auth/authSlice";
 import Loader from "../../components/loader/Loader";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const initialState = {
   name: "",
