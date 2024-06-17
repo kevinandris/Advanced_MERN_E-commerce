@@ -1,29 +1,27 @@
 import React from "react";
 import "./FooterLinks.scss";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedin,
-  FaLinkedinIn,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa";
-import logoImg from "../../assets/shopito_logo.png";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const FooterLinks = () => {
+  // ! To get the current year
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <>
       {/*  // ! section 1 */}
       <section className="contact-section">
         <div className="container contact">
           <div className="contact-icon">
-            <FaLinkedin className="i" />
-            <FaFacebookF className="i" />
-            <FaInstagram className="i" />
-            <FaYoutube className="i" />
+            <Link to="https://www.linkedin.com/in/kevin-pudihang-138130141/">
+              <FaLinkedin className="i" />
+            </Link>
+            <Link to="https://github.com/kevinandris">
+              <FaGithub className="i" />
+            </Link>
           </div>
           <h2>Let's Connect?</h2>
-          <a href="#home" className="btn btn-dark">
+          <a href={"mailto:kevinandris27@gmail.com"} className="btn btn-dark">
             Make an enquiry!
           </a>
         </div>
@@ -38,75 +36,34 @@ const FooterLinks = () => {
               Kei<span>py</span>
             </h3>
           </div>
-
+          <div className="footer-menu">
+            <p className="link-heading">About us</p>
+            <ul className="nav-ul footer-links">
+              <li>
+                <a href="#home">Blog</a>
+              </li>
+              <li>
+                <a href="#home">Social Media</a>
+              </li>
+              <li>
+                <a href="#home">Program</a>
+              </li>
+              <li>
+                <a href="#home">FAQ</a>
+              </li>
+            </ul>
+          </div>
           <div className="footer-menu">
             <p className="link-heading">Features</p>
             <ul className="nav-ul footer-links">
               <li>
-                <a href="#home">Link Shortening</a>
+                <a href="#home">Popular books</a>
               </li>
               <li>
-                <a href="#home">Branded Links</a>
+                <a href="#home">Popular Categories</a>
               </li>
               <li>
-                <a href="#home">Analytics</a>
-              </li>
-              <li>
-                <a href="#home">Blog</a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="footer-menu">
-            <p className="link-heading">Resources</p>
-            <ul className="nav-ul footer-links">
-              <li>
-                <a href="#home">Link Shortening</a>
-              </li>
-              <li>
-                <a href="#home">Branded Links</a>
-              </li>
-              <li>
-                <a href="#home">Analytics</a>
-              </li>
-              <li>
-                <a href="#home">Blog</a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="footer-menu">
-            <p className="link-heading">Company</p>
-            <ul className="nav-ul footer-links">
-              <li>
-                <a href="#home">Link Shortening</a>
-              </li>
-              <li>
-                <a href="#home">Branded Links</a>
-              </li>
-              <li>
-                <a href="#home">Analytics</a>
-              </li>
-              <li>
-                <a href="#home">Blog</a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="footer-menu">
-            <p className="link-heading">Partners</p>
-            <ul className="nav-ul footer-links">
-              <li>
-                <a href="#home">Link Shortening</a>
-              </li>
-              <li>
-                <a href="#home">Branded Links</a>
-              </li>
-              <li>
-                <a href="#home">Analytics</a>
-              </li>
-              <li>
-                <a href="#home">Blog</a>
+                <a href="#home">Discounted books</a>
               </li>
             </ul>
           </div>

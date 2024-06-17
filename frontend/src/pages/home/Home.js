@@ -8,6 +8,7 @@ import ProductCategory from "./ProductCategory";
 import FooterLinks from "../../components/footer/FooterLinks";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/features/product/productSlice";
+import Footer from "../../components/footer/Footer";
 
 const PageHeading = ({ heading, btnText }) => {
   return (
@@ -105,6 +106,7 @@ const Home = () => {
       </section>
 
       <FooterLinks />
+      <Footer />
     </>
   );
 };

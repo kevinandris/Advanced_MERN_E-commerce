@@ -46,7 +46,7 @@ const VerifyCoupon = () => {
     <>
       <CartDiscount />
       <p>
-        Type <b>'BIGSALE'</b> for a discount
+        Type <b>'BIGSALE'</b> for a discount (after logging in)
       </p>
       <div className="--flex-between">
         <p>Have a coupon?</p>

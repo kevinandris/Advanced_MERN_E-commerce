@@ -89,7 +89,7 @@ function App() {
           {/* >>> Not Found page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </>
   );
