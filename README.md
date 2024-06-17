@@ -8,7 +8,7 @@
 4.  Payment system is powered with Stripe, PayPal and Wallet.
 5.  Admin Page is provided to do the CRUD operation which is to create, Read, Update
     and Delete a specific book.
-6.  for accessing admin pages:
+6.  For accessing admin pages:
     Admin username: admin@gmail.com
     Admin password: user123
 7.  Available coupon name for discounts:
@@ -128,8 +128,10 @@
 
 # Constraints:
 
-1.  Some pictures are not in the same shape, which makes the book photos
+1. Some pictures are not in the same shape, which makes the book photos
     look smaller or bigger on the website.
+2. The footer is not stable staying at the same place, it would be moving up again
+   after not running the app for quite long period of time
 
 # Skills Required for Self-Improvement:
 
