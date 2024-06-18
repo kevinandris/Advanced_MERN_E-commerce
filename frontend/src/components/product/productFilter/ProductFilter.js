@@ -78,6 +78,7 @@ const ProductFilter = () => {
           );
         })}
       </div>
+
       {/* >>> BRANDS */}
       <h4>Books</h4>
       <div className={styles.brand}>
@@ -91,6 +92,7 @@ const ProductFilter = () => {
           })}
         </select>
       </div>
+
       {/* >>> PRICE SLIDER */}
       <h4>Price</h4>
       <div className={styles.price}>

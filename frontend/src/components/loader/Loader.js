@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Loader.module.scss";
 import ReactDOM from "react-dom";
-import loaderImg from "../../assets/loader.gif";
+import loaderImg from "../../assets/Book.gif";
 import spinnerImg from "../../assets/spinner.jpg";
 
 const Loader = () => {
