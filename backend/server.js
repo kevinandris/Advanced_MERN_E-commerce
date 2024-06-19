@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://keipy.vercel.app"],
+    origin: ["http://localhost:3000", "https://keipystore.com"],
     credentials: true,
   })
 );
