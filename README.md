@@ -8,9 +8,9 @@
 4.  Payment system is powered with Stripe, PayPal and Wallet.
 5.  Admin Page is provided to do the CRUD operation which is to create, Read, Update
     and Delete a specific book.
-6.  For accessing admin pages:
+6.  For accessing admin pages: (text or email me for accessing admin page)
     Admin username: admin@gmail.com
-    Admin password: user123
+    Admin password: use****
 7.  Available coupon name for discounts:
     BIGSALE
 
