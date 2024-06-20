@@ -17,7 +17,7 @@
 # Project Images:
 
 1.  Main/landing Page
-    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/4a83d725-d650-4057-b410-37074aa322bb)
+    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/75a9ff4f-50bb-4d32-a945-c14aca55fdf1)
     ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/956e2030-b262-4699-abfe-0866d7b1563b)
 
 2.  Login Page
