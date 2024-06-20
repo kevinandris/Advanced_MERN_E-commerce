@@ -1,29 +1,29 @@
 import React from "react";
-import { FaShippingFast } from "react-icons/fa";
-import { BsFillCreditCardFill } from "react-icons/bs";
-import { GiBookshelf } from "react-icons/gi";
-import { BsClockHistory } from "react-icons/bs";
+import { LuBookOpenCheck } from "react-icons/lu";
+import { LiaShippingFastSolid } from "react-icons/lia";
+import { ImCreditCard } from "react-icons/im";
+import { GiSandsOfTime } from "react-icons/gi";
 
 const data = [
   {
-    icon: <GiBookshelf size={30} color="#fa82ea" />,
+    icon: <LuBookOpenCheck size={30} color="#e13c19" />,
     heading: "Top Books",
-    text: "We sell books based on popularity around the world.",
+    text: "Our books are available based on popularity across the world",
   },
   {
-    icon: <FaShippingFast size={30} color="#8cb4f5" />,
+    icon: <LiaShippingFastSolid size={30} color="#a81ae7" />,
     heading: "Free Shipping",
-    text: "We offer free shipping on special products",
+    text: "we charge zero money for the shipping",
   },
   {
-    icon: <BsFillCreditCardFill size={30} color="#f7d272" />,
+    icon: <ImCreditCard size={30} color="#1fd1b9" />,
     heading: "Secure Payment",
-    text: "Make secure payment for your product.",
+    text: "No frauds upon our payment processes, 100% secure",
   },
   {
-    icon: <BsClockHistory size={30} color="#82fa9e" />,
+    icon: <GiSandsOfTime size={30} color="#de0ed1" />,
     heading: "24/7 Support",
-    text: "Get access to support from our export support team.",
+    text: "Our team is always ready for you for help",
   },
 ];
 
