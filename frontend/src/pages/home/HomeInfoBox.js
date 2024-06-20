@@ -1,11 +1,12 @@
 import React from "react";
 import { FaShippingFast } from "react-icons/fa";
-import { BsBook, BsFillCreditCardFill } from "react-icons/bs";
+import { BsFillCreditCardFill } from "react-icons/bs";
+import { GiBookshelf } from "react-icons/gi";
 import { BsClockHistory } from "react-icons/bs";
 
 const data = [
   {
-    icon: <BsBook size={30} color="#fa82ea" />,
+    icon: <GiBookshelf size={30} color="#fa82ea" />,
     heading: "Top Books",
     text: "We sell books based on popularity around the world.",
   },

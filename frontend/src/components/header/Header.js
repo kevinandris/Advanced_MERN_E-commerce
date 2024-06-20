@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import { BsCart4 } from "react-icons/bs";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,7 +70,7 @@ const Header = () => {
     <span className={styles.cart}>
       <Link to={"/cart"}>
         Cart
-        <FaShoppingCart size={20} />
+        <BsCart4 size={20} />
         <p>{cartTotalQuantity}</p>
       </Link>
     </span>
