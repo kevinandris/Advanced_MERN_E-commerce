@@ -18,7 +18,7 @@
 
 1.  Main/landing Page
     ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/4a83d725-d650-4057-b410-37074aa322bb)
-    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/579d255b-6bd2-4c44-a584-ecf356d5c0d6)
+    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/956e2030-b262-4699-abfe-0866d7b1563b)
 
 2.  Login Page
     ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/0a72f11d-6c9d-4f1a-b802-e14bc4e6e79e)
