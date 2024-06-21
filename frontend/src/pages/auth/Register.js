@@ -9,6 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, register } from "../../redux/features/auth/authSlice";
 import Loader from "../../components/loader/Loader";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { MdPermIdentity } from "react-icons/md";
+import { TfiEmail } from "react-icons/tfi";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { LuRepeat1 } from "react-icons/lu";
 
 const initialState = {
   name: "",
@@ -85,27 +89,39 @@ const Register = () => {
           <div className={styles.form}>
             <h2>Register Page</h2>
             <form onSubmit={registerUser}>
-              <input
-                type="text"
-                placeholder="Name"
-                name="name"
-                value={name}
-                onChange={handleInputChange}
-              />
-
-              <input
-                type="text"
-                placeholder="Email"
-                name="email"
-                value={email}
-                onChange={handleInputChange}
-              />
+              <div className={styles.name}>
+                <MdPermIdentity size={22} className={styles.MdPermIdentity} />
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  maxLength="29"
+                  value={name}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className={styles.email}>
+                <TfiEmail size={20} className={styles.TfiEmail} />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  maxLength="36"
+                  value={email}
+                  onChange={handleInputChange}
+                />
+              </div>
 
               <div className={styles.password}>
+                <RiLockPasswordLine
+                  size={24}
+                  className={styles.RiLockPasswordLine}
+                />
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   name="password"
+                  maxLength="29"
                   value={password}
                   onChange={handleInputChange}
                 />
@@ -116,15 +132,18 @@ const Register = () => {
                     <AiOutlineEyeInvisible size={20} color="darkblue" />
                   )}
                 </span>
+
+                <LuRepeat1 size={22} className={styles.LuRepeat1} />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Confirm Password"
+                  name="cPassword"
+                  maxLength="29"
+                  value={cPassword}
+                  onChange={handleInputChange}
+                />
               </div>
 
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Confirm Password"
-                name="cPassword"
-                value={cPassword}
-                onChange={handleInputChange}
-              />
               <button
                 type="submit"
                 className={"--btn --btn-primary --btn-block"}

@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RESET_AUTH, login } from "../../redux/features/auth/authSlice";
 import { getCartDB, saveCartDB } from "../../redux/features/cart/cartSlice";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { TfiEmail } from "react-icons/tfi";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -79,18 +81,29 @@ const Login = () => {
           <div className={styles.form}>
             <h2>Login Page</h2>
             <form onSubmit={loginUser}>
-              <input
-                type="text"
-                placeholder="Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              {/* <label className={styles.label}>Your email</label> */}
+
+              <div className={styles.email}>
+                <TfiEmail size={20} className={styles.TfiEmail} />
+                <input
+                  type="text"
+                  placeholder="Your Email"
+                  maxLength="36"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
 
               <div className={styles.password}>
+                <RiLockPasswordLine
+                  size={24}
+                  className={styles.RiLockPasswordLine}
+                />
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Your Password"
                   value={password}
+                  maxLength="29"
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <span className={styles.icon} onClick={onShowPassword}>

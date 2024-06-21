@@ -25,6 +25,27 @@
       color: #ff0000;
     }
 
+    .email,
+    .name,
+    .confirmPassword {
+      display: flex;
+      margin-bottom: -10px;
+    }
+
+    .TfiEmail,
+    .MdPermIdentity {
+      position: absolute;
+      margin: 23px 10px;
+      color: #777;
+    }
+
+    .RiLockPasswordLine,
+    .LuRepeat1 {
+      position: absolute;
+      margin: 11px 8px;
+      color: #777;
+    }
+
     form {
       input[type="text"],
       input[type="email"],
@@ -38,6 +59,11 @@
         border: 1px solid #777;
         border-radius: 3px;
         outline: none;
+        text-indent: 30px;
+
+        &:focus {
+          border: 1px solid rgb(23, 185, 197);
+        }
       }
 
       .links {
@@ -51,6 +77,7 @@
         margin: 1rem;
       }
     }
+
     .register {
       display: flex;
       justify-content: center;
