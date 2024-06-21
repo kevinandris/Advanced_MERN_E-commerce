@@ -37,6 +37,10 @@
       border: 1px solid #777;
       border-radius: 3px;
       outline: none;
+
+      &:focus {
+        border: 1px solid rgb(23, 185, 197);
+      }
     }
   }
 }

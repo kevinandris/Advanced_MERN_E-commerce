@@ -143,7 +143,7 @@ const Cart = () => {
                 </button>
                 <div className={styles.checkout}>
                   <div>
-                    <Link to={"/shop"}>&larr; Back to shopping page</Link>
+                    <Link to={"/shop"}>&larr; Back to books page</Link>
                   </div>
                   <br />
                   <Card cardClass={styles.card}>

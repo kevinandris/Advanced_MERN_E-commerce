@@ -3,9 +3,7 @@ import styles from "./CheckoutDetails.module.scss";
 import Card from "../../components/card/Card";
 import { CountryDropdown } from "react-country-region-selector";
 import {
-  SAVE_BILLING_ADDRESS,
   SAVE_SHIPPING_ADDRESS,
-  selectBillingAddress,
   selectPaymentMethod,
   selectShippingAddress,
 } from "../../redux/features/checkout/checkoutSlice";
@@ -33,13 +31,8 @@ const CheckoutDetails = () => {
     ...initialAddressState,
   });
 
-  // const [billingAddress, setBillingAddress] = useState({
-  //   ...initialAddressState,
-  // });
-
   const paymentMethod = useSelector(selectPaymentMethod);
   const shipAddressRedux = useSelector(selectShippingAddress);
-  const billAddressRedux = useSelector(selectBillingAddress);
 
   /* >> Monitoring the user's typing for shipping address form*/
   const handleShipping = (e) => {
@@ -50,23 +43,11 @@ const CheckoutDetails = () => {
     });
   };
 
-  /* >> Monitoring the user's typing for billing address form*/
-  // const handleBilling = (e) => {
-  //   const { name, value } = e.target;
-  //   setBillingAddress({
-  //     ...billingAddress,
-  //     [name]: value,
-  //   });
-  // };
-
   /* >> To check inside the redux if there is any object saved that has properties that are greater than 0 */
   useEffect(() => {
     if (Object.keys(shipAddressRedux).length > 0) {
       setShippingAddress({ ...shipAddressRedux });
     }
-    // if (Object.keys(billAddressRedux).length > 0) {
-    //   setBillingAddress({ ...billAddressRedux });
-    // }
   }, [shipAddressRedux]);
 
   /* >> send and store the user details to redux */
@@ -74,7 +55,6 @@ const CheckoutDetails = () => {
     e.preventDefault();
 
     dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
-    // dispatch(SAVE_BILLING_ADDRESS(billingAddress));
 
     if (paymentMethod === "stripe") {
       navigate("/checkout-stripe");
@@ -188,98 +168,6 @@ const CheckoutDetails = () => {
                 Proceed to Checkout
               </button>
             </Card>
-
-            {/* >> Billing */}
-            {/* <Card cardClass={styles.card}>
-              <h3>Billing Address</h3>
-
-              <label>Recipient Name</label>
-              <input
-                type="text"
-                placeholder="Name"
-                required
-                name="name"
-                value={billingAddress.name}
-                onChange={(e) => handleBilling(e)}
-              />
-
-              <label>Address line 1</label>
-              <input
-                type="text"
-                placeholder="Your main address"
-                required
-                name="line1"
-                value={billingAddress.line1}
-                onChange={(e) => handleBilling(e)}
-              />
-
-              <label>Address line 2</label>
-              <input
-                type="text"
-                placeholder="Your backup address"
-                required
-                name="line2"
-                value={billingAddress.line2}
-                onChange={(e) => handleBilling(e)}
-              />
-
-              <label>City</label>
-              <input
-                type="text"
-                placeholder="Your current city"
-                required
-                name="city"
-                value={billingAddress.city}
-                onChange={(e) => handleBilling(e)}
-              />
-
-              <label>State</label>
-              <input
-                type="text"
-                placeholder="Your state"
-                required
-                name="state"
-                value={billingAddress.state}
-                onChange={(e) => handleBilling(e)}
-              />
-
-              <label>Postal code</label>
-              <input
-                type="text"
-                placeholder="Your Postal code"
-                required
-                name="postal_code"
-                value={billingAddress.postal_code}
-                onChange={(e) => handleBilling(e)}
-              />
-
-              <label>Country</label>
-              <CountryDropdown
-                className={styles.select}
-                valueType="short"
-                value={billingAddress.country}
-                onChange={(val) => {
-                  handleBilling({
-                    target: {
-                      name: "country",
-                      value: val,
-                    },
-                  });
-                }}
-              />
-
-              <label>Phone</label>
-              <input
-                type="text"
-                placeholder="Your Phone number"
-                required
-                name="phone"
-                value={billingAddress.phone}
-                onChange={(e) => handleBilling(e)}
-              />
-
-             
-            </Card> */}
           </div>
 
           <div>
