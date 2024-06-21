@@ -72,6 +72,10 @@
     ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/66398381-d3a9-4f14-bac7-43fce334b790)
     ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/2f241bbe-8dce-487c-8b4d-7014689b49b9)
 
+16 MongoDB user's password is encrypyed
+![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/c3ee9fc2-25c8-4d8f-bb1b-04ae3520be23)
+
+
 # To Run the Project:
 
 1.  Client folder ==> Type "npm start" on IDE terminal.
