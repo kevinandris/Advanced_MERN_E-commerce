@@ -10,7 +10,7 @@ const CheckoutSuccess = () => {
 
   useEffect(() => {
     dispatch(CLEAR_CART());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

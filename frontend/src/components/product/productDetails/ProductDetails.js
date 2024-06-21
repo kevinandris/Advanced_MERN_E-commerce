@@ -206,7 +206,7 @@ const ProductDetails = () => {
                     <button
                       className="--btn --btn-red"
                       onClick={() =>
-                        toast.error("Sorry, Product is out of stock")
+                        toast.error("Sorry, the book is out of stock")
                       }
                     >
                       Out of Stock

@@ -26,7 +26,7 @@ export default function CheckoutForm() {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const cartTotalAmount = useSelector(selectCartTotalAmount);

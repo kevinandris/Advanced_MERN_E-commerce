@@ -33,9 +33,9 @@ const CheckoutDetails = () => {
     ...initialAddressState,
   });
 
-  const [billingAddress, setBillingAddress] = useState({
-    ...initialAddressState,
-  });
+  // const [billingAddress, setBillingAddress] = useState({
+  //   ...initialAddressState,
+  // });
 
   const paymentMethod = useSelector(selectPaymentMethod);
   const shipAddressRedux = useSelector(selectShippingAddress);
@@ -51,30 +51,30 @@ const CheckoutDetails = () => {
   };
 
   /* >> Monitoring the user's typing for billing address form*/
-  const handleBilling = (e) => {
-    const { name, value } = e.target;
-    setBillingAddress({
-      ...billingAddress,
-      [name]: value,
-    });
-  };
+  // const handleBilling = (e) => {
+  //   const { name, value } = e.target;
+  //   setBillingAddress({
+  //     ...billingAddress,
+  //     [name]: value,
+  //   });
+  // };
 
   /* >> To check inside the redux if there is any object saved that has properties that are greater than 0 */
   useEffect(() => {
     if (Object.keys(shipAddressRedux).length > 0) {
       setShippingAddress({ ...shipAddressRedux });
     }
-    if (Object.keys(billAddressRedux).length > 0) {
-      setBillingAddress({ ...billAddressRedux });
-    }
-  }, [shipAddressRedux, billAddressRedux]);
+    // if (Object.keys(billAddressRedux).length > 0) {
+    //   setBillingAddress({ ...billAddressRedux });
+    // }
+  }, [shipAddressRedux]);
 
   /* >> send and store the user details to redux */
   const handleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress));
-    dispatch(SAVE_BILLING_ADDRESS(billingAddress));
+    // dispatch(SAVE_BILLING_ADDRESS(billingAddress));
 
     if (paymentMethod === "stripe") {
       navigate("/checkout-stripe");
@@ -183,10 +183,14 @@ const CheckoutDetails = () => {
                 value={shippingAddress.phone}
                 onChange={(e) => handleShipping(e)}
               />
+
+              <button type="submit" className="--btn --btn-primary">
+                Proceed to Checkout
+              </button>
             </Card>
 
             {/* >> Billing */}
-            <Card cardClass={styles.card}>
+            {/* <Card cardClass={styles.card}>
               <h3>Billing Address</h3>
 
               <label>Recipient Name</label>
@@ -274,10 +278,8 @@ const CheckoutDetails = () => {
                 onChange={(e) => handleBilling(e)}
               />
 
-              <button type="submit" className="--btn --btn-primary">
-                Proceed to Checkout
-              </button>
-            </Card>
+             
+            </Card> */}
           </div>
 
           <div>

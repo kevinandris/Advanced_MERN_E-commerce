@@ -27,7 +27,7 @@ const ReviewProduct = () => {
 
   useEffect(() => {
     dispatch(getProduct(id));
-  }, [dispatch]);
+  }, [dispatch], id);
 
   console.log(product);
 

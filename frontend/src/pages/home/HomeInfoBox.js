@@ -11,9 +11,9 @@ const data = [
     text: "Our books are available based on popularity across the world",
   },
   {
-    icon: <LiaShippingFastSolid size={30} color="#a81ae7" />,
-    heading: "Free Shipping",
-    text: "we charge zero money for the shipping",
+    icon: <GiSandsOfTime size={30} color="#de0ed1" />,
+    heading: "24/7 Support",
+    text: "Our team is always ready for you for help",
   },
   {
     icon: <ImCreditCard size={30} color="#1fd1b9" />,
@@ -21,9 +21,9 @@ const data = [
     text: "No frauds upon our payment processes, 100% secure",
   },
   {
-    icon: <GiSandsOfTime size={30} color="#de0ed1" />,
-    heading: "24/7 Support",
-    text: "Our team is always ready for you for help",
+    icon: <LiaShippingFastSolid size={30} color="#a81ae7" />,
+    heading: "Free Shipping",
+    text: "We charge zero money for the shipping",
   },
 ];
 

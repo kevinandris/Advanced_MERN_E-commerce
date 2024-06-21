@@ -30,7 +30,7 @@ const ProductForm = ({
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getBrands());
-  }, [dispatch]);
+  }, []);
 
   /*  >> (4) Filter brands based on selected category */
   const filterBrands = (selectedCategory) => {

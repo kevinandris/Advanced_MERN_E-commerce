@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .infobox {
@@ -20,8 +20,12 @@
   .text {
     h4 {
       //   color: #aaa;
-      font-size: 1.8rem;
-      font-weight: 400;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 1.3rem;
     }
   }
 }

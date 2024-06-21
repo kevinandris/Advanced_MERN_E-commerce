@@ -1,34 +1,36 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import App from "../src/App";
 
-test("renders header component", () => {
-  render(<App />);
-  const headerElement = screen.getByTestId("header");
-  expect(headerElement).toBeInTheDocument();
-});
+describe("renders app component", () => {
+  it("renders header component", () => {
+    render(<App />);
+    const headerElement = screen.getByTestId("header");
+    expect(headerElement).toBeInTheDocument();
+  });
 
-test("renders footer component", () => {
-  render(<App />);
-  const footerElement = screen.getByTestId("footer");
-  expect(footerElement).toBeInTheDocument();
-});
+  it("renders footer component", () => {
+    render(<App />);
+    const footerElement = screen.getByTestId("footer");
+    expect(footerElement).toBeInTheDocument();
+  });
 
-test("dispatchGetLoginStatusUpdatesState", () => {
-  const dispatchMock = jest.fn();
-  useSelector.mockReturnValue({ isLoggedIn: true, user: null });
-  useDispatch.mockReturnValue(dispatchMock);
+  it("dispatchGetLoginStatusUpdatesState", () => {
+    const dispatchMock = jest.fn();
+    useSelector.mockReturnValue({ isLoggedIn: true, user: null });
+    useDispatch.mockReturnValue(dispatchMock);
 
-  render(<App />);
+    render(<App />);
 
-  expect(dispatchMock).toHaveBeenCalledWith(getLoginStatus());
-});
+    expect(dispatchMock).toHaveBeenCalledWith(getLoginStatus());
+  });
 
-test("dispatchGetUserUpdatesState", () => {
-  const dispatchMock = jest.fn();
-  useSelector.mockReturnValue({ isLoggedIn: true, user: null });
-  useDispatch.mockReturnValue(dispatchMock);
+  it("dispatchGetUserUpdatesState", () => {
+    const dispatchMock = jest.fn();
+    useSelector.mockReturnValue({ isLoggedIn: true, user: null });
+    useDispatch.mockReturnValue(dispatchMock);
 
-  render(<App />);
+    render(<App />);
 
-  expect(dispatchMock).toHaveBeenCalledWith(getUser());
+    expect(dispatchMock).toHaveBeenCalledWith(getUser());
+  });
 });
