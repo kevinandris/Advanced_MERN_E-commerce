@@ -74,7 +74,7 @@ const Login = () => {
       {isLoading && <Loader />}
       <section className={`container ${styles.auth}`}>
         <div className={styles.img}>
-          <img src={loginImg} alt="Login" width={400} />
+          <img src={loginImg} alt="Login" height={500} width={400} />
         </div>
 
         <Card>
@@ -122,7 +122,9 @@ const Login = () => {
 
             <span className={styles.register}>
               <p>Don't have an account? </p> &nbsp;
-              <Link to="/register">Register</Link>
+              <Link to="/register" className={styles.registerLink}>
+                Register
+              </Link>
             </span>
           </div>
         </Card>

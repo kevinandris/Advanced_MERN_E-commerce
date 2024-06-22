@@ -333,6 +333,10 @@ p {
   width: 100%;
 }
 
+h2 {
+  color: #006;
+}
+
 .--btn-primary {
   color: #fff;
   background: #006;

@@ -153,13 +153,15 @@ const Register = () => {
             </form>
             <span className={styles.register}>
               <p>Already have an account? </p> &nbsp;
-              <Link to="/login">Login</Link>
+              <Link to="/login" className={styles.registerLink}>
+                Login
+              </Link>
             </span>
           </div>
         </Card>
 
         <div className={styles.img}>
-          <img src={loginImg} alt="Login" width={400} height={600} />
+          <img src={loginImg} alt="Login" width={400} height={500} />
         </div>
       </section>
     </>
