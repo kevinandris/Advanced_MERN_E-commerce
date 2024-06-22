@@ -10,12 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/features/product/productSlice";
 import Footer from "../../components/footer/Footer";
 
-const PageHeading = ({ heading, btnText }) => {
+const PageHeading = ({ heading }) => {
   return (
     <>
       <div className="--flex-between">
         <h2 className="--fw-thin">{heading}</h2>
-        {/* <button className="--btn --btn-red">{btnText}</button> */}
       </div>
       <div className="--hr"></div>
     </>
@@ -86,7 +85,7 @@ const Home = () => {
       <section>
         <HomeInfoBox />
         <div className="container">
-          <PageHeading heading={"Popular Books"} btnText={"Shop Now>>>"} />
+          <PageHeading heading={"Popular Books"} />
           <ProductCarousel products={popularBooks} />
         </div>
       </section>
@@ -100,7 +99,7 @@ const Home = () => {
 
       <section>
         <div className="container">
-          <PageHeading heading={"Discounted books"} btnText={"Shop Now>>>"} />
+          <PageHeading heading={"Discounted books"} />
           <ProductCarousel products={discountedBooks} />
         </div>
       </section>

@@ -1,5 +1,5 @@
 .auth {
-  min-height: 88.82vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,10 +10,8 @@
 
   .form {
     width: 40rem;
-    height: 46.2vh;
 
     padding: 1.5rem;
-    // margin-top: 10px;
     animation: slide-up 0.5s ease;
 
     h2 {
@@ -133,6 +131,12 @@
 }
 
 @media screen and (max-width: 700px) {
+  .img {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 500px) {
   .img {
     display: none;
   }
