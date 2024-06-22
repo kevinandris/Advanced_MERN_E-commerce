@@ -21,10 +21,10 @@
     ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/956e2030-b262-4699-abfe-0866d7b1563b)
 
 2.  Login Page
-    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/0a72f11d-6c9d-4f1a-b802-e14bc4e6e79e)
+    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/eb67d79a-a576-456d-a9ec-ddbcc0a240da)
 
 3.  Register Page
-    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/ebef138f-636c-4c5b-a37c-a0fed3dfc570)
+    ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/3647da72-bf13-43a0-8eba-77600612bcfb)
 
 4.  Shop Page - All type of books are displayed.
     ![image](https://github.com/kevinandris/Bookstore_app/assets/102328858/cf890083-6970-4726-a1ad-2e11e734adc6)
