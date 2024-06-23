@@ -9,6 +9,10 @@
     margin-bottom: 25px;
   }
 
+  @media screen and (max-height: 750px) {
+    min-height: 80vh;
+  }
+
   table {
     border-collapse: collapse;
     width: 100%;
@@ -66,10 +70,6 @@
         margin-top: 5px;
       }
     }
-  }
-
-  @media screen and (max-height: 750px) {
-    height: 110vh;
   }
 }
 
