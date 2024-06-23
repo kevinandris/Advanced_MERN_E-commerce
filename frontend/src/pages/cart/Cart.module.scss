@@ -1,7 +1,13 @@
 .table {
   width: 100%;
   overflow-x: auto;
-  max-height: 107.6vh;
+  overflow: hidden;
+
+  padding: 20px;
+
+  .h2Cart {
+    margin-bottom: 25px;
+  }
 
   table {
     border-collapse: collapse;
@@ -60,6 +66,10 @@
         margin-top: 5px;
       }
     }
+  }
+
+  @media screen and (max-height: 750px) {
+    height: 110vh;
   }
 }
 

@@ -4,3 +4,22 @@
   box-shadow: var(--box-shadow);
   overflow: hidden;
 }
+
+.authCard {
+  border: 1px solid red;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+
+  @media screen and (max-height: 1300px) {
+    height: 39vh;
+  }
+
+  @media screen and (max-height: 1000px) {
+    height: 50.5vh;
+  }
+
+  @media screen and (max-height: 750px) {
+    height: 70vh;
+  }
+}

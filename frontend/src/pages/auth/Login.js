@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./auth.module.scss";
 import loginImg from "../../assets/login.jpg";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import Card from "../../components/card/Card";
 import toast, { Toaster } from "react-hot-toast";
 import { validateEmail } from "../../utils";
 import Loader from "../../components/loader/Loader";
@@ -12,6 +11,7 @@ import { getCartDB, saveCartDB } from "../../redux/features/cart/cartSlice";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { TfiEmail } from "react-icons/tfi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import AuthCard from "../../components/card/AuthCard";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -77,7 +77,7 @@ const Login = () => {
           <img src={loginImg} alt="Login" height={500} width={400} />
         </div>
 
-        <Card>
+        <AuthCard>
           <div className={styles.form}>
             <h2>Login Page</h2>
             <form onSubmit={loginUser}>
@@ -127,7 +127,7 @@ const Login = () => {
               </Link>
             </span>
           </div>
-        </Card>
+        </AuthCard>
       </section>
     </>
   );

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./auth.module.scss";
 import loginImg from "../../assets/register.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../components/card/Card";
 import toast, { Toaster } from "react-hot-toast";
 import { validateEmail } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +12,7 @@ import { MdPermIdentity } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { LuRepeat1 } from "react-icons/lu";
+import AuthCard from "../../components/card/AuthCard";
 
 const initialState = {
   name: "",
@@ -85,7 +85,7 @@ const Register = () => {
       <Toaster />
       {isLoading && <Loader />}
       <section className={`container ${styles.auth}`}>
-        <Card>
+        <AuthCard>
           <div className={styles.form}>
             <h2>Register Page</h2>
             <form onSubmit={registerUser}>
@@ -158,7 +158,7 @@ const Register = () => {
               </Link>
             </span>
           </div>
-        </Card>
+        </AuthCard>
 
         <div className={styles.img}>
           <img src={loginImg} alt="Login" width={400} height={500} />
