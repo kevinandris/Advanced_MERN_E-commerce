@@ -14,7 +14,7 @@ const PageHeading = ({ heading }) => {
   return (
     <>
       <div className="--flex-between">
-        <h2 className="--fw-thin">{heading}</h2>
+        <h2 className="--fw-thin pageHeading">{heading}</h2>
       </div>
       <div className="--hr"></div>
     </>

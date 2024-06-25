@@ -83,3 +83,15 @@
     margin-right: 1rem;
   }
 }
+
+@media screen and (max-width: 750px) {
+  .table {
+    overflow-x: visible;
+  }
+
+  .summary {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+  }
+}

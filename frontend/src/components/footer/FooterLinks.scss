@@ -161,13 +161,26 @@ span {
   color: var(--light-blue);
 }
 
-// ! Media Query 600px
-@media screen and (max-width: 600px) {
+// ! Media Query 750px
+@media screen and (max-width: 750px) {
   .contact {
     flex-direction: column;
   }
 
   .contact > * {
-    margin: 3rem 0;
+    margin: 1rem 0;
+  }
+
+  .footer-menu {
+    width: 40%;
+  }
+
+  .footer-logo {
+    margin-left: 20px;
+    width: 33%;
+  }
+
+  .footer {
+    display: flex;
   }
 }

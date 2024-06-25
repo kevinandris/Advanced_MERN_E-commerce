@@ -8,6 +8,7 @@ h3 {
   row-gap: 1rem;
   column-gap: 1rem;
 }
+
 .category {
   width: 30rem;
   height: 36rem;
@@ -25,5 +26,11 @@ h3 {
     height: 78%;
     cursor: pointer;
     object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .category {
+    width: 100%;
   }
 }

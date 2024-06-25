@@ -53,6 +53,7 @@ const FooterLinks = () => {
               </li>
             </ul>
           </div>
+          
           <div className="footer-menu">
             <p className="link-heading">Features</p>
             <ul className="nav-ul footer-links">
