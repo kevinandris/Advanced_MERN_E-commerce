@@ -103,6 +103,55 @@
   }
 
   .summary {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .table {
+    overflow-x: visible;
+  }
+
+  .summary {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 384px) {
+  .table {
+    overflow-x: visible;
+  }
+
+  .summary {
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .table {
+    overflow-x: visible;
+  }
+
+  .summary {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .table {
+    overflow-x: visible;
+  }
+
+  .summary {
     min-height: 60vh;
     display: flex;
     flex-direction: column;
