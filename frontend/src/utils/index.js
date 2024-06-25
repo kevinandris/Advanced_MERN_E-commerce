@@ -6,6 +6,13 @@ export const shortenText = (text, n) => {
   }
   return text;
 };
+export const shortenTextSubTitle = (text, n) => {
+  if (text.length > n) {
+    const shortenedText = text.substring(1, n).concat("...");
+    return shortenedText;
+  }
+  return text;
+};
 
 // ! Validate Email
 export const validateEmail = (email) => {

@@ -2,7 +2,7 @@
 import React from "react";
 import "./Carousel.scss";
 import { Link } from "react-router-dom";
-import { shortenText } from "../../utils";
+import { shortenText, shortenTextSubTitle } from "../../utils";
 import { ADD_TO_CART, saveCartDB } from "../../redux/features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 
@@ -37,7 +37,7 @@ const CarouselItem = ({
           {` $${price}`}
         </p>
         <h4>{shortenText(name, 18)}</h4>
-        <p className="--mb">{shortenText(desc, 24)}</p>
+        <p className="--mb">{shortenTextSubTitle(desc, 24)}</p>
       </Link>
       <button
         className="--btn --btn-primary --btn-block"

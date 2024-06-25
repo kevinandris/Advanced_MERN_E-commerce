@@ -46,8 +46,12 @@ const ProductList = ({ products }) => {
     <div className={styles["product-list"]}>
       <div className={styles.top}>
         <div className={styles.icons}>
-          <BsFillGridFill size={22} color="red" onClick={() => setGrid(true)} />
-          <FaListAlt size={24} color="#0066d4" onClick={() => setGrid(false)} />
+          <BsFillGridFill
+            size={22}
+            color="#c1481e "
+            onClick={() => setGrid(true)}
+          />
+          <FaListAlt size={24} color="#006" onClick={() => setGrid(false)} />
           <p>
             <b>{currentItems.length} products found</b>
           </p>

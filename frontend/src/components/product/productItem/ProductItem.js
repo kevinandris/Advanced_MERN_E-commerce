@@ -60,6 +60,7 @@ const ProductItem = ({
           {/* >>> Avoid raw HTML from the database & preventing from hacks using `dangerouslySetInnerHTML`*/}
           {!grid && (
             <div
+              className={styles.subText}
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
                   shortenText(product?.description, 200)

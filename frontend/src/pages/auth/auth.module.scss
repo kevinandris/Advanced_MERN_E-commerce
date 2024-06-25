@@ -168,6 +168,38 @@
   }
 }
 
+@media screen and (max-width: 390px) {
+  form,
+  h2,
+  .register {
+    width: 97%;
+  }
+}
+
+@media screen and (max-width: 384px) {
+  form,
+  h2,
+  .register {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  form,
+  h2,
+  .register {
+    width: 92%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  form,
+  h2,
+  .register {
+    width: 89%;
+  }
+}
+
 @media screen and (max-height: 500px) {
   .img {
     display: none;
