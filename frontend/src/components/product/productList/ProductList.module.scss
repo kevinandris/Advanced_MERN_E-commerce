@@ -24,12 +24,18 @@
         font-weight: 500;
         margin: 0 5px;
       }
+
       select {
         font-size: 1.6rem;
         font-weight: 300;
         border: none;
-        // border-bottom: 1px solid #777;
         outline: none;
+        background: transparent;
+      }
+
+      .option {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: medium;
       }
     }
   }
@@ -59,6 +65,7 @@
   //     outline: none;
   //   }
   // }
+
   @media screen and (max-width: 800px) {
     .top {
       flex-direction: column;

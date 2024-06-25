@@ -48,7 +48,7 @@ const ProductList = ({ products }) => {
         <div className={styles.icons}>
           <BsFillGridFill
             size={22}
-            color="#c1481e "
+            color=" #c1481e"
             onClick={() => setGrid(true)}
           />
           <FaListAlt size={24} color="#006" onClick={() => setGrid(false)} />
@@ -64,11 +64,21 @@ const ProductList = ({ products }) => {
         <div className={styles.sort}>
           <label>Sort by:</label>
           <select value={sort} onChange={(e) => setSort(e.target.value)}>
-            <option value="latest">Latest</option>
-            <option value="lowest-price">Lowest Price</option>
-            <option value="highest-price">Highest Price</option>
-            <option value="a-z">A - Z</option>
-            <option value="z-a">Z - A</option>
+            <option className={styles.option} value="latest">
+              Latest
+            </option>
+            <option className={styles.option} value="lowest-price">
+              Lowest Price
+            </option>
+            <option className={styles.option} value="highest-price">
+              Highest Price
+            </option>
+            <option className={styles.option} value="a-z">
+              Alphabetical Order
+            </option>
+            <option className={styles.option} value="z-a">
+              Non-Alphabetical Order
+            </option>
           </select>
         </div>
       </div>
