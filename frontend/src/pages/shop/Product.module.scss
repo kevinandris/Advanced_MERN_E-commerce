@@ -36,7 +36,32 @@
 
   @media screen and (max-width: 700px) {
     .filter {
-      width: 30%;
+      width: 40%;
+      background-color: #fff;
+      border: 2px solid #ccc;
+      position: absolute;
+      // left: -200%;
+      // height: 100%;
+      padding: 1rem;
+      z-index: 99;
+    }
+
+    .show {
+      left: 0;
+    }
+
+    .content {
+      width: 100%;
+
+      .icon {
+        display: flex;
+      }
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .filter {
+      width: 50%;
       background-color: #fff;
       border: 2px solid #ccc;
       position: absolute;
@@ -45,13 +70,17 @@
       padding: 1rem;
       z-index: 99;
     }
+
     .show {
       left: 0;
     }
+
     .content {
       width: 100%;
+
       .icon {
         display: flex;
+        margin-right: 5px;
       }
     }
   }

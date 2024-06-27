@@ -12,6 +12,7 @@ import {
   selectFilteredProducts,
 } from "../../../redux/features/product/filterSlice";
 import ReactPaginate from "react-paginate";
+import { Toaster } from "react-hot-toast";
 
 const ProductList = ({ products }) => {
   const [grid, setGrid] = useState(true);
@@ -44,6 +45,7 @@ const ProductList = ({ products }) => {
 
   return (
     <div className={styles["product-list"]}>
+      <Toaster />
       <div className={styles.top}>
         <div className={styles.icons}>
           <BsFillGridFill
