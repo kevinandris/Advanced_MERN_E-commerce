@@ -1,0 +1,36 @@
+.title {
+  font-weight: bold;
+  font-size: 30px;
+  color: #006;
+}
+
+address {
+  font-size: 17px;
+}
+
+.title,
+address {
+  text-align: center;
+}
+
+.map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 2rem 0 3rem 0;
+
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 30%;
+  position: relative;
+
+  iframe {
+    border: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+}

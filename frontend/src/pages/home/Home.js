@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
-import Slider from "../../components/slider/Slider";
 import "./Home.scss";
-import HomeInfoBox from "./HomeInfoBox";
 import CarouselItem from "../../components/corousel/CarouselItem";
+import Footer from "../../components/footer/Footer";
+import FooterLinks from "../../components/footer/FooterLinks";
+import HomeInfoBox from "./HomeInfoBox";
 import ProductCarousel from "../../components/corousel/Carousel";
 import ProductCategory from "./ProductCategory";
-import FooterLinks from "../../components/footer/FooterLinks";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import Slider from "../../components/slider/Slider";
 import { getProducts } from "../../redux/features/product/productSlice";
-import Footer from "../../components/footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import FooterMap from "../../components/footer/FooterMap";
 
 const PageHeading = ({ heading }) => {
   return (
@@ -104,6 +105,7 @@ const Home = () => {
         </div>
       </section>
 
+      <FooterMap />
       <FooterLinks />
       <Footer />
     </>
