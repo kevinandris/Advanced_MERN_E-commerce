@@ -135,8 +135,7 @@
 
 1. Some pictures are not in the same shape, which makes the book photos
     look smaller or bigger on the website.
-2. The footer is not stable staying at the same place, it would be moving up again
-   after not running the app for quite long period of time
+2. The user might experience blank page after purchasing an item.
 
 # Skills Required for Self-Improvement:
 
